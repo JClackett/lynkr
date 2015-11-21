@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121014129) do
+ActiveRecord::Schema.define(version: 20151121110522) do
 
   create_table "collections", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.integer  "creator_id"
   end
 
   create_table "collections_links", force: :cascade do |t|
