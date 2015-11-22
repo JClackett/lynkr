@@ -1,6 +1,9 @@
-<%= collection.title %>
-<%= collection.creator_id %>
-<%= link_to 'Show', collection %>
-<%= link_to 'Edit', edit_collection_path(collection) %>
+<div class="collection-wrapper left">
+
+	<div class="collection-title">
+		<h5><%= collection.title %></h5>
+	</div>
+
 <%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'New Collection', new_collection_path %>
+
+</div>
