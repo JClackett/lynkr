@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.all
+    @collections = Collection.where(creator_id: current_user.id).all
   end
 
   # GET /collections/1
@@ -27,6 +27,7 @@ class CollectionsController < ApplicationController
   # POST /collections.json
   def create
     @collection = Collection.new(collection_params)
+    @collection.creator = current_user.id
 
     respond_to do |format|
       if @collection.save

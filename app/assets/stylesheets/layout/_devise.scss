@@ -10,9 +10,24 @@ Devise sign in / Register
 		@extend .group;
 		background-color: #fff;
 		min-width: 350px;
+		
+		input[type="submit"],input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="tel"], input[type="url"], input[type="number"], input[type="search"], select, textarea { 
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background-color: #FAFAFA;
+			@include border-radius(4px);
+			background-clip: padding-box;
+			border: 1px solid #CCC;
+			padding: 10px;
+			font-size: 14px;
+			font-size: 1.4rem;
+			width: 100%;
+			color:$grey6;
+		}
 
 		@include breakpoint(medium) {
-			width: 770px;
+			width: 768px;
 			margin: 125px auto;
 			border-radius: 3px;
 			border: 1px solid #dedede;
@@ -24,6 +39,7 @@ Devise sign in / Register
 
 			@include breakpoint(medium) {
 				width: 300px;
+				height: 300px;
 				float: left;
 				min-height: 300px;
 				@include border-left-radius(3px);
@@ -36,7 +52,7 @@ Devise sign in / Register
 			padding: 20px;
 
 			@include breakpoint(medium) {
-				padding: 30px;
+				padding: 25px;
 				float: right;
 				width: 450px;
 			}
@@ -45,7 +61,7 @@ Devise sign in / Register
 
 				input {
 					width:100%;
-					margin: 10px 0;
+					margin: 5px 0;
 					color:$grey5;
 				}
 			
@@ -116,6 +132,7 @@ Devise sign in / Register
 			
 			h3 {	
 				@include font-size(30);
+				margin-top: 30px;
 				text-align: center;
 				font-variant: small-caps;
 				font-family: 'Helvetica Neue' sans-serif;
@@ -129,26 +146,36 @@ Devise sign in / Register
 			margin: 10px 0px;
 			text-align: center;
 			
-				.login-button {
-					background-color: $greyE;
-					border-style: none;
-					border:1px solid $greyC;
-					color:$grey6;
-					
-					&:hover {
-						background-color: #DFDFDF;
-					}
-				}
+			.login-button-reg, .login-button{
 
-				input[type="submit"] {
-					color:$grey6;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				background-color: $green;
+				@include border-radius(4px);
+				background-clip: padding-box;
+				border: 1px solid $dark-green;
+				padding: 10px;
+				@include font-size(12);
+				width: 100%;
+				color:$white;
+				text-transform: uppercase;
+				font-weight: 600;
+				font-variant: small-caps;
+				
+
+				&:hover {
+					background-color: $light-green;
 				}
+			}
 		}
 
 		.devise-links {
-			margin-top: 30px;
+			@extend .group;
+			margin-top: 5px;
 			
-			ul {
+			ul {	
+				@extend .group;
 				margin: 0;
 				padding: 0;
 				list-style: none;
@@ -167,7 +194,7 @@ Devise sign in / Register
 					
 					a {
 						color: $grey6;
-						@include font-size(18);
+						@include font-size(16);
 						font-variant: small-caps;
 						
 						&:hover {
