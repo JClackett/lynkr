@@ -25,9 +25,12 @@
 
 @import 'modules/flash_messages';
 
-
 @import 'layout/application';
 @import 'layout/devise';
+
+@import 'layout/application/top_bar';
+@import 'layout/application/side_bar';
+
 
 
 

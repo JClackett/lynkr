@@ -1,0 +1,170 @@
+.l-application {
+/* --------------------------------------------------
+   Topbar
+-------------------------------------------------- */
+.top-bar {
+	width: calc(100% - 200px);
+	@include box-shadow(0px,0px,2px,1px,rgba(0,0,0,0.2));
+	background-color: #FFF;
+	position: fixed;
+	top: 0;
+	right: 0;
+
+	.top-section, .bottom-section {
+		padding: 10px;
+	}
+
+	// Top Section
+	.top-section {
+		@extend .group;
+		border-bottom: 1px solid $greyD;
+
+		// Search Section
+		.search-wrapper {
+			text-align: center;	
+			position: relative;
+			float: left;
+
+			.search-icon {
+				position: absolute;
+				right: 10px;
+				line-height: 28px;
+			}
+
+			.search-form {
+				width: 250px;
+			}
+
+			.search-input {
+				@include border-radius(15px);
+				background-color: #F8F8F8;
+				border: 1px solid $greyC;
+				line-height: 30px;
+				height: 30px;
+				padding-left: 10px;
+				width: 250px;
+				color: $grey5;
+				@include font-size(13);
+			}	
+
+			::-webkit-input-placeholder {
+				font-family: "Helvetica Neue", "Helvetica", sans-serif;
+				@include font-size(13);
+				color: $grey8;
+			}
+
+			.search-input:focus {
+				outline:none;
+			}
+		}
+
+
+
+
+		// Login - Profile Section //
+		.login-section {
+
+			// Signin/Signup Text when logged out!!
+			.user-login {
+				margin: 0;
+				padding: 0;
+				cursor:pointer;
+				line-height: 30px;
+				@include font-size(14);
+				color: $grey8;
+
+				&:hover {
+
+				}
+			}
+
+
+			// User Avatar Image
+			.current-user {
+
+				img {
+					cursor:pointer;
+					display:block;
+					height: 30px;
+					width: 30px;
+					padding:0;
+					margin: 0 10px;
+					border-radius:50%;
+					border:1px solid $greyA;
+					
+					&:hover {
+						@include box-shadow(0px,0px,0px,3px, $blue);
+						border:1px solid $blue;
+					}
+				}
+			}
+
+			// The Pop up section
+			.user-popup {
+				display:none;
+				position:absolute;
+				top:$top-bar-height;
+				margin: 0;
+				text-align: center;
+				right:0;
+				background-color: $white;
+				border-left:1px solid $greyE;
+
+				ul {
+					display: block;
+					margin: 0;
+					float: left;
+					height: 45px;
+					padding: 0;
+
+					li {
+						list-style:none;
+
+
+						a {
+							text-decoration:none;
+							padding: 15px 5px;
+							margin: 0;
+							@include font-size(12);
+							text-transform: uppercase;
+							line-height: 45px;
+							color:$grey5;
+
+							&:hover {
+								color:$grey3;
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+	// Bottom Section
+	.bottom-section {
+		border-bottom: 1px solid $greyD;
+		padding: 10px;
+		background-color: #F9F9F9;
+
+		.section-header {
+
+			h3 {
+				margin: 0;
+				text-align: center;
+				color: $grey4;
+				@include font-size(20);
+			}
+		}
+
+	}
+
+}
+}

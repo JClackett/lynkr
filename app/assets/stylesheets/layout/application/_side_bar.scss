@@ -1,0 +1,104 @@
+.l-application {
+/* --------------------------------------------------
+Sidebar
+-------------------------------------------------- */
+.sidebar {
+	height:100vh;     // Need to sort this out
+	@extend .group;
+	background-color: $blue;
+	width: 200px;
+	position: fixed;
+	left:0;
+	top: 0;
+	
+	/* --------------------------------------------------
+	   Logo
+	-------------------------------------------------- */
+	.logo {
+		display: block;
+		text-align: left;
+		@include font-size(32);
+		line-height: 32px;
+		font-weight: 500;
+		margin-left: 20px;
+		letter-spacing: 5px;
+		color: #FFF;
+		font-variant: small-caps;
+	}
+
+	/* --------------------------------------------------
+	   Main Nav
+	-------------------------------------------------- */
+	.main-nav {
+		text-align: left;
+		// border-top: 1px solid $greyA;
+		// border-bottom: 1px solid $greyA;
+
+		ul {
+			@extend .group;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			
+			li {
+				display: block;
+				position: relative;
+				
+				&:hover {
+					background-color: $dark-blue;
+				}
+				
+				p {
+					text-rendering: optimizeLegibility;
+					color: #FFF;
+					padding: 5px 20px;
+					text-transform: uppercase;
+				}
+
+				.new-link-button {
+					position: absolute;
+					right: 15px;
+					top:4px;
+					float: right;
+					color:$white;
+					font-size: 2rem;
+				}
+			}
+
+			.sidebar-links {
+				p {
+					font-weight: 500;
+					@include font-size(10);
+				}
+			}
+
+			.title-link {
+				p {
+					font-weight: 600;
+					@include font-size(12);
+				}
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	/* --------------------------------------------------
+	   Footer
+	-------------------------------------------------- */
+	.footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		left: 0;
+		padding: 10px 20px;
+		
+		p {
+			@include font-size(12);
+			margin: 0;
+		}
+	}
+}
+}
