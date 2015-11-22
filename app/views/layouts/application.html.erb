@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Lynkr</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<%= render 'layouts/header' %>
+<body class="group l-application">
 
-<%= yield %>
+	<%= render 'sidebar' %>
+	<%= render 'top_bar' %>
+
+	<div class="main-content">
+		<%= yield %>
+	</div>
 
 </body>
+
 </html>

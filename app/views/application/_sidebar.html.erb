@@ -1,0 +1,38 @@
+<div class="sidebar left">
+	
+	<h2 class="logo">lynkr</h2>
+
+	<%#= link_to 'lynkr', root_path, class: "logo" %>
+
+	<div class="main-nav">
+
+		<ul>
+			<%= nav_link_to links_path  do %>
+	                      	<li class="sidebar-links title-link"><p>all links</p></li>
+	                 	<% end %>
+
+	                 	<%= nav_link_to new_link_path  do %>
+	                      	<li class="sidebar-links"><p>add link</p><i class="fa fa-plus-square-o new-link-button"></i></li>
+	                 	<% end %>
+
+	                 	<%= nav_link_to collections_path  do %>
+	                      	<li class="sidebar-links title-link"><p>collections</p></li>
+	                 	<% end %>
+
+	                 	<%= nav_link_to new_collection_path  do %>
+	                      	<li class="sidebar-links"><p>new collection</p><i class="fa fa-plus-square-o new-link-button"></i></li>
+	                 	<% end %>
+
+		</ul>
+
+	</div>
+
+	<div class="footer group">
+
+		<p class="left" >About</p>
+
+		<p class="right" >&copy; Lynkr 2015</p>	
+
+	</div>
+
+</div>

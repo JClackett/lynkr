@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
-
 gem 'devise'
+
+gem 'nav_lynx'
+
+gem 'cancancan', '~> 1.10'
+
+gem 'gravatar_image_tag'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

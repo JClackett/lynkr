@@ -1,0 +1,60 @@
+<header class="top-bar right">
+
+	<div class="top-section">
+
+		<div class="search-wrapper">
+
+				<i class="fa fa-search search-icon"></i>
+
+				<form action="<%= root_path %>" method="get" class="search-form" >
+
+					<%= text_field_tag :q, params[:s], placeholder: "SEARCH", class: "search-input"%>
+					<%= submit_tag "Search", :style => "display: none;", :name  => nil %>
+
+				</form>
+
+		</div>
+
+			
+		<div class="login-section right">
+
+			<% if user_signed_in? %>
+
+			           <div class="current-user" >
+
+			           	<%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
+			           </div>
+
+			           <div class="user-popup">
+
+			                      <ul>
+
+			                     		<li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+
+			                      </ul>
+
+			            </div>
+
+			<%else%>
+
+			          <%= link_to "LOG IN / SIGN UP" , new_user_session_path,  class: 'user-login' %>
+
+			<% end %>
+
+		</div>
+	
+	</div>
+
+	
+	<div class="bottom-section">
+	
+		<div class="section-header">
+
+			<h3>Collections</h3>
+
+		</div>
+	
+	</div>
+
+</header>
+

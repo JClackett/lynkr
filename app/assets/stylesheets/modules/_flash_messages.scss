@@ -1,0 +1,59 @@
+//-----------------------------------------------------------------------------
+// Flash Messages
+//-----------------------------------------------------------------------------
+
+// For the admin pages
+.flash-messages-internal {
+  margin-top: 30px;
+}
+
+// The external views
+.flash-messages-external {
+  padding: 30px 30px 0;
+}
+
+// The external views
+.flash-messages-devise {
+  margin-bottom: 15px;
+}
+
+.flash {
+  padding: 10px;
+  margin-bottom: 0px;
+  border-radius: 4px;
+  @include font-size(14);
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: right;
+       li {
+         
+       }
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.flash-notice {
+  background-color: #d9edf7;
+  color: #31708f;
+  border: 1px solid #bce8f1;
+  float: right;
+}
+
+.flash-alert {
+  color: #A94442;;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  float: right;
+}
+
+.flash-success {
+  float: right;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+}	

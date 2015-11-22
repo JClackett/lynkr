@@ -1,16 +1,37 @@
-<h2>Forgot your password?</h2>
+<%= provide(:title, "Forgot Password" ) %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="devise">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+	<div class="devise-upsell">
+		<h1>lynkr</h1>
+	</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+	<div class="devise-form">
 
-<%= render "devise/shared/links" %>
+		<h2>forgot password?</h2>
+
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+			<% if flash.any? %>
+				<div class="flash-messages-devise right">
+					<%= render 'shared/flash_messages' %>
+				</div>
+			<% end %>
+
+			<div class="field-row">
+				<%= f.email_field :email, autofocus: true , placeholder: 'Enter Email' ,class: "input" %>
+			</div>
+
+			<div class="login-actions">
+
+				<%= f.submit "Send Me Password", class: "login-button" %>
+
+				<%= render "devise/shared/links" %>
+
+			</div>
+
+		<% end %>
+
+	</div>
+
+</div>
