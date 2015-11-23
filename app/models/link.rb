@@ -23,20 +23,23 @@ class Link < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 
 belongs_to :user
-has_many :collections_links
-has_many :collections, :through => :collections_links
+has_many :collections_links, dependent: :destroy
+has_many :collections, through: :collections_links
 
 
 # ------------------------------------------------------------------------------
 # Validations
 # ------------------------------------------------------------------------------
 
-
+validates_format_of :url, with: URI::regexp(%w(http https))
+validates_presence_of :url	
+validates_presence_of :collection_ids, :allow_blank => true
 
 # ------------------------------------------------------------------------------
 # Callbacks
 # ------------------------------------------------------------------------------
 
+before_save :downcase_inputs
 
 
 # ------------------------------------------------------------------------------
@@ -73,6 +76,11 @@ has_many :collections, :through => :collections_links
 protected
 # ------------------------------------------------------------------------------
 
+def downcase_inputs
+	self.description.downcase!
+	self.url.downcase!
+	self.image_url.downcase!
+end
 
 
 # ------------------------------------------------------------------------------

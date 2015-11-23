@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   
   devise_for :users
 
-authenticated :user do
-  root :to => "collections#index"
-end
-unauthenticated :user do
-  devise_scope :user do 
-    get "/" => "devise/sessions#new"
+  authenticated :user do
+    root :to => "collections#index"
   end
-end
+  unauthenticated :user do
+    devise_scope :user do 
+      get "/" => "devise/sessions#new"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

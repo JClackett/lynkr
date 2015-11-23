@@ -1,9 +1,17 @@
+<% @collection = collection %> 		<!-- To Pass into the partial for the collection links -->
+
 <div class="collection-wrapper left">
 
 	<div class="collection-title">
-		<h5><%= collection.title %></h5>
+		<%= link_to collection_path(collection) do %>
+			<h5><%= collection.title %></h5>
+		<% end %>
 	</div>
 
-<%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<div class="collection-links-wrapper">
+		<%= render 'collection_links' %>
+	</div>
+
+<%#= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 </div>

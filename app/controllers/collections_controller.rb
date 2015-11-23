@@ -7,11 +7,14 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   def index
     @collections = Collection.where(creator_id: current_user.id).all
+    @links = Link.where(user_id: current_user.id).all
+    @bottom_bar_header = "Collections"
   end
 
   # GET /collections/1
   # GET /collections/1.json
   def show
+    @bottom_bar_header = @collection.title.titleize
   end
 
   # GET /collections/new

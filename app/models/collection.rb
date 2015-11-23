@@ -23,12 +23,12 @@ class Collection < ActiveRecord::Base
 # Associations
 # ------------------------------------------------------------------------------
 
-has_many :users_collections
-has_many :users, :through => :users_collections
+has_many :users_collections, dependent: :destroy
+has_many :users, through: :users_collections
 belongs_to :creator, :class_name => "User", :foreign_key => :creator_id
 
-has_many :collections_links
-has_many :links, :through => :collections_links
+has_many :collections_links, dependent: :destroy
+has_many :links, through: :collections_links
 
 
 # ------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ has_many :links, :through => :collections_links
 # ------------------------------------------------------------------------------
 # Callbacks
 # ------------------------------------------------------------------------------
-
+before_save :downcase_inputs
 
 
 # ------------------------------------------------------------------------------
@@ -77,6 +77,9 @@ has_many :links, :through => :collections_links
 protected
 # ------------------------------------------------------------------------------
 
+def downcase_inputs
+	self.title.downcase!
+end
 
 
 # ------------------------------------------------------------------------------

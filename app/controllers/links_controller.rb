@@ -4,7 +4,8 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.where(user_id: current_user.id).all
+    @bottom_bar_header = "All Links"
   end
 
   # GET /links/1
@@ -25,6 +26,7 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
+    @link.user_id = current_user.id
 
     respond_to do |format|
       if @link.save
@@ -69,6 +71,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url, :description, :image_url, :user_id)
+      params.require(:link).permit(:url, :description, :image_url, :user_id, collection_ids: [] )
     end
 end

@@ -3,14 +3,20 @@ General Styling
 -------------------------------------------------- */
 
 html {
-	overflow: hidden;
+	overflow: hidden; // Need to check this 
     	height: 100%;
 }
+
 body {
 	margin: 0;
 	background-color: $body;
 	height: 100%;
     	overflow: auto;
+    	min-width: 500px;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 *, *:after, *:before {

@@ -154,7 +154,7 @@ Devise sign in / Register
 				background-color: $green;
 				@include border-radius(4px);
 				background-clip: padding-box;
-				border: 1px solid $dark-green;
+				border:none;
 				padding: 10px;
 				@include font-size(12);
 				width: 100%;
@@ -162,10 +162,13 @@ Devise sign in / Register
 				text-transform: uppercase;
 				font-weight: 600;
 				font-variant: small-caps;
+				-webkit-transition:ease-in all 100ms;
+				transition:ease-in all 100ms;
+				
 				
 
 				&:hover {
-					background-color: $light-green;
+					background-color: $dark-green;
 				}
 			}
 		}
