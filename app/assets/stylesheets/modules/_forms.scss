@@ -1,0 +1,75 @@
+/* --------------------------------------------------
+Form Layout Template
+-------------------------------------------------- */
+.l-application {
+
+	.outer-form {
+		@extend .group;
+		background-color: #fff;
+		min-width: 270px;
+		padding: 20px;
+		width: 50%;
+		margin: 125px auto;
+		border-radius: 3px;
+		border: 1px solid #dedede;
+		
+		input[type="submit"],input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="tel"], input[type="url"], input[type="number"], input[type="search"], select, textarea { 
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background-color: #FAFAFA;
+			@include border-radius(4px);
+			background-clip: padding-box;
+			border: 1px solid #CCC;
+			padding: 10px;
+			font-size: 14px;
+			font-size: 1.4rem;
+			width: 100%;
+			color:$grey6;
+		}
+
+		.field-row {
+
+			input {
+				width:100%;
+				margin: 5px 0;
+				color:$grey5;
+			}
+		
+		}
+
+
+
+		.form-actions {
+			@extend .group;
+			margin: 10px 0px;
+			text-align: center;
+			
+			.form-submit-button {
+
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				background-color: $green;
+				@include border-radius(4px);
+				background-clip: padding-box;
+				border:none;
+				padding: 10px;
+				@include font-size(12);
+				width: 100%;
+				color:$white;
+				text-transform: uppercase;
+				font-weight: 600;
+				font-variant: small-caps;
+				-webkit-transition:ease-in all 100ms;
+				transition:ease-in all 100ms;
+				
+				
+
+				&:hover {
+					background-color: $dark-green;
+				}
+			}
+		}
+	}
+}

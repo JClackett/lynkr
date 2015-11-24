@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'favourites' => 'links#favourites'
+
+
   resources :collections
   
   devise_for :users

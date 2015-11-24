@@ -15,6 +15,7 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
+    @bottom_bar_header = "New Link"
     @link = Link.new
   end
 
@@ -52,6 +53,17 @@ class LinksController < ApplicationController
       end
     end
   end
+
+  # GET /favourites
+  # List all favourited links
+
+  def favourites
+    @bottom_bar_header = "Favourites"
+    @favourited_links =  Link.joins(:favourites).where(favourites: { user_id: current_user } )
+  end
+
+  # PUT /link/1/favourite
+  #Method to assign like to link
 
   def favourite
     @link = Link.find(params[:id])

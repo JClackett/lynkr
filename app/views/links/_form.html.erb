@@ -1,47 +1,51 @@
-<%= form_for(@link) do |f| %>
-	<% if @link.errors.any? %>
+<%= provide(:title, "New Link" ) %>
+<div class="outer-form">
 
-		<div id="error_explanation">
+	<%= form_for(@link) do |f| %>
+		<% if @link.errors.any? %>
 
-			<h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+			<div id="error_explanation">
 
-			<ul>
-				<% @link.errors.full_messages.each do |message| %>
+				<h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
 
-					<li><%= message %></li>
+				<ul>
+					<% @link.errors.full_messages.each do |message| %>
 
-				<% end %>
+						<li><%= message %></li>
 
-			</ul>
+					<% end %>
 
+				</ul>
+
+			</div>
+
+		<% end %>
+
+		<div class="field-row">
+			<%= f.text_field :url , placeholder: "Copy the url here" %>
+		</div>
+
+		<div class="field-row">
+			<%= f.text_field :description, placeholder: "Description goes here"  %>
+		</div>
+
+		<div class="field-row hidden">
+			<%= f.text_field :image_url, placeholder: "Description goes here"  %>
+		</div>
+
+
+		<div class="field-row checkbox-field">
+			<%= f.collection_check_boxes( :collection_ids, Collection.where(creator_id: current_user.id).all, :id, :title)  do |b| %> 
+				<%= b.check_box(class: 'check_box') %>
+				<%= b.label(class: "checkbox_label") %>
+			<% end %>
+		</div>
+
+		<div class="form-actions">
+			<%= f.button "add link", type: 'submit', class: "form-submit-button", data: { disable_with: 'Submitting' } %>
 		</div>
 
 	<% end %>
 
-	<div class="field">
-		<%= f.label :url %><br>
-		<%= f.text_field :url %>
-	</div>
 
-	<div class="field">
-		<%= f.label :description %><br>
-		<%= f.text_field :description %>
-	</div>
-
-	<div class="field">
-		<%= f.label :image_url %><br>
-		<%= f.text_field :image_url %>
-	</div>
-
-	<div class="field checkbox-field">
-		<%= f.collection_check_boxes( :collection_ids, Collection.where(creator_id: current_user.id).all, :id, :title)  do |b| %> 
-			<%= b.check_box(class: 'check_box') %>
-			<%= b.label(class: "checkbox_label") %>
-		<% end %>
-	</div>
-
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-
-<% end %>
+</div>

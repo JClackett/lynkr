@@ -21,6 +21,10 @@
 
 		           <div class="current-user" >
 
+		           	<div class="user-initials">
+		           		<!-- Need to make Users Controller -->
+		           	</div>
+
 		           	<%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
 		           </div>
 
@@ -42,6 +46,8 @@
 	<div class="bottom-section">
 	
 		<div class="section-header">
+			
+			<!-- Might go a bit wrong if i ever need to use another show page, needs a fix  -->
 
 			<% if controller.action_name == 'show' %>
 				<h3><%= best_in_place @collection, :title, :as => :input %></h3>

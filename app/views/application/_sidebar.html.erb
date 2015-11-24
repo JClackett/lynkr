@@ -7,6 +7,10 @@
 	<div class="main-nav">
 
 		<ul>
+			<%= nav_link_to favourites_path  do %>
+	                      	<li class="sidebar-links title-link"><p>favourites</p><i class="fa fa-star favourite-button"></i></li>
+	                 	<% end %>
+
 			<%= nav_link_to links_path  do %>
 	                      	<li class="sidebar-links title-link"><p>all links</p></li>
 	                 	<% end %>

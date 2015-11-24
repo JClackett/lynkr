@@ -1,4 +1,5 @@
 .l-application {
+
 /* --------------------------------------------------
 Sidebar
 -------------------------------------------------- */
@@ -18,8 +19,8 @@ Sidebar
 	.logo {
 		display: block;
 		text-align: left;
-		@include font-size(32);
-		line-height: 32px;
+		@include font-size(30);
+		line-height: 30px;
 		font-weight: 500;
 		margin-left: 20px;
 		letter-spacing: 5px;
@@ -49,34 +50,44 @@ Sidebar
 					background-color: $dark-blue;
 				}
 				
+
 				p {
 					text-rendering: optimizeLegibility;
 					color: #FFF;
-					padding: 5px 20px;
-					text-transform: uppercase;
+					padding: 0px 20px;
+					font-variant: small-caps;
+					line-height: 30px;
+				}
+
+				.new-link-button, .favourite-button {
+					position: absolute;
+					right: 15px;
+					top:5px;
+					float: right;
+					font-size: 2rem;
 				}
 
 				.new-link-button {
-					position: absolute;
-					right: 15px;
-					top:4px;
-					float: right;
 					color:$white;
-					font-size: 2rem;
 				}
+
+				.favourite-button {
+					color:$yellow;
+				}
+
 			}
 
 			.sidebar-links {
 				p {
-					font-weight: 500;
-					@include font-size(10);
+					font-weight: 400;
+					@include font-size(14);
 				}
 			}
 
 			.title-link {
 				p {
 					font-weight: 600;
-					@include font-size(12);
+					@include font-size(16);
 				}
 			}
 		}

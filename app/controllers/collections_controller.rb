@@ -19,6 +19,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/new
   def new
+    @bottom_bar_header = "New Collection"
     @collection = Collection.new
   end
 

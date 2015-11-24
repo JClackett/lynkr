@@ -1,3 +1,6 @@
+<%= provide(:title, "New Collection" ) %>
+
+<div class="outer-form">
 <%= form_for(@collection) do |f| %>
   <% if @collection.errors.any? %>
     <div id="error_explanation">
@@ -11,11 +14,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="field-row">
+    <%= f.text_field :title, placeholder: "Enter title of the collection"  %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.button "Add collection", type: 'submit', class: "form-submit-button", data: { disable_with: 'Submitting' } %>
   </div>
 <% end %>
+</div>
