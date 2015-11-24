@@ -1,5 +1,6 @@
-class Link < ActiveRecord::Base
-	
+class Favourite < ActiveRecord::Base
+
+
 # ------------------------------------------------------------------------------
 # Includes & Extensions
 # ------------------------------------------------------------------------------
@@ -23,24 +24,21 @@ class Link < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 
 belongs_to :user
-has_many :collections_links, dependent: :destroy
-has_many :collections, through: :collections_links
-has_many :favourites
+belongs_to :link
 
 
 # ------------------------------------------------------------------------------
 # Validations
 # ------------------------------------------------------------------------------
 
-validates_format_of :url, with: URI::regexp(%w(http https))
-validates_presence_of :url	
-validates_presence_of :collection_ids, :allow_blank => true
+validates_presence_of :link_id, :user_id
+validates_uniqueness_of :user_id, scope: :link_id
+
 
 # ------------------------------------------------------------------------------
 # Callbacks
 # ------------------------------------------------------------------------------
 
-before_save :downcase_inputs
 
 
 # ------------------------------------------------------------------------------
@@ -66,6 +64,7 @@ before_save :downcase_inputs
 # ------------------------------------------------------------------------------
 
 
+
 # ------------------------------------------------------------------------------
 # Instance Methods
 # ------------------------------------------------------------------------------
@@ -76,11 +75,6 @@ before_save :downcase_inputs
 protected
 # ------------------------------------------------------------------------------
 
-def downcase_inputs
-	self.description.downcase!
-	self.url.downcase!
-	self.image_url.downcase!
-end
 
 
 # ------------------------------------------------------------------------------

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :links
+
+  resources :links do
+    member do
+      get 'favourite'
+    end
+  end
+
   resources :collections
   
   devise_for :users

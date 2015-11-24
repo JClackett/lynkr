@@ -1,23 +1,52 @@
 <div class="link-wrapper left">
+	
+	<div class="link-grabber">
 
-	<div class="link-description">
-
-		<h5><%= link.description %></h5>
-
+		<i class="fa fa-bars"></i>
 	</div>
 
-	<div class="link-url">
 
-		<p><%= link.url %></p>
+	<%= render 'favourite', link: link %>
 
-	</div>
 
+	<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank">
+
+		<div class="link-description">
+
+			<h5><%= link.description %></h5>
+
+		</div>
+
+		<div class="link-url">
+
+			<p><%= short_url(link.url)%></p>
+
+		</div>
+	</a>
 
 	<%= link_to link, method: :delete, data: { confirm: 'Are you sure?' } do %>
 
-		<i class="fa fa-times delete-link-button"></i>
+		<div class="delete-link-button">
+
+			<i class="fa fa-times"></i>
+
+		</div>
 
 	<% end %>
+
+	<div class="link-collection">
+
+		<% link.collections.each do |collection| %>
+
+			<%= link_to collection_path(collection) do %>
+
+				<p><%= collection.title %></p>
+
+			<% end %>
+
+		<% end %>
+
+	</div>
 		
 	
 

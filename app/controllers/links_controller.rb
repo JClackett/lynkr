@@ -53,6 +53,23 @@ class LinksController < ApplicationController
     end
   end
 
+  def favourite
+    @link = Link.find(params[:id])
+    if Favourite.where(user_id: current_user.id, link_id: @link.id).present?
+      @favourite = Favourite.where(user_id: current_user.id, link_id: @link.id)
+      @favourite.first.delete
+            respond_to do |format|
+        format.js
+      end
+    else
+      @favourite = @link.favourites.new(user: current_user)
+      @favourite.save
+      respond_to do |format|
+        format.js
+      end
+    end 
+  end
+
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy

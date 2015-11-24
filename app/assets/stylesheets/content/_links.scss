@@ -1,19 +1,84 @@
+$link-height: 40px;
 /* --------------------------------------------------
    Links
 -------------------------------------------------- */
 .link-wrapper {
 	@extend .group;
-	background-color: $white;
-	@include border-radius(2px);
-	border:1px solid $greyD;
+	@include border-radius(3px);
 	@include box-shadow(0px,0px,2px,0px, rgba(0,0,0,0.1));
+	background-color: $white;
+	border:1px solid $greyD;
 	width:95%;
-	margin: 25px 2.5% 0px 2.5%;
+	margin: 10px 2.5% 0px 2.5%;
 
-	// @include breakpoint(medium-large) {
-	// 	width:45%;
-	// }
+	&:hover {
+		background-color: $lightgrey;
+	}
 	
+
+	.link-grabber {
+		@extend .group;
+		float: left;
+		cursor: move;
+		
+		i {
+			float: left;
+			color:$greyA;
+			padding: 0 5px;
+			margin-left:10px;
+			line-height: $link-height;
+
+			&:hover {
+				color:$blue;
+			}
+			
+		}
+	}
+
+	.link-favourite {
+		@extend .group;
+		float: left;
+		cursor: pointer;
+		
+		i {
+			float: left;
+			color:$greyA;
+			padding: 0 5px;
+			margin-left:10px;
+			line-height: $link-height;
+
+			&:hover {
+				color:$yellow;
+				-webkit-transition:ease-in all 100ms;
+				-webkit-transform: scale(1.3,1.3); /* Safari */
+				transform: scale(1.3,1.3);
+				
+			}
+			
+		}
+	}
+
+	.link-favourite-selected {
+		@extend .group;
+		float: left;
+		cursor: pointer;
+		
+		i {
+			float: left;
+			color:$yellow;
+			padding: 0 5px;
+			margin-left:10px;
+			line-height: $link-height;
+
+			&:hover {
+				-webkit-transition:ease-in all 100ms;
+				-webkit-transform: scale(1.3,1.3); /* Safari */
+				transform: scale(1.3,1.3);
+			}
+			
+		}
+		
+	}
 	
 	
 	.link-description {
@@ -23,9 +88,9 @@
 			color:$green;
 			font-weight: 600;
 			@include font-size(16);
-			line-height: 50px;
+			line-height: $link-height;
 			font-variant: small-caps;
-			padding: 0 25px;
+			padding: 0 20px;
 			margin: 0;
 			
 			&:hover {
@@ -43,21 +108,60 @@
 			font-variant: small-caps;
 			color:$grey6;
 			overflow: hidden;
-			line-height: 50px;
+			line-height: $link-height;
 			@include font-size(12);
+			
+			&:hover {
+				text-decoration: underline;
+			}
 			
 		}
 	}
 
-	i {	
+	.link-collection {
 		float: right;
-		color:$greyA;
-		padding: 0 25px;
-		line-height: 50px;
-
-		&:hover {
-			color:$red;
+		
+		p {
+			font-variant: small-caps;
+			color:$grey6;
+			overflow: hidden;
+			line-height: $link-height;
+			float: right;
+			margin-right: 5px;
+			padding: 0 5px;
+			font-weight: 600;
+			cursor: pointer;
+			-webkit-transition: 200ms;
+			   -moz-transition: 200ms;
+			    -ms-transition: 200ms;
+			     -o-transition: 200ms;
+			        transition: 200ms;
+			@include font-size(16);
+			
+			&:hover {
+				color:$blue;
+			}
+			
 		}
+	}
+
+	.delete-link-button {	
+
+		i {
+			float: right;
+			color:$greyA;
+			padding: 0 25px;
+			line-height: $link-height;
+
+			&:hover {
+				color:$red;
+				-webkit-transition:ease-in all 100ms;
+				-webkit-transform: scale(1.3,1.3); /* Safari */
+				transform: scale(1.3,1.3);
+			}
+
+		}
+
 	}	
 
 }

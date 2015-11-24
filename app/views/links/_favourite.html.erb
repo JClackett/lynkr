@@ -1,0 +1,19 @@
+<%= link_to favourite_link_path(link), id: dom_id(link, :favourite), remote: true  do %>
+
+		<% if Favourite.where(user_id: current_user.id, link_id: link.id).present? %>
+
+			<div class="link-favourite-selected">
+
+				<i class="fa fa-star"></i>
+
+			</div>
+
+		<% else %>
+			<div class="link-favourite">
+
+				<i class="fa fa-star-o"></i>	
+			</div>
+
+		<% end %>
+
+<%end%>
