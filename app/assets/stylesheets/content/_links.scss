@@ -1,0 +1,63 @@
+/* --------------------------------------------------
+   Links
+-------------------------------------------------- */
+.link-wrapper {
+	@extend .group;
+	background-color: $white;
+	@include border-radius(2px);
+	border:1px solid $greyD;
+	@include box-shadow(0px,0px,2px,0px, rgba(0,0,0,0.1));
+	width:95%;
+	margin: 25px 2.5% 0px 2.5%;
+
+	// @include breakpoint(medium-large) {
+	// 	width:45%;
+	// }
+	
+	
+	
+	.link-description {
+		float: left;
+		
+		h5 {
+			color:$green;
+			font-weight: 600;
+			@include font-size(16);
+			line-height: 50px;
+			font-variant: small-caps;
+			padding: 0 25px;
+			margin: 0;
+			
+			&:hover {
+				text-decoration: underline;
+			}
+
+		}
+	}
+
+	.link-url {
+		float: left;
+		width: 30%;
+		
+		p {	
+			font-variant: small-caps;
+			color:$grey6;
+			overflow: hidden;
+			line-height: 50px;
+			@include font-size(12);
+			
+		}
+	}
+
+	i {	
+		float: right;
+		color:$greyA;
+		padding: 0 25px;
+		line-height: 50px;
+
+		&:hover {
+			color:$red;
+		}
+	}	
+
+}

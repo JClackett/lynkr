@@ -1,9 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%= provide(:title, @collection.title.titleize ) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @collection.title %>
-</p>
+<!-- Showing All the Links from this Collection -->
+<% @links.each do |link| %>
 
-<%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
+	<div class="link-wrapper left">
+
+		<div class="link-description">
+
+			<h5><%= link.description %></h5>
+
+		</div>
+
+		<div class="link-url">
+
+			<p><%= link.url %></p>
+
+		</div>
+
+
+		<%= link_to link, method: :delete, data: { confirm: 'Are you sure?' } do %>
+
+			<i class="fa fa-times delete-link-button"></i>
+
+		<% end %>
+			
+		
+
+	</div>
+
+<% end %>
+
+

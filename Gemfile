@@ -8,6 +8,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'gravatar_image_tag'
 
+gem 'best_in_place', '~> 3.0.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record

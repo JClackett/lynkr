@@ -6,15 +6,18 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.where(creator_id: current_user.id).all
-    @links = Link.where(user_id: current_user.id).all
+    # @collections = Collection.where(creator_id: current_user.id).all
+    @collections = current_user.collections
+
+    # @links = Link.where(user_id: current_user.id).all
     @bottom_bar_header = "Collections"
   end
 
   # GET /collections/1
   # GET /collections/1.json
   def show
-    @bottom_bar_header = @collection.title.titleize
+    @links = @collection.links.reverse
+    @collection_header = @collection.title.titleize
   end
 
   # GET /collections/new
@@ -32,8 +35,10 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
     @collection.creator_id = current_user.id
 
+
     respond_to do |format|
       if @collection.save
+        UsersCollection.create({user_id: current_user.id, collection_id: @collection.id})
         format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
         format.json { render :show, status: :created, location: @collection }
       else
@@ -75,6 +80,6 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:title, :creator_id)
+      params.require(:collection).permit(:title, :creator_id, user_ids: [])
     end
 end

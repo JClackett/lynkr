@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -31,4 +32,12 @@ $(document).on('ready page:load', function () {
             $(".user-popup").hide();
         }
     });
+});
+
+/* --------------------------------------------------
+   Best In Place
+-------------------------------------------------- */
+$(document).on('ready page:load', function () {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
 });

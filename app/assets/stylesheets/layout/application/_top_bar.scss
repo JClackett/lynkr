@@ -8,14 +8,11 @@
 	background-color: #FFF;
 	top:0;
 
-	.top-section, .bottom-section {
-		padding: 10px;
-	}
-
 	// Top Section
 	.top-section {
 		@extend .group;
 		border-bottom: 1px solid $greyD;
+		padding: 10px;
 
 		// Search Section
 		.search-wrapper {
@@ -72,21 +69,6 @@
 		// Login - Profile Section //
 		.login-section {
 
-			// Signin/Signup Text when logged out!!
-			.user-login {
-				margin: 0;
-				padding: 0;
-				cursor:pointer;
-				line-height: 30px;
-				@include font-size(14);
-				color: $grey8;
-
-				&:hover {
-
-				}
-			}
-
-
 			// User Avatar Image
 			.current-user {
 
@@ -123,7 +105,7 @@
 					display: block;
 					margin: 0;
 					float: left;
-					height: 45px;
+					height: 50px;
 					padding: 0;
 
 					li {
@@ -132,11 +114,11 @@
 
 						a {
 							text-decoration:none;
-							padding: 15px 5px;
+							padding: 20px 5px;
 							margin: 0;
 							@include font-size(12);
 							text-transform: uppercase;
-							line-height: 45px;
+							line-height: 50px;
 							color:$grey5;
 
 							&:hover {
@@ -157,9 +139,10 @@
 
 
 
-	// Bottom Section
+/* --------------------------------------------------
+   Bottom Section
+-------------------------------------------------- */
 	.bottom-section {
-		border-bottom: 1px solid $greyD;
 		padding: 10px;
 		background-color: #F9F9F9;
 
@@ -169,11 +152,27 @@
 				margin: 0;
 				text-align: center;
 				color: $grey4;
-				@include font-size(20);
+				line-height: 30px;
+				@include font-size(18);
+				
+				span {
+					text-transform: capitalize;
+					
+					&:hover {
+						border-bottom:1px dotted $greyA;
+					}
+				}
+
+				.best_in_place {
+				}
+
 			}
+
 		}
 
 	}
 
 }
+
+
 }
