@@ -114,15 +114,16 @@
 
 						a {
 							text-decoration:none;
-							padding: 20px 5px;
+							padding: 18px 5px;
 							margin: 0;
+							font-weight: 500;
 							@include font-size(12);
 							text-transform: uppercase;
 							line-height: 50px;
-							color:$grey5;
+							color:$grey7;
 
 							&:hover {
-								color:$grey3;
+								color:$blue;
 							}
 
 						}

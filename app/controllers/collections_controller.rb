@@ -6,10 +6,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    # @collections = Collection.where(creator_id: current_user.id).all
     @collections = current_user.collections
-
-    # @links = Link.where(user_id: current_user.id).all
     @bottom_bar_header = "Collections"
   end
 

@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.where(user_id: current_user.id).uniq.all
+    @links = Link.where(user_id: current_user.id).all
     @bottom_bar_header = "All Links"
   end
 
