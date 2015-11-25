@@ -3,8 +3,9 @@ class LinksController < ApplicationController
 
   # GET /links
   # GET /links.json
+  # Show all links the user created
   def index
-    @links = Link.where(user_id: current_user.id).all
+    @links = Link.where(user_id: current_user.id).all         
     @bottom_bar_header = "All Links"
   end
 
@@ -27,11 +28,11 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
-    @link.user_id = current_user.id
+    @link.user_id = current_user.id       # Assign current user id to the link created
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to root_path, notice: 'Link was successfully created.' }
+        format.html { redirect_to links_path, notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+        format.html { redirect_to links_path, notice: 'Link was successfully updated.' }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit }
@@ -59,7 +60,7 @@ class LinksController < ApplicationController
 
   def favourites
     @bottom_bar_header = "Favourites"
-    @favourited_links =  Link.joins(:favourites).where(favourites: { user_id: current_user } )
+    @favourited_links =  Link.joins(:favourites).where( favourites: { user_id: current_user } )
   end
 
   # PUT /link/1/favourite
@@ -70,8 +71,8 @@ class LinksController < ApplicationController
     if Favourite.where(user_id: current_user.id, link_id: @link.id).present?
       @favourite = Favourite.where(user_id: current_user.id, link_id: @link.id)
       @favourite.first.delete
-            respond_to do |format|
-        format.js
+      respond_to do |format|
+          format.js
       end
     else
       @favourite = @link.favourites.new(user: current_user)

@@ -77,8 +77,8 @@ protected
 # ------------------------------------------------------------------------------
 
 def downcase_inputs
-	self.description.downcase!
 	self.url.downcase!
+	self.description.downcase!
 	self.image_url.downcase!
 end
 

@@ -31,7 +31,7 @@ class CollectionsController < ApplicationController
   # POST /collections.json
   def create
     @collection = Collection.new(collection_params)
-    @collection.creator_id = current_user.id
+    @collection.creator_id = current_user.id        # Assign current user_id as creator for the collection
 
 
     respond_to do |format|

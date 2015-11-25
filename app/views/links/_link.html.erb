@@ -1,15 +1,29 @@
-<div class="link-wrapper left">
+<div class="link-wrapper left" id="link-section-id">
+	
+	<!-- Link mover part -->
 	
 	<div class="link-grabber">
 
 		<i class="fa fa-bars"></i>
 	</div>
+	
+	<!-- Favourite link -->
+	
+	<%= render '/links/favourite', link: link %>
 
+	<!-- Edit the link -->
 
-	<%= render 'favourite', link: link %>
+	<div class="edit-link-button">
 
+		<i class="fa fa-check edit-icons check-button"></i>
 
-	<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank">
+		<i class="fa fa-pencil-square-o edit-icons edit-button"></i>
+
+	</div>
+
+	<!-- SHOW Part of the link info -->
+
+	<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank" class="link-show-info editable" >
 
 		<div class="link-description">
 
@@ -17,12 +31,21 @@
 
 		</div>
 
-		<div class="link-url">
+	</a>
 
-			<p><%= short_url(link.url)%></p>
+	<!-- EDIT Part of the link info -->
+
+	<div class="link-edit-info hidden editable">
+
+		<div class="link-description link-info">
+
+			<h5><%= best_in_place link, :description, :as => :input %></h5>
 
 		</div>
-	</a>
+
+	</div>
+
+	<!-- DELETE the link -->
 
 	<%= link_to link, method: :delete, data: { confirm: 'Are you sure?' } do %>
 
@@ -33,6 +56,16 @@
 		</div>
 
 	<% end %>
+
+	<!-- SHOW the URL -->
+
+	<div class="show-url-button">
+
+		<i class="fa fa-info-circle"></i>
+		
+	</div>
+
+	<!-- The Links Collections -->
 
 	<div class="link-collection">
 
@@ -47,7 +80,14 @@
 		<% end %>
 
 	</div>
-		
-	
+
+
+	<!-- SHOW the url -->
+
+	<div class="link-url link-info">
+
+		<p><%= link.url%></p>
+
+	</div>
 
 </div>

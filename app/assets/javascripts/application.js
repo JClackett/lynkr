@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require best_in_place
 //= require jquery_ujs
+//= require best_in_place
 //= require turbolinks
 //= require_tree .
 
@@ -37,7 +37,28 @@ $(document).on('ready page:load', function () {
 /* --------------------------------------------------
    Best In Place
 -------------------------------------------------- */
+
 $(document).on('ready page:load', function () {
-  /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
+});
+
+/* --------------------------------------------------
+   Edit Link sections
+-------------------------------------------------- */
+
+$(document).on('ready page:load', function () {
+    $('body').on('click','.edit-link-button',function(e){
+     $(this).siblings(".editable").toggle();
+     $(this).siblings(".editable").children(".link-info").css({"background-color":"rgba(0,0,0,0.03)", "border-left":"1px dotted #CCC", "border-right":"1px dotted #CCC", "color":"#4D9DE0"});
+     $(this).find(".edit-icons").toggle();
+     e.stopPropagation();
+    });
+});
+
+$(document).on('ready page:load', function () {
+    $('body').on('click','.show-url-button',function(e){
+     $(this).siblings(".link-url").toggle();
+     $(this).siblings(".link-url").css({"border-top":"1px solid #E1E1E1"});
+       e.stopPropagation();
+    });
 });
