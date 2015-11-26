@@ -11,10 +11,6 @@
 	                      	<li class="sidebar-links title-link"><p>favourites</p><i class="fa fa-star favourite-button"></i></li>
 	                 	<% end %>
 
-	                 	<%= nav_link_to collections_path  do %>
-	                      	<li class="sidebar-links title-link"><p>collections</p></li>
-	                 	<% end %>
-
 	                 	<%= nav_link_to new_collection_path  do %>
 	                      	<li class="sidebar-links"><p>new collection</p><i class="fa fa-plus-square-o new-link-button"></i></li>
 	                 	<% end %>
@@ -27,9 +23,31 @@
 	                      	<li class="sidebar-links"><p>add link</p><i class="fa fa-plus-square-o new-link-button"></i></li>
 	                 	<% end %>
 
+	                 	<%= nav_link_to collections_path  do %>
+	                      	<li class="sidebar-links title-link"><p>all collections</p></li>
+	                 	<% end %>
+
+
+		</ul>
+
+		<ul class="sidebar-collection-links-wrapper">
+
+			<% if current_user.collections.any? %>
+
+				<% @sidebar_collections.each do |collection| %>
+
+					<%= nav_link_to collection  do %>
+		                      		<li class="sidebar-collection-links"><p><%= collection.title %></p></li>
+		                 		<% end %>
+
+		                 	<% end %>
+
+		           <% end %>
+				
 		</ul>
 
 	</div>
+
 
 	<div class="footer group">
 

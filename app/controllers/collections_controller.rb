@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
+  before_action :sidebar_collections, only: [:index, :show, :new, :edit]
 
 
   # GET /collections
@@ -20,7 +21,7 @@ class CollectionsController < ApplicationController
   # GET /collections/new
   def new
     @bottom_bar_header = "New Collection"
-    @collection = Collection.new
+    @collection = current_user.collections.new
   end
 
   # GET /collections/1/edit
@@ -30,13 +31,11 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
-    @collection = Collection.new(collection_params)
-    @collection.creator_id = current_user.id        # Assign current user_id as creator for the collection
-
+    @collection = current_user.collections.new(collection_params)
 
     respond_to do |format|
       if @collection.save
-        SharedCollection.create({user_id: current_user.id, collection_id: @collection.id})
+        # SharedCollection.create({user_id: current_user.id, collection_id: @collection.id})            # Add current user to shared collections
         format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
         format.json { render :show, status: :created, location: @collection }
       else
@@ -73,11 +72,11 @@ class CollectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
-      @collection = Collection.find(params[:id])
+      @collection = current_user.collections.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:title, :creator_id, user_ids: [])
+      params.require(:collection).permit(:title, :user_id, :parent_id)
     end
 end

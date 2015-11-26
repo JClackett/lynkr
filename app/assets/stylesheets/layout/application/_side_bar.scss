@@ -55,7 +55,6 @@ Sidebar
 					text-rendering: optimizeLegibility;
 					color: #FFF;
 					padding: 0px 20px;
-					font-variant: small-caps;
 					line-height: 30px;
 				}
 
@@ -80,14 +79,30 @@ Sidebar
 			.sidebar-links {
 				p {
 					font-weight: 400;
-					@include font-size(14);
+					@include font-size(10);
+					text-transform: uppercase;
 				}
 			}
 
 			.title-link {
 				p {
 					font-weight: 600;
-					@include font-size(16);
+					@include font-size(12);
+					font-variant: small-caps;
+					margin-top: 10px;
+				}
+			}
+		}
+
+		.sidebar-collection-links-wrapper {
+			@extend .group;
+			margin: 0 5px;
+
+			.sidebar-collection-links {
+				p {	
+					color:$greyE;
+					font-weight: 500;
+					@include font-size(13);
 				}
 			}
 		}

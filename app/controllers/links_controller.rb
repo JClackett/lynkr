@@ -1,11 +1,15 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :favourite]
+  before_action :authenticate_user!
+  before_action :sidebar_collections, only: [:index, :show, :new, :edit, :favourites]
+
+
 
   # GET /links
   # GET /links.json
   # Show all links the user created
   def index
-    @links = Link.where(user_id: current_user.id).all         
+    @links = current_user.links  
     @bottom_bar_header = "All Links"
   end
 
@@ -17,7 +21,7 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @bottom_bar_header = "New Link"
-    @link = Link.new
+    @link = current_user.links.new
   end
 
   # GET /links/1/edit
@@ -27,8 +31,7 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(link_params)
-    @link.user_id = current_user.id       # Assign current user id to the link created
+    @link = current_user.links.new(link_params)
 
     respond_to do |format|
       if @link.save
@@ -67,7 +70,6 @@ class LinksController < ApplicationController
   #Method to assign like to link
 
   def favourite
-    @link = Link.find(params[:id])
     if Favourite.where(user_id: current_user.id, link_id: @link.id).present?
       @favourite = Favourite.where(user_id: current_user.id, link_id: @link.id)
       @favourite.first.delete
@@ -96,7 +98,7 @@ class LinksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
-      @link = Link.find(params[:id])
+      @link = current_user.links.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

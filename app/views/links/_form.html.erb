@@ -35,8 +35,8 @@
 
 
 		<div class="field-row checkbox-field">
-			<%= f.collection_check_boxes( :collection_ids, Collection.where(creator_id: current_user.id).all, :id, :title)  do |b| %> 
-				<%= b.check_box(class: 'check_box') %>
+			<%= f.collection_check_boxes( :collection_ids, Collection.all, :id, :title)  do |b| %> 
+				<%= b.check_box(class: 'check_box hidden') %>
 				<%= b.label(class: "checkbox_label") %>
 			<% end %>
 		</div>

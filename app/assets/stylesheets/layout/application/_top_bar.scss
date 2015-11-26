@@ -97,37 +97,23 @@
 				margin: 0;
 				text-align: center;
 				right:0;
+				z-index: 2;
 				background-color: $white;
 				border-left:1px solid $greyE;
 				border-bottom-left-radius: 5px;
 
-				ul {
-					display: block;
+				a {
+					text-decoration:none;
+					padding: 18px 5px;
 					margin: 0;
-					float: left;
-					height: 50px;
-					padding: 0;
+					font-weight: 500;
+					@include font-size(12);
+					text-transform: uppercase;
+					line-height: 50px;
+					color:$grey7;
 
-					li {
-						list-style:none;
-
-
-						a {
-							text-decoration:none;
-							padding: 18px 5px;
-							margin: 0;
-							font-weight: 500;
-							@include font-size(12);
-							text-transform: uppercase;
-							line-height: 50px;
-							color:$grey7;
-
-							&:hover {
-								color:$blue;
-							}
-
-						}
-
+					&:hover {
+						color:$blue;
 					}
 
 				}
@@ -159,16 +145,11 @@
 				@include font-size(18);
 				
 				span {
-					text-transform: capitalize;
 					
 					&:hover {
 						border-bottom:1px dotted $greyA;
 					}
 				}
-
-				.best_in_place {
-				}
-
 			}
 			
 		}

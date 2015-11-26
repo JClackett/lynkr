@@ -49,7 +49,7 @@ $(document).on('ready page:load', function () {
 $(document).on('ready page:load', function () {
     $('body').on('click','.edit-link-button',function(e){
      $(this).siblings(".editable").toggle();
-     $(this).siblings(".editable").children(".link-info").css({"background-color":"rgba(0,0,0,0.03)", "border-left":"1px dotted #CCC", "border-right":"1px dotted #CCC", "color":"#4D9DE0"});
+     $(this).siblings(".editable").children(".link-info").css({"background-color":"rgba(255,0,0,0.05)", "border-left":"1px dotted #CCC", "border-right":"1px dotted #CCC", "color":"#555"});
      $(this).find(".edit-icons").toggle();
      e.stopPropagation();
     });
@@ -62,3 +62,15 @@ $(document).on('ready page:load', function () {
        e.stopPropagation();
     });
 });
+
+/* --------------------------------------------------
+   Updating the best_in_place fields
+-------------------------------------------------- */
+
+// Sidebar Collections
+$(document).on('ready page:load', function () {
+  $('.best_in_place').on("ajax:success", function () {
+      $(".sidebar-collection-links").load(" .sidebar-collection-links");
+    });
+});
+

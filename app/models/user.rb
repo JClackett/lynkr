@@ -20,16 +20,13 @@ class User < ActiveRecord::Base
 # Attributes
 # ------------------------------------------------------------------------------
 
-
+  
 
 # ------------------------------------------------------------------------------
 # Associations
 # ------------------------------------------------------------------------------
 
-has_many :shared_collections
-has_many :collections, :through => :shared_collections
-has_many :created_collections, :class_name => "Collection", :foreign_key => :creator_id
-
+has_many :collections
 has_many :favourites
 has_many :links
 
@@ -38,6 +35,7 @@ has_many :links
 # Validations
 # ------------------------------------------------------------------------------
 
+    validates :email, :presence => true, :uniqueness => true
 
 
 # ------------------------------------------------------------------------------
