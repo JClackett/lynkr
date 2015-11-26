@@ -1,4 +1,6 @@
-class UsersCollection < ActiveRecord::Base
+class SharedCollection < ActiveRecord::Base
+
+    
 
 # ------------------------------------------------------------------------------
 # Includes & Extensions
@@ -16,14 +18,16 @@ class UsersCollection < ActiveRecord::Base
 # Attributes
 # ------------------------------------------------------------------------------
 
-
-
 # ------------------------------------------------------------------------------
 # Associations
 # ------------------------------------------------------------------------------
 
-belongs_to :user
-belongs_to :collection
+  #this is for the user to whom the owner has shared folders to 
+   belongs_to :user
+
+    
+  #for the folder being shared 
+  belongs_to :collection
 
 
 # ------------------------------------------------------------------------------

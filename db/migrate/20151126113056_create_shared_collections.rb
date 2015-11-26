@@ -1,6 +1,6 @@
-class CreateUsersCollections < ActiveRecord::Migration
+class CreateSharedCollections < ActiveRecord::Migration
   def change
-    create_table :users_collections do |t|
+    create_table :shared_collections do |t|
       t.integer :user_id
       t.integer :collection_id
 

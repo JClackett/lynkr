@@ -23,8 +23,8 @@ class Collection < ActiveRecord::Base
 # Associations
 # ------------------------------------------------------------------------------
 
-has_many :users_collections, dependent: :destroy
-has_many :users, through: :users_collections
+has_many :shared_collections, dependent: :destroy
+has_many :users, through: :shared_collections
 belongs_to :creator, :class_name => "User", :foreign_key => :creator_id
 
 has_many :collections_links, dependent: :destroy

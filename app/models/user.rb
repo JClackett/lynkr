@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
 # Associations
 # ------------------------------------------------------------------------------
 
-has_many :users_collections
-has_many :collections, :through => :users_collections
+has_many :shared_collections
+has_many :collections, :through => :shared_collections
 has_many :created_collections, :class_name => "Collection", :foreign_key => :creator_id
 
 has_many :favourites

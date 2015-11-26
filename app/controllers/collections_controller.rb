@@ -36,7 +36,7 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
-        UsersCollection.create({user_id: current_user.id, collection_id: @collection.id})
+        SharedCollection.create({user_id: current_user.id, collection_id: @collection.id})
         format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
         format.json { render :show, status: :created, location: @collection }
       else
