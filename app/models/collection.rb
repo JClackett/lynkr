@@ -24,8 +24,7 @@ class Collection < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 
 belongs_to :user
-has_many :collections_links, dependent: :destroy
-has_many :links, through: :collections_links
+has_many :links , :dependent => :destroy
 
 
 # ------------------------------------------------------------------------------
@@ -56,7 +55,7 @@ has_many :links, through: :collections_links
 # Other
 # ------------------------------------------------------------------------------
 
-acts_as_tree
+acts_as_tree     # Nested collections
 
 
 

@@ -5,6 +5,7 @@ class CreateLinks < ActiveRecord::Migration
       t.string :description
       t.string :image_url
       t.integer :user_id
+      t.integer :collection_id
 
       t.timestamps null: false
     end

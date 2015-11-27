@@ -21,10 +21,8 @@ class Link < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 # Associations
 # ------------------------------------------------------------------------------
-
+belongs_to :collection
 belongs_to :user
-has_many :collections_links, dependent: :destroy
-has_many :collections, through: :collections_links
 has_many :favourites
 
 
@@ -34,7 +32,7 @@ has_many :favourites
 
 validates_format_of :url, with: URI::regexp(%w(http https))
 validates_presence_of :url	
-validates_presence_of :collection_ids, :allow_blank => true
+validates_presence_of :collection_id, :allow_blank => true
 
 # ------------------------------------------------------------------------------
 # Callbacks

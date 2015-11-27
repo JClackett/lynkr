@@ -17,6 +17,7 @@
   <div class="field-row">
     <%= f.text_field :title, placeholder: "Enter title of the collection"  %>
   </div>
+  <%= f.hidden_field :parent_id %> 
   <div class="form-actions">
     <%= f.button "Add collection", type: 'submit', class: "form-submit-button", data: { disable_with: 'Submitting' } %>
   </div>

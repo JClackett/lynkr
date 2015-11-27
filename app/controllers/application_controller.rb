@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def sidebar_collections
-    @sidebar_collections = current_user.collections
+    @sidebar_collections = current_user.collections.roots
   end
 
 

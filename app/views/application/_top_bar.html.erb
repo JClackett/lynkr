@@ -45,12 +45,13 @@
 			
 			<!-- Might go a bit wrong if i ever need to use another show page, needs a fix  -->
 
-			<% if controller.action_name == 'show' %>
+			<% if controller.action_name == 'browse' || controller.action_name == 'new' %>
 				<div class="collection-title-topbar">
-					<h3><%= best_in_place @collection, :title, :as => :input %></h3>
-					<%= link_to @collection, :method => :delete, :confirm => "Are you sure?",class: "delete-collection"  do %>
+					<h3><%= best_in_place @current_collection, :title, :as => :input %></h3>
+					<%= link_to @current_collection, :method => :delete, :confirm => "Are you sure?",class: "delete-collection"  do %>
 						<i class="fa fa-times"></i>
 					<% end %>
+					<%= render :partial => "/collections/breadcrumbs" %>
 				</div>
 			<% else %>
 				<h3><%= @bottom_bar_header %></h3>

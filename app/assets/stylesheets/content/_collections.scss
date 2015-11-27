@@ -45,44 +45,17 @@
 		}
 	}
 
-
-
-	/* --------------------------------------------------
-	   Collection Links
-	-------------------------------------------------- */
-	
-	.collection-links-wrapper {
-		padding: 0;
-		
-		ul {	
-			height: 75px;
-			margin: 5px;
-			padding: 0;
-			overflow-y:hidden;
-
-			li {
-				margin: 0 0 5px 0;
-				list-style: none;
-				text-align: center;
-		
-				a {
-
-					width: 100%;
-					font-variant: small-caps;
-					color: $grey9;
-					@include font-size(14);
-					white-space: nowrap;
-					
-					&:hover {
-						text-decoration: underline;
-					}
-				}
-			}
-		}
-	}
-
 	/* --------------------------------------------------
 	   Collection Users
 	-------------------------------------------------- */
 	    
+}
+
+.breadcrumbs { 
+   margin:10px 0; 
+   font-weight:bold; 
+} 
+.breadcrumbs a { 
+   color:#1D96EF; 
+   text-decoration:none; 
 }

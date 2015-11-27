@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124210144) do
+ActiveRecord::Schema.define(version: 20151127133402) do
 
   create_table "collections", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -19,13 +19,6 @@ ActiveRecord::Schema.define(version: 20151124210144) do
     t.integer  "parent_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end
-
-  create_table "collections_links", force: :cascade do |t|
-    t.integer  "collection_id", limit: 4
-    t.integer  "link_id",       limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -36,12 +29,23 @@ ActiveRecord::Schema.define(version: 20151124210144) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.string   "url",         limit: 255
-    t.string   "description", limit: 255
-    t.string   "image_url",   limit: 255
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "url",           limit: 255
+    t.string   "description",   limit: 255
+    t.string   "image_url",     limit: 255
+    t.integer  "user_id",       limit: 4
+    t.integer  "collection_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "shared_collections", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.string   "shared_email",   limit: 255
+    t.integer  "shared_user_id", limit: 4
+    t.integer  "collection_id",  limit: 4
+    t.string   "message",        limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
