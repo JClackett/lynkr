@@ -32,18 +32,14 @@
 
 		<ul class="sidebar-collection-links-wrapper">
 
-			<% if current_user.collections.any? %>
+			<% @sidebar_collections.each do |collection| %>
 
-				<% @sidebar_collections.each do |collection| %>
+				<%= nav_link_to collection  do %>
+	                      		<li class="sidebar-collection-links"><p><%= collection.title %></p></li>
+	                 		<% end %>
 
-					<%= nav_link_to collection  do %>
-		                      		<li class="sidebar-collection-links"><p><%= collection.title %></p></li>
-		                 		<% end %>
-
-		                 	<% end %>
-
-		           <% end %>
-				
+	                 	<% end %>
+			
 		</ul>
 
 	</div>
