@@ -1,0 +1,10 @@
+<div class="breadcrumbs">         
+    <% if @current_collection #checking if we are under any collection %> 
+        <%= link_to "Home", root_url %> 
+        <% @current_collection.ancestors.reverse.each do |collection| %> 
+            » <%= link_to collection.title, browse_path(collection) %> 
+        <% end %> 
+         »  <%= @current_collection.title %> 
+    <% else #if we are not under any collection%>  
+    <% end %> 
+</div>
