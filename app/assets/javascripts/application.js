@@ -70,7 +70,7 @@ $(document).on('ready page:load', function () {
 // Sidebar Collections
 $(document).on('ready page:load', function () {
   $('.best_in_place').on("ajax:success", function () {
-      $(".sidebar-collection-links").load(" .sidebar-collection-links");
+      $(".sidebar-collection-links-wrapper").load(" .sidebar-collection-links-wrapper");
     });
 });
 

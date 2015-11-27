@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root :to => "home#index"
+    root :to => "collections#index"
   end
   unauthenticated :user do
     devise_scope :user do 
