@@ -31,8 +31,7 @@ has_many :favourites
 # ------------------------------------------------------------------------------
 
 validates_format_of :url, with: URI::regexp(%w(http https))
-validates_presence_of :url	
-validates_presence_of :collection_id, :allow_blank => true
+validates_presence_of :url
 
 # ------------------------------------------------------------------------------
 # Callbacks

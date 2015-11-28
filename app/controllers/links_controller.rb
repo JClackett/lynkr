@@ -1,8 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy, :favourite]
   before_action :authenticate_user!
-  before_action :sidebar_collections, only: [:index, :show, :new, :edit, :favourites]
-  respond_to :html, :json
+  before_action :sidebar_collections, only: [:index, :show, :new, :edit, :favourites, :create ]
 
 
 
@@ -22,9 +21,8 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @bottom_bar_header = "New Link"
-    @link = current_user.links.build     
+    @link = current_user.links.new     
     if params[:collection_id] #if we want to upload a file inside another collection 
-      puts "oninion"
      @current_collection = current_user.collections.find(params[:collection_id]) 
      @link.collection_id = @current_collection.id 
     end    
@@ -37,14 +35,15 @@ end
   # POST /links
   # POST /links.json
   def create 
-  @link = current_user.links.build(link_params) 
+  @link = current_user.links.new(link_params) 
+
   if @link.save 
    flash[:notice] = "Successfully uploaded the link."
   
    if @link.collection #checking if we have a parent collection for this file 
      redirect_to browse_path(@link.collection)  #then we redirect to the parent collection 
    else
-     redirect_to root_url 
+     redirect_to root_path
    end      
   else
    render :action => 'new'
@@ -54,11 +53,17 @@ end
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
+    respond_to do |format|
       if @link.update(link_params)
-        redirect_to links_path
+        format.html { redirect_to links_path, notice: 'Link was successfully updated.' }
+        format.json { render :show, status: :ok, location: @link }
       else
-        render :edit 
+        format.html { render :edit }
+        format.json { render json: @link.errors, status: :unprocessable_entity }
       end
+    end
+
+    puts "ma dick'n"
   end
 
   # GET /favourites
@@ -86,7 +91,7 @@ end
   # DELETE /links/1.json
   def destroy
     @link.destroy
-    redirect_to links_url
+    redirect_to :back
   end
 
   private

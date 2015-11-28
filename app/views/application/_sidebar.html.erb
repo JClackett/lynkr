@@ -35,7 +35,7 @@
 
 
 	                 	<%= nav_link_to collections_path  do %>
-	                      	<li class="sidebar-links title-link"><p>all collections</p></li>
+	                      	<li class="sidebar-links title-link"><p>Dashboard</p></li>
 	                 	<% end %>
 
 
@@ -45,9 +45,11 @@
 
 			<% @sidebar_collections.each do |collection| %>
 
-				<%= nav_link_to collection  do %>
-	                      		<li class="sidebar-collection-links"><p><%= collection.title %></p></li>
-	                 		<% end %>
+				<%= link_to browse_path(collection) do %>
+
+					<li class="sidebar-collection-links"><p><%= collection.title %></p></li>
+
+				<% end %>
 
 	                 	<% end %>
 			

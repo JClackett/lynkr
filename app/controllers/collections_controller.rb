@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :sidebar_collections, only: [:index, :show, :new, :edit, :browse]
-  respond_to :html, :json
+
 
 
 
@@ -11,12 +11,12 @@ class CollectionsController < ApplicationController
   def index
      if user_signed_in? 
      #show only root collections (which have no parent collections) 
-      @collections = current_user.collections.roots  
+      @collections = current_user.collections.roots
        
      #show only root files which has no "collection_id" 
      @links = current_user.links.where("collection_id is NULL").reverse   
     end
-    @bottom_bar_header = "Collections + Links"
+    @bottom_bar_header = "Dashboard"
   end
 
   # GET /collections/1
@@ -65,11 +65,15 @@ end
   # PATCH/PUT /collections/1
   # PATCH/PUT /collections/1.json
   def update
+    respond_to do |format|
       if @collection.update(collection_params)
-        redirect_to @collection
+        format.html { redirect_to @collection, notice: 'Collection was successfully updated.' }
+        format.json { render :show, status: :ok, location: @collection }
       else
-        render :edit
-     end
+        format.html { render :edit }
+        format.json { render json: @collection.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /collections/1

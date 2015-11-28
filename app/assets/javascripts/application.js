@@ -39,7 +39,7 @@ $(document).on('ready page:load', function () {
 -------------------------------------------------- */
 
 $(document).on('ready page:load', function () {
-  jQuery(".best_in_place").best_in_place();
+  $(".best_in_place").best_in_place();
 });
 
 /* --------------------------------------------------
@@ -69,8 +69,13 @@ $(document).on('ready page:load', function () {
 
 // Sidebar Collections
 $(document).on('ready page:load', function () {
-  $('.best_in_place').on("ajax:success", function () {
+  $('.best_in_place_title').bind("ajax:success", function () {
       $(".sidebar-collection-links-wrapper").load(" .sidebar-collection-links-wrapper");
     });
 });
 
+$(document).on('ready page:load', function () {
+    $('body').on('click', '.check-button', function(){
+      $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion").load( $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion"));
+    });
+});

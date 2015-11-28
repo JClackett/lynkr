@@ -23,9 +23,9 @@
 
 	<!-- SHOW Part of the link info -->
 
-	<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank" class="link-show-info editable" >
+	<a href="<%= link.url %>" class="link-show-info editable" onclick="window.open(this.href); return false;" target="_blank" >
 
-		<div class="link-description">
+		<div class="link-description onion">
 
 			<h5><%= link.description %></h5>
 
@@ -39,7 +39,7 @@
 
 		<div class="link-description link-info">
 
-			<h5><%= best_in_place link, :description, :as => :input %></h5>
+			<h5><%= best_in_place link, :description, :as => :input , :class => "best_in_place_link" %></h5>
 
 		</div>
 
