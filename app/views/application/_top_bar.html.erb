@@ -47,12 +47,10 @@
 
 
 			<% if @current_collection %>
-				<div class="collection-title-topbar">
 					<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %></h3>
 					<%= link_to @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  do %>
-						<i class="fa fa-times"></i>
+						<i class="fa fa-trash-o"></i>
 					<% end %>
-				</div>
 			<% else %>
 				<h3><%= @bottom_bar_header %></h3>
 			<% end %>

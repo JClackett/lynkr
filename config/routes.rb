@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :links do
     member do
       get 'favourite'
+      get 'update_details'
     end
   end
 
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   match "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link",  via: [:get, :post]
 
   get 'favourites' => 'links#favourites'
+
 
 
   resources :collections

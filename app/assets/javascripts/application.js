@@ -76,6 +76,7 @@ $(document).on('ready page:load', function () {
 
 $(document).on('ready page:load', function () {
     $('body').on('click', '.check-button', function(){
-      $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion").load( $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion"));
+      var container  =  $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion");
+     container.load( container);
     });
 });

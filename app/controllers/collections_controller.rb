@@ -78,10 +78,22 @@ end
 
   # DELETE /collections/1
   # DELETE /collections/1.json
-  def destroy
-    @collection.destroy
-      redirect_to collections_url
-  end
+  def destroy 
+   @collection = current_user.collections.find(params[:id]) 
+   @parent_collection = @collection.parent #grabbing the parent collection 
+  
+   #this will destroy the collection along with all the contents inside 
+   #sub collections will also be deleted too as well as all files inside 
+   @collection.destroy 
+   flash[:notice] = "Successfully deleted the collection and all the contents inside."
+  
+   #redirect to a relevant path depending on the parent collection 
+   if @parent_collection
+    redirect_to browse_path(@parent_collection) 
+   else
+    redirect_to root_url       
+   end
+end
 
   def browse 
     #get the collections owned/created by the current_user 

@@ -15,7 +15,11 @@
 
 	<div class="edit-link-button">
 
-		<i class="fa fa-check edit-icons check-button"></i>
+		<%= link_to update_details_link_path(link), :remote => true do %>
+
+			<i class="fa fa-check edit-icons check-button"></i>
+
+		<% end %>
 
 		<i class="fa fa-pencil-square-o edit-icons edit-button"></i>
 
@@ -23,15 +27,11 @@
 
 	<!-- SHOW Part of the link info -->
 
-	<a href="<%= link.url %>" class="link-show-info editable" onclick="window.open(this.href); return false;" target="_blank" >
+	<%= content_tag :div , id: dom_id(link, :update), class: "link-description-wrapper" do %>
 
-		<div class="link-description onion">
+		<%= render "/links/update_details", link: link %>
 
-			<h5><%= link.description %></h5>
-
-		</div>
-
-	</a>
+	<% end %>
 
 	<!-- EDIT Part of the link info -->
 

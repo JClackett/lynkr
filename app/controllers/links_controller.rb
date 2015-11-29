@@ -62,8 +62,10 @@ end
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
+  end
 
-    puts "ma dick'n"
+  def update_details
+      
   end
 
   # GET /favourites
@@ -89,10 +91,19 @@ end
 
   # DELETE /links/1
   # DELETE /links/1.json
-  def destroy
-    @link.destroy
-    redirect_to :back
+  def destroy 
+  @link = current_user.links.find(params[:id]) 
+  @parent_collection = @link.collection #grabbing the parent collection before deleting the record 
+  @link.destroy 
+  flash[:notice] = "Successfully deleted the file."
+  
+  #redirect to a relevant path depending on the parent collection 
+  if @parent_collection
+   redirect_to browse_path(@parent_collection) 
+  else
+   redirect_to root_url 
   end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
