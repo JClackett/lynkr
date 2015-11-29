@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require best_in_place
 //= require turbolinks
 //= require_tree .
@@ -74,9 +75,58 @@ $(document).on('ready page:load', function () {
     });
 });
 
+// $(document).on('ready page:load', function () {
+//     $('body').on('click', '.check-button', function(){
+//       var container  =  $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion");
+//      container.load( container);
+//     });
+// });
+
+/* --------------------------------------------------
+   Share collection popup
+-------------------------------------------------- */
 $(document).on('ready page:load', function () {
-    $('body').on('click', '.check-button', function(){
-      var container  =  $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion");
-     container.load( container);
-    });
+    //open the invitation form when a share button is clicked 
+    $( ".share-collection" ) 
+            .button() 
+            .click(function() { 
+                //assign this specific Share link element into a variable called "a" 
+                var a = this; 
+                  
+                //First, set the title of the Dialog box to display the collection name 
+                $("#invitation_form").attr("title", "Share '" + $(a).attr("collection_name") + "' with others" ); 
+                  
+                //a hack to display the different collection names correctly 
+                $("#ui-dialog-title-invitation_form").text("Share '" + $(a).attr("collection_name") + "' with others");  
+                  
+                //then put the collection_id of the Share link into the hidden field "collection_id" of the invite form 
+                $("#collection_id").val($(a).attr("collection_id")); 
+                  
+                $( "#invitation_form" ).dialog({ 
+                    height: 300, 
+                    width: 600, 
+                    modal: true, 
+                    buttons: { 
+                        //First button 
+                        "Share": function() { 
+                            //get the url to post the form data to 
+                            var post_url = $("#invitation_form form").attr("action"); 
+                              
+                            //serialize the form data and post it the url with ajax 
+                            $.post(post_url,$("#invitation_form form").serialize(), null, "script"); 
+                              
+                            return false; 
+                        }, 
+                        //Second button 
+                        Cancel: function() { 
+                            $( this ).dialog( "close" ); 
+                        } 
+                    }, 
+                    close: function() { 
+                  
+                    } 
+                });
+                  
+                return false; 
+            }); 
 });

@@ -116,6 +116,34 @@ end
     end
 end
 
+def share     
+    #first, we need to separate the emails with the comma 
+    email_addresses = params[:email_addresses].split(",") 
+      
+    email_addresses.each do |email_address| 
+      #save the details in the Sharecollection table 
+      @shared_collection = current_user.shared_collections.new
+      @shared_collection.collection_id = params[:collection_id] 
+      @shared_collection.shared_email = email_address 
+    
+      #getting the shared user id right the owner the email has already signed up with ShareBox 
+      #if not, the field "shared_user_id" will be left nil for now. 
+      shared_user = User.find_by_email(email_address) 
+      @shared_collection.shared_user_id = shared_user.id if shared_user 
+    
+      @shared_collection.message = params[:message] 
+      @shared_collection.save 
+    
+      #now we need to send email to the Shared User 
+    end
+  
+    #since this action is mainly for ajax (javascript request), we'll respond with js file back (refer to share.js.erb) 
+    respond_to do |format| 
+      format.js { 
+      } 
+    end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection

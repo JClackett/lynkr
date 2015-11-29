@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   match "browse/:collection_id" => "collections#browse", :as => "browse", via: [:get, :post]
   match "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection", via: [:get, :post]
   match "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link",  via: [:get, :post]
+  match "collection/share" => "collections#share", via: [:get, :post]
 
   get 'favourites' => 'links#favourites'
 

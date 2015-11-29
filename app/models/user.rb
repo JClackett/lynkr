@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 
 has_many :collections
+has_many :shared_collections, :dependent => :destroy
+has_many :being_shared_collections, :class_name => "SharedCollection", :foreign_key => "shared_user_id", :dependent => :destroy
 has_many :favourites
 has_many :links
 
