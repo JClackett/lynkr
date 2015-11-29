@@ -1,0 +1,12 @@
+Hey, 
+  
+<%= @shared_collection.user.first_name %> has shared the "<%= @shared_collection.collection.title %>" collection on Lynkr.  
+  
+Message from <%= @shared_collection.user.first_name %>: 
+"<%= @shared_collection.message %>" 
+  
+You can now login at <%= new_user_session_url %> and view the collection if you have an account already. If you don't have one,  you can sign up here at <%= new_user_registration_url %>  
+  
+Have fun, 
+  
+Lynkr

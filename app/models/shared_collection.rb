@@ -41,8 +41,6 @@ class SharedCollection < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 # Callbacks
 # ------------------------------------------------------------------------------
-
-after_create :check_and_assign_shared_ids_to_shared_collections
   
 
 # ------------------------------------------------------------------------------
@@ -67,19 +65,6 @@ after_create :check_and_assign_shared_ids_to_shared_collections
 # Class Methods
 # ------------------------------------------------------------------------------
 
-#this is to make sure the new user ,of which the email addresses already used to share collections by others, to have access to those collections 
-def check_and_assign_shared_ids_to_shared_collections     
-    #First checking if the new user's email exists in any of Sharecollection records 
-    shared_collections_with_same_email = SharedCollection.find_all_by_shared_email(self.email) 
-  
-    if shared_collections_with_same_email       
-      #loop and update the shared user id with this new user id  
-      shared_collections_with_same_email.each do |shared_collection| 
-        shared_collection.shared_user_id = self.id 
-        shared_collection.save 
-      end
-    end    
-end
 
 
 # ------------------------------------------------------------------------------

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :links do
     member do
       get 'favourite'
-      get 'update_details'
+      get 'update_details' , :defaults => { :format => 'js' }
     end
   end
 

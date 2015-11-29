@@ -94,10 +94,10 @@ $(document).on('ready page:load', function () {
                 var a = this; 
                   
                 //First, set the title of the Dialog box to display the collection name 
-                $("#invitation_form").attr("title", "Share '" + $(a).attr("collection_name") + "' with others" ); 
+                $("#invitation_form").attr("title", "Share '" + $(a).attr("collection_title") + "' with others" ); 
                   
                 //a hack to display the different collection names correctly 
-                $("#ui-dialog-title-invitation_form").text("Share '" + $(a).attr("collection_name") + "' with others");  
+                $("#ui-dialog-title-invitation_form").text("Share '" + $(a).attr("collection_title") + "' with others");  
                   
                 //then put the collection_id of the Share link into the hidden field "collection_id" of the invite form 
                 $("#collection_id").val($(a).attr("collection_id")); 

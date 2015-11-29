@@ -65,7 +65,10 @@ end
   end
 
   def update_details
-      
+      respond_to do |format| 
+      format.js { 
+      } 
+    end
   end
 
   # GET /favourites

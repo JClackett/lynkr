@@ -8,16 +8,20 @@ class CollectionsController < ApplicationController
 
   # GET /collections
   # GET /collections.json
-  def index
-     if user_signed_in? 
-     #show only root collections (which have no parent collections) 
-      @collections = current_user.collections.roots
-       
-     #show only root files which has no "collection_id" 
-     @links = current_user.links.where("collection_id is NULL").reverse   
+ def index 
+    if user_signed_in? 
+      #show collections shared by others 
+      @being_shared_collections = current_user.shared_collections_by_others 
+    
+      #show only root collections 
+      @collections = current_user.collections.roots 
+      #show only root files 
+      @links = current_user.links.where("collection_id is NULL").reverse  
     end
+
     @bottom_bar_header = "Dashboard"
-  end
+
+end
 
   # GET /collections/1
   # GET /collections/1.json
@@ -95,25 +99,37 @@ end
    end
 end
 
-  def browse 
-    #get the collections owned/created by the current_user 
-    @current_collection = current_user.collections.find(params[:collection_id])   
-  
-    if @current_collection
-      @bottom_bar_header = @current_collection.title
-
+def browse 
+  #first find the current collection within own collections 
+  @current_collection = current_user.collections.find_by_id(params[:collection_id])   
+  @is_this_collection_being_shared = false if @current_collection #just an instance variable to help hiding buttons on View 
     
-      #getting the collections which are inside this @current_collection 
-      @collections = @current_collection.children 
-  
-      #We need to fix this to show files under a specific collection if we are viewing that collection 
-      @links = @current_collection.links
-  
-      render :action => "index"
-    else
-      flash[:error] = "Don't be cheeky! Mind your own collections!"
-      redirect_to root_url 
-    end
+  #if not found in own collections, find it in being_shared_collections 
+  if @current_collection.nil? 
+    collection = collection.find_by_id(params[:collection_id]) 
+      
+    @current_collection ||= collection if current_user.has_share_access?(collection) 
+    @is_this_collection_being_shared = true if @current_collection #just an instance variable to help hiding buttons on View 
+      
+  end
+    
+  if @current_collection
+    @bottom_bar_header = @current_collection.title
+
+    #if under a sub collection, we shouldn't see shared collections 
+    @being_shared_collections = [] 
+      
+    #show collections under this current collection 
+    @collections = @current_collection.children 
+      
+    #show only files under this current collection 
+    @links = @current_collection.links.reverse
+      
+    render :action => "index"
+  else
+    flash[:error] = "Don't be cheeky! Mind your own links!"
+    redirect_to root_url 
+  end
 end
 
 def share     
@@ -135,6 +151,8 @@ def share
       @shared_collection.save 
     
       #now we need to send email to the Shared User 
+      #now send email to the recipients 
+      UserMailer.invitation_to_share(@shared_collection).deliver_now
     end
   
     #since this action is mainly for ajax (javascript request), we'll respond with js file back (refer to share.js.erb) 
@@ -145,6 +163,28 @@ def share
 end
 
   private
+
+  #to check if a user has acess to this specific collection 
+def has_share_access?(collection) 
+    #has share access if the collection is one of one of his own 
+    return true if self.collections.include?(collection) 
+  
+    #has share access if the collection is one of the shared_collections_by_others 
+    return true if self.shared_collections_by_others.include?(collection) 
+  
+    #for checking sub collections under one of the being_shared_collections 
+    return_value = false
+  
+    collection.ancestors.each do |ancestor_collection| 
+    
+      return_value = self.being_shared_collections.include?(ancestor_collection) 
+      if return_value #if it's true 
+        return true
+      end
+    end
+  
+    return false
+end
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
       @collection = current_user.collections.find(params[:id])
