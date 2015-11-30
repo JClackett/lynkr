@@ -2,11 +2,9 @@
 
 <!-- Listing Shared collections (the collections shared by others) -->
 <% @being_shared_collections.each do |collection| %> 
-    <div class="asset_details <%= collection.shared? ? 'shared_collection' : 'collection' %>" id="collection_<%= collection.id %>"> 
-        <div class="file_name"><%= link_to collection.title, browse_path(collection) %></div> 
-        <div class="actions"> 
-        </div> 
-    </div> 
+            <%= link_to browse_path(collection) do%>
+                <%= collection.title %>
+            <% end %>
 <% end %>
 
 <%= render @collections %>

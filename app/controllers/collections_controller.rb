@@ -106,7 +106,7 @@ def browse
     
   #if not found in own collections, find it in being_shared_collections 
   if @current_collection.nil? 
-    collection = collection.find_by_id(params[:collection_id]) 
+    collection = Collection.find_by_id(params[:collection_id]) 
       
     @current_collection ||= collection if current_user.has_share_access?(collection) 
     @is_this_collection_being_shared = true if @current_collection #just an instance variable to help hiding buttons on View 
@@ -114,10 +114,9 @@ def browse
   end
     
   if @current_collection
-    @bottom_bar_header = @current_collection.title
-
     #if under a sub collection, we shouldn't see shared collections 
     @being_shared_collections = [] 
+    @bottom_bar_header = @current_collection.title
       
     #show collections under this current collection 
     @collections = @current_collection.children 
@@ -162,29 +161,10 @@ def share
     end
 end
 
+
   private
 
-  #to check if a user has acess to this specific collection 
-def has_share_access?(collection) 
-    #has share access if the collection is one of one of his own 
-    return true if self.collections.include?(collection) 
-  
-    #has share access if the collection is one of the shared_collections_by_others 
-    return true if self.shared_collections_by_others.include?(collection) 
-  
-    #for checking sub collections under one of the being_shared_collections 
-    return_value = false
-  
-    collection.ancestors.each do |ancestor_collection| 
-    
-      return_value = self.being_shared_collections.include?(ancestor_collection) 
-      if return_value #if it's true 
-        return true
-      end
-    end
-  
-    return false
-end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
       @collection = current_user.collections.find(params[:id])

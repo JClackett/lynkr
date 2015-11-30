@@ -14,8 +14,7 @@
 				</form>
 
 		</div>
-
-			
+	
 		<div class="login-section right">
 
 
@@ -43,9 +42,9 @@
 	
 		<div class="section-header">
 
-			<% unless @is_this_collection_being_shared %> 
 
 				<% if @current_collection %>
+
 						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %></h3>
 
 						<%= link_to @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  do %>
@@ -55,14 +54,12 @@
 						<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
 							<i class="fa fa-share-alt"></i>
 						<% end %>
+
 				<% else %>
+
 					<h3><%= @bottom_bar_header %></h3>
+
 				<% end %>
-			<% else %>
-
-					<h3><%= @bottom_bar_header %></h3>
-
-			<% end %>
 
 		</div>
 	
