@@ -25,10 +25,10 @@
 <div id="invitation_form" title="Invite others to share" style="display:none"> 
     <%= form_tag('/collection/share' ) do %> 
             <label for="email_addresses">Enter recipient email addresses here</label><br /> 
-            <%= text_field_tag('email_addresses', "", :class => 'text ui-widget-content ui-corner-all') %> 
+            <%= text_field_tag('dialog_email_addresses', "", placeholder: "john.snow@gmail.com, stannis@hotmail.co.uk") %> 
             <br /><br /> 
             <label for="message">Optional message</label><br /> 
-            <%= text_area_tag( 'message',"",  :class => 'text ui-widget-content ui-corner-all' )%> 
+            <%= text_area_tag( 'dialog_message',)%> 
             <%= hidden_field_tag "collection_id" %> 
     <% end %>                 
 </div>

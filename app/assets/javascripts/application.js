@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+// = require jquery-ui
 //= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
@@ -80,9 +80,7 @@ $(document).on('ready page:load', function () {
 -------------------------------------------------- */
 $(document).on('ready page:load', function () {
     //open the invitation form when a share button is clicked 
-    $( ".share-collection" ) 
-            .button() 
-            .click(function() { 
+    $( ".share-collection" ).click(function() { 
                 //assign this specific Share link element into a variable called "a" 
                 var a = this; 
                   
@@ -96,9 +94,11 @@ $(document).on('ready page:load', function () {
                 $("#collection_id").val($(a).attr("collection_id")); 
                   
                 $( "#invitation_form" ).dialog({ 
-                    height: 300, 
-                    width: 600, 
+                    height: 350, 
+                    width: 500, 
                     modal: true, 
+                    resizable : false,
+                    draggable: false,
                     buttons: { 
                         //First button 
                         "Share": function() { 
