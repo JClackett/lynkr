@@ -45,15 +45,27 @@
 
 				<% if @current_collection %>
 
-						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %></h3>
+						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
 
-						<%= link_to @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  do %>
-							<i class="fa fa-trash-o"></i>
-						<% end %>
+							<i class="fa fa-caret-down collection-extras">
 
-						<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
-							<i class="fa fa-share-alt"></i>
-						<% end %>
+
+								<div class="collection-extras-popup hidden">
+
+									<ul>
+
+										<li><%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
+
+										<li><%= link_to "Remove Collection", @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  %></li>
+										
+
+									</ul>
+
+								</div>
+
+							</i>
+
+						</h3>
 
 				<% else %>
 

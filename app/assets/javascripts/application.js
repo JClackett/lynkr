@@ -35,6 +35,24 @@ $(document).on('ready page:load', function () {
     });
 });
 
+
+/* --------------------------------------------------
+   Collection Extras Popup
+-------------------------------------------------- */
+
+$(document).on('ready page:load', function () {
+    $(".collection-extras").click(function(e) {
+        $(".collection-extras-popup").toggle();
+        e.stopPropagation();
+    });
+
+    $(document).click(function(e) {
+        if (!$(e.target).is('.collection-extras-popup, .collection-extras-popup*')) {
+            $(".collection-extras-popup").hide();
+        }
+    });
+});
+
 /* --------------------------------------------------
    Best In Place
 -------------------------------------------------- */
