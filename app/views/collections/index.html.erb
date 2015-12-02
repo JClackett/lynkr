@@ -1,19 +1,26 @@
-<p id="notice" class="hidden"><%= notice %></p>
+<p id="notice" class=""><%= notice %></p>
 
 <!-- Listing Shared collections (the collections shared by others) -->
 <% @being_shared_collections.each do |collection| %> 
-            <%= link_to browse_path(collection) do%>
-                <%= collection.title %>
-            <% end %>
+	<%= link_to browse_path(collection) do%>
+		<%= collection.title %>
+	<% end %>
 <% end %>
 
+<!-- Own Collections -->
 <%= render @collections %>
+
+
+<!-- Links with of current colleciton -->
 
 <div class="links-main-container">
 	<% @links.each do |link| %>
-		<%= render '/links/link' , link: link%>
+		<%= render '/links/link' , link: link %>
 	<% end %>
 </div>
+
+
+<!-- Invitation form -->
 
 <div id="invitation_form" title="Invite others to share" style="display:none"> 
     <%= form_tag('/collection/share' ) do %> 

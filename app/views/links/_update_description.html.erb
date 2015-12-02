@@ -1,0 +1,13 @@
+<%= content_tag :div , id: dom_id(link, :update_description) , class: "link-show-info editable" do %>
+
+	<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank" >
+
+		<div class="link-description">
+
+			<h5><%= link.description %></h5>
+
+		</div>
+
+	</a>
+
+<% end %>

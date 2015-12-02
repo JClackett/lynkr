@@ -1,22 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :links do
+  resources :links , except: [:show, :edit ] do
     member do
       get 'favourite'
-      get 'update_details' , :defaults => { :format => 'js' }
+      get 'update_description'
     end
   end
 
-  match "browse/:collection_id" => "collections#browse", :as => "browse", via: [:get, :post]
-  match "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection", via: [:get, :post]
-  match "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link",  via: [:get, :post]
-  match "collection/share" => "collections#share", via: [:get, :post]
+  get "browse/:collection_id" => "collections#browse", :as => "browse"
+  get "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection"
+  get "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link"
+  get "collection/share" => "collections#share"
 
   get 'favourites' => 'links#favourites'
 
-
-
-  resources :collections
+  resources :collections, except: [:show, :edit ]
   
   devise_for :users
 

@@ -89,7 +89,7 @@ $link-height: 40px;
 	}
 
 	/* --------------------------------------------------
-	   Edit Link Section
+	   Edit Buttons
 	-------------------------------------------------- */
 
 	.edit-link-button {	
@@ -127,11 +127,13 @@ $link-height: 40px;
 	}	
 	
 	/* --------------------------------------------------
-	   Link Description Section
+	   Link Description
 	-------------------------------------------------- */
 	
 	.link-show-info, .link-edit-info {
-		color:$grey7;
+		a {
+			color:$grey7;
+		}
 	
 		.link-description {
 			float: left;

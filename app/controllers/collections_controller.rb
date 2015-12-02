@@ -9,7 +9,6 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
  def index 
-    if user_signed_in? 
       #show collections shared by others 
       @being_shared_collections = current_user.shared_collections_by_others 
     
@@ -17,9 +16,8 @@ class CollectionsController < ApplicationController
       @collections = current_user.collections.roots 
       #show only root files 
       @links = current_user.links.where("collection_id is NULL").reverse  
-    end
-
-    @bottom_bar_header = "Dashboard"
+      
+      @bottom_bar_header = "Dashboard"
 
 end
 
@@ -100,7 +98,7 @@ end
 end
 
 def browse 
-  #first find the current collection within own collections 
+  #first find the current collections within own collections 
   @current_collection = current_user.collections.find_by_id(params[:collection_id])   
   @is_this_collection_being_shared = false if @current_collection #just an instance variable to help hiding buttons on View 
     

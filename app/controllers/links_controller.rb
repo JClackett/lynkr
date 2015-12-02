@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy, :favourite]
+  before_action :set_link, only: [:update, :destroy, :favourite, :update_description]
   before_action :authenticate_user!
-  before_action :sidebar_collections, only: [:index, :show, :new, :edit, :favourites, :create ]
+  before_action :sidebar_collections, only: [:index, :new, :favourites ]
 
 
 
@@ -10,12 +10,7 @@ class LinksController < ApplicationController
   # Show all links the user created
   def index
     @links = current_user.links  
-    @bottom_bar_header = "All Links"
-  end
-
-  # GET /links/1
-  # GET /links/1.json
-  def show
+    @bottom_bar_header = "My Links"
   end
 
   # GET /links/new
@@ -23,14 +18,10 @@ class LinksController < ApplicationController
     @bottom_bar_header = "New Link"
     @link = current_user.links.new     
     if params[:collection_id] #if we want to upload a file inside another collection 
-     @current_collection = current_user.collections.find(params[:collection_id]) 
-     @link.collection_id = @current_collection.id 
+     current_collection = Collection.find(params[:collection_id]) 
+     @link.collection_id = current_collection.id 
     end    
 end
-
-  # GET /links/1/edit
-  def edit
-  end
 
   # POST /links
   # POST /links.json
@@ -64,11 +55,7 @@ end
     end
   end
 
-  def update_details
-      respond_to do |format| 
-      format.js { 
-      } 
-    end
+  def update_description
   end
 
   # GET /favourites

@@ -60,7 +60,6 @@ Sidebar
 
 				.new-link-button, .favourite-button {
 					position: absolute;
-					right: 15px;
 					top:5px;
 					float: right;
 					font-size: 2rem;
@@ -68,10 +67,12 @@ Sidebar
 
 				.new-link-button {
 					color:$white;
+					right: 15px;
 				}
 
 				.favourite-button {
 					color:$yellow;
+					right:14px;
 				}
 
 			}

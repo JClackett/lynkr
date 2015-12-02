@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
 //= require best_in_place
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
@@ -48,11 +48,10 @@ $(document).on('ready page:load', function () {
 -------------------------------------------------- */
 
 $(document).on('ready page:load', function () {
-    $('body').on('click','.edit-link-button',function(e){
+    $('body').on('click','.edit-link-button',function(){
      $(this).siblings(".editable").toggle();
-     $(this).siblings(".editable").children(".link-info").css({"background-color":"rgba(255,0,0,0.05)", "border-left":"1px dotted #CCC", "border-right":"1px dotted #CCC", "color":"#555"});
+     $(this).siblings(".editable").children(".link-info").css({"background-color":"rgba(255,0,0,0.05)", "border-left":"1px solid #DDD", "border-right":"1px solid #DDD", "color":"#555"});
      $(this).find(".edit-icons").toggle();
-     e.stopPropagation();
     });
 });
 
@@ -75,12 +74,6 @@ $(document).on('ready page:load', function () {
     });
 });
 
-// $(document).on('ready page:load', function () {
-//     $('body').on('click', '.check-button', function(){
-//       var container  =  $(this).parents(".edit-link-button").siblings(".link-show-info").children(".onion");
-//      container.load( container);
-//     });
-// });
 
 /* --------------------------------------------------
    Share collection popup
