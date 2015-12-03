@@ -5,6 +5,12 @@ Share Collection Popup
 .ui-widget {
 	font-family: "Helvetica Neue", "Helvetica", sans-serif;
 	padding: 0 !important;
+}
+
+.ui-dialog {
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 	
 }
 .ui-dialog-content {
@@ -14,17 +20,18 @@ Share Collection Popup
 #invitation_form {
 	resize:none;
 	
-	#dialog_email_addresses, #dialog_message {
+	#email_addresses, #message {
 		width: 100%;
 		@include font-size(16);
 		line-height: 28px;
 		border:1px solid $greyD;
 		resize: none;
 		padding-left: 10px;
+		background-color: $lightgrey;
 	}	
 
-	#dialog_message {
-		height:100px;
+	#message {
+		height:70px;
 	}
 	
 	::-webkit-input-placeholder {
@@ -37,8 +44,8 @@ Share Collection Popup
 
 
 .ui-corner-all {
-	border:1px solid $blue;
-	border-radius:0px;
+	border:none;
+	border-radius:3px;
 }
 
 .ui-dialog-titlebar {
@@ -48,12 +55,47 @@ Share Collection Popup
 	border-radius:0px;
 }
 
-.ui-dialog-buttonpane {
+.ui-dialog .ui-dialog-buttonpane {
 	text-align:center !important;
-	padding: 5px !important;
+	padding: 10px !important;
+	margin: 0;
+	
+	button {
+		margin: 0 1.5%;
+	}
 }
 
 .ui-dialog-buttonset {
 	float:none !important;
+	
+	button {
+		// margin: 0;
+	}
 }
 
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background:$white;
+	border:none;
+}
+
+.ui-button-text-only {
+	width: 47%;
+}
+
+.ui-button {
+	margin: 0;
+}
+.ui-button-text:nth-child(1) {
+	background-color: $greyD;
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+	color:$grey5;
+	margin: 0;
+	
+	&:hover {
+		background-color: $greyC;
+	}
+}
+.ui-widget-content {
+	border:none;
+}

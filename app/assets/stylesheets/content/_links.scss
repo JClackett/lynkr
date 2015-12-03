@@ -12,11 +12,13 @@ $link-height: 40px;
 	@include box-shadow(0px,0px,2px,0px, rgba(0,0,0,0.1));
 	background-color: $white;
 	border:1px solid $greyD;
-	width:95%;
-	margin: 10px 2.5% 0px 2.5%;
+	width:98%;
+	margin: 1% 1% 0% 1%;
 
 	&:hover {
-		background-color: $lightgrey;
+		-webkit-transition:ease-in all 100ms;
+		-webkit-transform: scale(1.01,1.01); /* Safari */
+		transform: scale(1.01,1.01);
 	}
 	
 	/* --------------------------------------------------
@@ -155,7 +157,7 @@ $link-height: 40px;
 	
 
 	/* --------------------------------------------------
-	   Links Collections Section
+	   Links Collections Section //// Do we need to add?
 	-------------------------------------------------- */
 
 	.link-collection {
@@ -250,4 +252,33 @@ $link-height: 40px;
 		}
 	}
 
+	/* --------------------------------------------------
+	   
+	-------------------------------------------------- */
+
+	.link-submit-button {
+		border:none;
+		height:40px;
+		width: 40px;
+		@include font-size(16);
+		border-right:1px solid greyC;
+		color:$white;
+		background-color: $green;
+	}
+
+	.new-link-description , .new-link-url {
+		border:none;
+		line-height: 38px;
+		@include font-size(15);
+		font-variant: small-caps;
+		padding-left: 20px;
+		overflow:hidden;
+		margin-left: 10px;
+		color:$grey7;
+		background-color: $lightgrey;		
+	}
+
+	.new-link-url {
+		width: 75%;
+	}
 }

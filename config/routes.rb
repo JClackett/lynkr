@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :links , except: [:show, :edit ] do
+  resources :links , except: [:edit ] do
     member do
       get 'favourite'
       get 'update_description'
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   get 'favourites' => 'links#favourites'
 
-  resources :collections, except: [:show, :edit ]
-  
+  resources :collections
+
   devise_for :users
 
   authenticated :user do

@@ -39,17 +39,33 @@
 
 	
 	<div class="bottom-section">
+
+
+		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
 	
 		<div class="section-header">
 
 
 				<% if @current_collection %>
 
-						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %></h3>
+						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
 
-						<%= link_to @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  do %>
-							<i class="fa fa-trash-o"></i>
-						<% end %>
+							<i class="fa fa-caret-down collection-extras">
+
+
+								<div class="collection-extras-popup hidden">
+
+									<ul>
+
+										<li><%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
+										<% puts @current_collection.title %>
+										<li><%= link_to "Remove Collection", @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  %></li>
+
+									</ul>
+
+								</div>
+
+							</i>
 
 						<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
 							<i class="fa fa-share-alt"></i>
@@ -62,6 +78,7 @@
 									<a title="<%=shared_user.first_name%>" class="tooltip"><%= gravatar_image_tag(shared_user.email.gsub('spam', 'mdeering'), :alt => shared_user.first_name, class: "shared-user-icon") %></a>
 								<% end %>
 							<% end %> 
+						</h3>
 
 
 						</div>

@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-// = require jquery-ui
+//= require jquery-ui
 //= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
@@ -33,6 +33,23 @@ $(document).on('ready page:load', function () {
             $(".user-popup").hide();
         }
     });
+});
+
+
+/* --------------------------------------------------
+   Collection Extras Popup
+-------------------------------------------------- */
+
+$(document).on('ready page:load', function () {
+    $(".collection-extras").click(function() {
+        $(".collection-extras-popup").toggle();
+    });
+
+    $(document).click(function(e) {
+        if (!$(e.target).is('.collection-extras, .collection-extras*')) {
+            $(".collection-extras-popup").hide();
+        }
+    }); 
 });
 
 /* --------------------------------------------------
@@ -94,7 +111,6 @@ $(document).on('ready page:load', function () {
                 $("#collection_id").val($(a).attr("collection_id")); 
                   
                 $( "#invitation_form" ).dialog({ 
-                    height: 350, 
                     width: 500, 
                     modal: true, 
                     resizable : false,

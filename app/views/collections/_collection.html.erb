@@ -10,6 +10,25 @@
 
 	</div>
 
+	<div class="collection-links-wrapper">
+
+		<ul>
+			<% collection.links.reverse.first(3).each do |link| %>
+
+				<li>
+
+					<a href="<%= link.url %>" onclick="window.open(this.href); return false;" target="_blank">
+						<%= link.description %>
+					</a>
+
+				</li>
+
+			<% end %>
+
+		</ul>
+
+	</div>
+
 	<div class="collection-users-wrapper">
 
 

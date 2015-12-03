@@ -1,0 +1,46 @@
+<%= form_for(@collection) do |f| %>
+	  <% if @collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+      <ul>
+      <% @collection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="collection-wrapper left">
+
+	<div class="collection-title">
+
+
+			<h5><%= f.text_field :title, placeholder: "new collection", class: "new-collection-form" %></h5>
+
+
+	</div>
+
+  	<%= f.hidden_field :parent_id %> 
+
+
+	<div class="collection-links-wrapper">
+
+    		<%= f.button type: 'submit', class: "form-submit-button", data: { disable_with: 'submitting' } do %>
+
+			<i class="fa fa-plus"></i>
+
+    		<% end %>
+
+	</div>
+	
+
+	<div class="collection-users-wrapper">
+
+
+	</div>
+
+
+</div>
+
+<% end %>
