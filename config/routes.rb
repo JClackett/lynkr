@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "browse/:collection_id" => "collections#browse", :as => "browse"
   get "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection"
   get "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link"
-  get "collection/share" => "collections#share"
+  post "collection/share" => "collections#share"
 
   get 'favourites' => 'links#favourites'
 

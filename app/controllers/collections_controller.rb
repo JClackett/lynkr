@@ -3,23 +3,18 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :sidebar_collections, only: [:index, :show, :new, :edit, :browse]
 
-
-
-
   # GET /collections
   # GET /collections.json
- def index 
+  def index 
       #show collections shared by others 
       @being_shared_collections = current_user.shared_collections_by_others 
-    
       #show only root collections 
       @collections = current_user.collections.roots 
       #show only root files 
       @links = current_user.links.where("collection_id is NULL").reverse  
-      
-      @bottom_bar_header = "Dashboard"
 
-end
+      @bottom_bar_header = "Dashboard"
+  end
 
   # GET /collections/1
   # GET /collections/1.json
