@@ -155,6 +155,18 @@ def browse
   else
     redirect_to root_url 
   end
+
+
+  @collection_users = []
+  @shared_collections = @current_collection.shared_collections
+
+  @shared_collections.each do |shared|
+    puts shared.shared_user.first_name
+    @collection_users.push(shared.user)
+  end
+
+  @current_collection_shared = @current_collection.user.first_name
+
 end
 
 def share     

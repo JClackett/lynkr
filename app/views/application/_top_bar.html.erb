@@ -67,21 +67,10 @@
 
 							</i>
 
-						<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
-							<i class="fa fa-share-alt"></i>
-						<% end %>
 						<div class="shared-icon">
-							<% current_shared_collection = SharedCollection.where(:collection_id => @current_collection.id) %>
-							<% current_shared_collection.each do |shared_with| %>
-								<% user_ids = shared_with.shared_users_id %>
-								<% User.where(:id => user_ids).each do |shared_user|  %>
-									<a title="<%=shared_user.first_name%>" class="tooltip"><%= gravatar_image_tag(shared_user.email.gsub('spam', 'mdeering'), :alt => shared_user.first_name, class: "shared-user-icon") %></a>
-								<% end %>
-							<% end %> 
-						</h3>
-
-
+							
 						</div>
+						</h3>
 				<% else %>
 
 					<h3><%= @bottom_bar_header %></h3>
