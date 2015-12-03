@@ -29,7 +29,6 @@ end
   @link = current_user.links.new(link_params) 
 
   if @link.save 
-   flash[:notice] = "Successfully uploaded the link."
   
    if @link.collection #checking if we have a parent collection for this file 
      redirect_to browse_path(@link.collection)  #then we redirect to the parent collection 
@@ -46,7 +45,7 @@ end
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to links_path, notice: 'Link was successfully updated.' }
+        format.html { redirect_to links_path}
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit }
@@ -85,7 +84,6 @@ end
   @link = Link.find(params[:id]) 
   @parent_collection = @link.collection #grabbing the parent collection before deleting the record 
   @link.destroy 
-  flash[:notice] = "Successfully deleted the file."
   
   #redirect to a relevant path depending on the parent collection 
   if @parent_collection

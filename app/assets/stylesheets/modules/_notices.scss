@@ -1,0 +1,16 @@
+/* --------------------------------------------------
+   Flash Notices
+-------------------------------------------------- */
+.notice-wrapper {
+	position: absolute;
+	top:50px;
+	z-index: 3;
+	border-radius:10px;
+
+	.collection-page-notice {
+		color: $white;
+	  	background-color: $green;
+		border: 1px solid #d6e9c6;
+
+	}
+}

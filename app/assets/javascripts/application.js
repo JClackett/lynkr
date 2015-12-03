@@ -111,7 +111,6 @@ $(document).on('ready page:load', function () {
                 $("#collection_id").val($(a).attr("collection_id")); 
                   
                 $( "#invitation_form" ).dialog({ 
-                    height: 350, 
                     width: 500, 
                     modal: true, 
                     resizable : false,

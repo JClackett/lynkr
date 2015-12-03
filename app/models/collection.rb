@@ -66,7 +66,6 @@ acts_as_tree     # Nested collections
 # ------------------------------------------------------------------------------
 
 def set_default_title
-	puts self.title
 	if self.title.empty?
 		self.title = "Collection"
 	end

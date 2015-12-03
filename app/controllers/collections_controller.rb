@@ -66,7 +66,6 @@ end
   def create 
    @collection = current_user.collections.new(collection_params) 
    if @collection.save 
-    flash[:notice] = "Successfully created collection."
       
     if @collection.parent #checking if we have a parent collection on this one 
       redirect_to browse_path(@collection.parent)  #then we redirect to the parent collection 
@@ -83,7 +82,7 @@ end
   def update
     respond_to do |format|
       if @collection.update(collection_params)
-        format.html { redirect_to @collection, notice: 'Collection was successfully updated.' }
+        format.html { redirect_to @collection}
         format.json { render :show, status: :ok, location: @collection }
       else
         format.html { render :edit }
@@ -100,7 +99,6 @@ end
    #this will destroy the collection along with all the contents inside 
    #sub collections will also be deleted too as well as all files inside 
    @collection.destroy 
-   flash[:notice] = "Successfully deleted the collection and all the contents inside."
    #redirect to a relevant path depending on the parent collection 
    if @parent_collection
     redirect_to browse_path(@parent_collection) 
@@ -158,7 +156,6 @@ def browse
       
     render :index
   else
-    flash[:notice] = "Don't be cheeky! Mind your own links!"
     redirect_to root_url 
   end
 end
