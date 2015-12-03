@@ -17,6 +17,9 @@ $link-height: 40px;
 
 	&:hover {
 		background-color: $lightgrey;
+		-webkit-transition:ease-in all 100ms;
+		-webkit-transform: scale(1.01,1.01); /* Safari */
+		transform: scale(1.01,1.01);
 	}
 	
 	/* --------------------------------------------------

@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:update, :destroy, :favourite, :update_description]
+  before_action :set_link, only: [:update, :favourite, :update_description]
   before_action :authenticate_user!
   before_action :sidebar_collections, only: [:index, :new, :favourites ]
 
@@ -82,7 +82,7 @@ end
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy 
-  @link = current_user.links.find(params[:id]) 
+  @link = Link.find(params[:id]) 
   @parent_collection = @link.collection #grabbing the parent collection before deleting the record 
   @link.destroy 
   flash[:notice] = "Successfully deleted the file."
@@ -98,7 +98,7 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
-      @link = current_user.links.find(params[:id])
+      @link = Link.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

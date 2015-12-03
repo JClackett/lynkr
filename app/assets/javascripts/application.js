@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-// = require jquery-ui
+//= require jquery-ui
 //= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
@@ -41,16 +41,15 @@ $(document).on('ready page:load', function () {
 -------------------------------------------------- */
 
 $(document).on('ready page:load', function () {
-    $(".collection-extras").click(function(e) {
+    $(".collection-extras").click(function() {
         $(".collection-extras-popup").toggle();
-        e.stopPropagation();
     });
 
     $(document).click(function(e) {
-        if (!$(e.target).is('.collection-extras-popup, .collection-extras-popup*')) {
+        if (!$(e.target).is('.collection-extras, .collection-extras*')) {
             $(".collection-extras-popup").hide();
         }
-    });
+    }); 
 });
 
 /* --------------------------------------------------

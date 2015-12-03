@@ -14,13 +14,14 @@ Share Collection Popup
 #invitation_form {
 	resize:none;
 	
-	#dialog_email_addresses, #dialog_message {
+	#email_addresses, #message {
 		width: 100%;
 		@include font-size(16);
 		line-height: 28px;
 		border:1px solid $greyD;
 		resize: none;
 		padding-left: 10px;
+		background-color: $lightgrey;
 	}	
 
 	#dialog_message {
@@ -37,8 +38,8 @@ Share Collection Popup
 
 
 .ui-corner-all {
-	border:1px solid $blue;
-	border-radius:0px;
+	border:1px solid $greyB;
+	border-radius:3px;
 }
 
 .ui-dialog-titlebar {
@@ -55,5 +56,17 @@ Share Collection Popup
 
 .ui-dialog-buttonset {
 	float:none !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background:$white;
+}
+
+.ui-button-text:nth-child(1) {
+	background-color: $greyE;
+	
+	&:hover {
+		background-color: $greyD;
+	}
 }
 

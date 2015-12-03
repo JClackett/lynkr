@@ -55,9 +55,8 @@
 									<ul>
 
 										<li><%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
-
-										<li><%= link_to "Remove Collection", @current_collection, :method => :delete, :confirm => "Are you sure?", class: "delete-collection"  %></li>
-										
+										<% puts @current_collection.title %>
+										<li><%= link_to "Remove Collection", @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  %></li>
 
 									</ul>
 

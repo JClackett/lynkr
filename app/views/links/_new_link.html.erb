@@ -1,0 +1,65 @@
+<%= form_for(@link) do |f| %>
+	<% if @link.errors.any? %>
+
+		<div id="error_explanation">
+
+			<h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+			<ul>
+				<% @link.errors.full_messages.each do |message| %>
+
+					<li><%= message %></li>
+
+				<% end %>
+
+			</ul>
+
+		</div>
+
+	<% end %>
+
+<div class="link-wrapper left" id="link-section-id">
+	
+	<!-- Link mover part -->
+	
+	<!-- Edit the link -->
+
+
+
+	<!-- SHOW Part of the link info -->
+
+
+	<!-- EDIT Part of the link info -->
+
+	<div class="link-edit-info editable">
+
+		<div class="link-description link-info">
+
+			<h5><%= f.text_field :description, placeholder: "description goes here"  %></h5>
+
+		</div>
+
+	</div>
+
+	<!-- DELETE the link button -->
+
+
+	<!-- SHOW URL Button -->
+
+	<!-- Link url -->
+
+	<%= f.hidden_field :collection_id %> 
+
+	<div class="link-description link-info">
+
+		<p><%= f.text_field :url , placeholder: "Copy the url here" %></p>
+
+	</div>
+
+		<div class="form-actions">
+			<%= f.button "add link", type: 'submit', class: "form-submit-button", data: { disable_with: 'Submitting' } %>
+		</div>
+
+</div>
+
+<% end %>

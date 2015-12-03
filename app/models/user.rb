@@ -75,15 +75,34 @@ after_create :check_and_assign_shared_ids_to_shared_collections
 
   #to check if a user has acess to this specific collection 
 def has_share_access?(collection) 
+
     #has share access if the collection is one of one of his own 
     return true if self.collections.include?(collection) 
-  
+
     #has share access if the collection is one of the shared_collections_by_others 
     return true if self.shared_collections_by_others.include?(collection) 
-  
-    #for checking sub collections under one of the being_shared_collections 
+
     return_value = false
+
+    # can see collections made by somone else, inside a collection that the current user created
+      collection.ancestors.each do |ancestor_collection| 
+      return_value = self.collections.include?(ancestor_collection) 
+      if return_value #if it's true 
+        return true
+      end
+    end
+
+    # allowing shared user access to all children of the original shared collection (of the grandad)
+      collection.ancestors.each do |ancestor_collection| 
+      return_value = self.shared_collections_by_others.include?(ancestor_collection) 
+      if return_value #if it's true 
+        return true
+      end
+    end
+
+
   
+    #for checking sub collections under one of the being_shared_collections   
     collection.ancestors.each do |ancestor_collection| 
     
       return_value = self.being_shared_collections.include?(ancestor_collection) 

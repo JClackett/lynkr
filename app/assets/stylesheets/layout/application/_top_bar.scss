@@ -154,6 +154,7 @@
 				.collection-extras {
 					padding: 5px;
 					cursor: pointer;
+					color:$greyA;
 					
 					&:hover {
 						color:$blue;
@@ -170,7 +171,8 @@
 						width: 130px;
 						-webkit-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
 						-moz-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
-						box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);						
+						box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);	
+											
 						ul {
 							padding: 0;
 							margin: 0;
@@ -192,7 +194,7 @@
 								a {	
 									@include font-size(12);
 									color:$grey6;
-									padding: 5px 7.5px;
+									padding: 10px 12px 10px 7.5px;
 									width: 100px;
 									
 								}

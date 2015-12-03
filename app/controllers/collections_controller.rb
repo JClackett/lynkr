@@ -5,27 +5,41 @@ class CollectionsController < ApplicationController
 
 
 
-
   # GET /collections
   # GET /collections.json
  def index 
       #show collections shared by others 
-      @being_shared_collections = current_user.shared_collections_by_others 
+      @being_shared_collections = current_user.shared_collections_by_others.reverse 
     
       #show only root collections 
-      @collections = current_user.collections.roots 
+      @collections = current_user.collections.roots.reverse
       #show only root files 
       @links = current_user.links.where("collection_id is NULL").reverse  
       
       @bottom_bar_header = "Dashboard"
+
+      @link = current_user.links.new     
+          if params[:collection_id] #if we want to upload a file inside another collection 
+           current_collection = Collection.find(params[:collection_id]) 
+           @link.collection_id = current_collection.id 
+          end    
+
+      @collection = current_user.collections.new
+      if params[:collection_id] #if we want to create a collection inside another collection 
+       
+     #we still need to set the @current_collection to make the buttons working fine 
+     @current_collection = Collection.find(params[:collection_id]) 
+       
+     #then we make sure the collection we are creating has a parent collection which is the @current_collection 
+     @collection.parent_id = @current_collection.id 
+   end
+
 
 end
 
   # GET /collections/1
   # GET /collections/1.json
   def show
-    @links = @collection.links.reverse
-    @collection_header = @collection.title.titleize
   end
 
   # GET /collections/new
@@ -36,7 +50,7 @@ end
    if params[:collection_id] #if we want to create a collection inside another collection 
        
      #we still need to set the @current_collection to make the buttons working fine 
-     @current_collection = current_user.collections.find(params[:collection_id]) 
+     @current_collection = Collection.find(params[:collection_id]) 
        
      #then we make sure the collection we are creating has a parent collection which is the @current_collection 
      @collection.parent_id = @current_collection.id 
@@ -81,14 +95,12 @@ end
   # DELETE /collections/1
   # DELETE /collections/1.json
   def destroy 
-   @collection = current_user.collections.find(params[:id]) 
    @parent_collection = @collection.parent #grabbing the parent collection 
-  
+    
    #this will destroy the collection along with all the contents inside 
    #sub collections will also be deleted too as well as all files inside 
    @collection.destroy 
    flash[:notice] = "Successfully deleted the collection and all the contents inside."
-  
    #redirect to a relevant path depending on the parent collection 
    if @parent_collection
     redirect_to browse_path(@parent_collection) 
@@ -98,6 +110,27 @@ end
 end
 
 def browse 
+
+    @link = current_user.links.new     
+    if params[:collection_id] #if we want to upload a file inside another collection 
+     current_collection = Collection.find(params[:collection_id]) 
+     @link.collection_id = current_collection.id 
+    end    
+
+
+  @collection = current_user.collections.new
+        if params[:collection_id] #if we want to create a collection inside another collection 
+       
+     #we still need to set the @current_collection to make the buttons working fine 
+     @current_collection = Collection.find(params[:collection_id]) 
+       
+     #then we make sure the collection we are creating has a parent collection which is the @current_collection 
+     @collection.parent_id = @current_collection.id 
+   end
+
+
+
+
   #first find the current collections within own collections 
   @current_collection = current_user.collections.find_by_id(params[:collection_id])   
   @is_this_collection_being_shared = false if @current_collection #just an instance variable to help hiding buttons on View 
@@ -106,25 +139,26 @@ def browse
   if @current_collection.nil? 
     collection = Collection.find_by_id(params[:collection_id]) 
       
-    @current_collection ||= collection if current_user.has_share_access?(collection) 
+    @current_collection ||= collection if current_user.has_share_access?(collection)
     @is_this_collection_being_shared = true if @current_collection #just an instance variable to help hiding buttons on View 
       
   end
     
   if @current_collection
     #if under a sub collection, we shouldn't see shared collections 
-    @being_shared_collections = [] 
+    @being_shared_collections = []
     @bottom_bar_header = @current_collection.title
+
       
     #show collections under this current collection 
-    @collections = @current_collection.children 
+    @collections = @current_collection.children.reverse
       
     #show only files under this current collection 
     @links = @current_collection.links.reverse
       
-    render :action => "index"
+    render :index
   else
-    flash[:error] = "Don't be cheeky! Mind your own links!"
+    flash[:notice] = "Don't be cheeky! Mind your own links!"
     redirect_to root_url 
   end
 end
@@ -165,7 +199,7 @@ end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
-      @collection = current_user.collections.find(params[:id])
+      @collection = Collection.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

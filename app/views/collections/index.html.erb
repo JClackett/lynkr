@@ -1,17 +1,17 @@
-<p id="notice" class=""><%= notice %></p>
+<p id="notice" class="hidden"><%= notice %></p>
 
-<!-- Listing Shared collections (the collections shared by others) -->
-<% @being_shared_collections.each do |collection| %> 
-	<%= link_to browse_path(collection) do%>
-		<%= collection.title %>
-	<% end %>
-<% end %>
+<%= render "/collections/new_collection" %>
 
 <!-- Own Collections -->
 <%= render @collections %>
 
+<!-- Listing Shared collections (the collections shared by others) -->
+<%= render @being_shared_collections %>
 
-<!-- Links with of current colleciton -->
+
+<!-- Links with no current collection -->
+
+<%#= render "/links/new_link" %>
 
 <div class="links-main-container">
 	<% @links.each do |link| %>
@@ -24,11 +24,10 @@
 
 <div id="invitation_form" title="Invite others to share" style="display:none"> 
     <%= form_tag('/collection/share' ) do %> 
-            <label for="email_addresses">Enter recipient email addresses here</label><br /> 
-            <%= text_field_tag('dialog_email_addresses', "", placeholder: "john.snow@gmail.com, stannis@hotmail.co.uk") %> 
+            <label for="email_addresses">Enter recipient email addresses here</label><br /><br /> 
+            <%= text_field_tag('email_addresses', "", placeholder: "john.snow@gmail.com, stannis@hotmail.co.uk") %> 
             <br /><br /> 
-            <label for="message">Optional message</label><br /> 
-            <%= text_area_tag( 'dialog_message',)%> 
+            <%= text_area_tag( 'message',"",placeholder: "Optional message" )%> 
             <%= hidden_field_tag "collection_id" %> 
     <% end %>                 
 </div>
