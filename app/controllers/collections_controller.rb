@@ -3,20 +3,17 @@ class CollectionsController < ApplicationController
   before_action :authenticate_user!
   before_action :sidebar_collections, only: [:index, :show, :new, :edit, :browse]
 
-
-
   # GET /collections
   # GET /collections.json
- def index 
+  def index 
       #show collections shared by others 
+
       @being_shared_collections = current_user.shared_collections_by_others.reverse 
     
       #show only root collections 
       @collections = current_user.collections.roots.reverse
       #show only root files 
       @links = current_user.links.where("collection_id is NULL").reverse  
-      
-      @bottom_bar_header = "Dashboard"
 
       @link = current_user.links.new     
           if params[:collection_id] #if we want to upload a file inside another collection 
@@ -158,6 +155,18 @@ def browse
   else
     redirect_to root_url 
   end
+
+
+  @collection_users = []
+  @shared_collections = @current_collection.shared_collections
+
+  @shared_collections.each do |shared|
+    # puts shared.shared_user.first_name
+    @collection_users.push(shared.user)
+  end
+
+  @current_collection_shared = @current_collection.user.first_name
+
 end
 
 def share     
