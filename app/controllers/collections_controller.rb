@@ -161,7 +161,7 @@ def browse
   @shared_collections = @current_collection.shared_collections
 
   @shared_collections.each do |shared|
-    puts shared.shared_user.first_name
+    # puts shared.shared_user.first_name
     @collection_users.push(shared.user)
   end
 
