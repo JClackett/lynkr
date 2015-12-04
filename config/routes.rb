@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
   unauthenticated :user do
     devise_scope :user do 
-      get 'login', to: "devise/sessions#new"
+      get '/', to: "devise/sessions#new"
     end
   end
 

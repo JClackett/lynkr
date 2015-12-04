@@ -1,20 +1,31 @@
 <div class="breadcrumbs">         
 
 	<% if @current_collection #checking if we are under any collection %> 
-
-		<% if @current_collection.ancestors == [] %>
-
-			<%= link_to root_path do %>
+		
+		<!-- checking if the collection has a parent -->
+		<% if @current_collection.ancestors == [] %> 
+			
+			<!-- If no parent, link to root -->
+			<%= link_to root_path do %> 
 				<i class="fa fa-arrow-left"></i>
 			<% end %> 
 
-		<% else %>
-
+		<!-- check if current_user has access to parent -->
+		<% elsif current_user.has_share_access?(@current_collection.ancestors.first) %>
+			
+			<!-- if user does have access, link to parent -->
 			<% collection =@current_collection.ancestors.first %> 
 
 			<%= link_to browse_path(collection) do %>
 				<i class="fa fa-arrow-left"></i>
 			<% end %> 
+
+		<!-- if user doesn't haven't access to parent link to root -->
+		<% else %>
+			
+			<%= link_to root_path do %>
+				<i class="fa fa-arrow-left"></i>
+			<% end %>  
 
 		<% end %>
 

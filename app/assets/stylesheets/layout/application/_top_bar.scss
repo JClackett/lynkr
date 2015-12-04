@@ -6,7 +6,6 @@
 	width: calc(100% - 200px);
 	@include box-shadow(0px,0px,2px,1px,rgba(0,0,0,0.2));
 	background-color: #FFF;
-	top:0;
 
 	// Top Section
 	.top-section {
@@ -239,44 +238,28 @@
 			}
 
 			.shared-icon {
-				position: absolute;
-    			top: 0;
-    			right: 10px;
+				float: right;
+				margin: 0;
+				height: 30px;
     			
-    			img {
-					float: left;
+    				img {
 					border-radius:50%;
 					width: 30px;
 					height: 30px;
-					margin-right: 8px;
+					margin-right: 10px;
+
 					
 					&:hover {
 					-webkit-transition:ease-in all 100ms;
 					-webkit-transform: scale(1.1,1.1); /* Safari */
 					transform: scale(1.1,1.1);
-				}
-				}
 
-				.tooltip{
-				    display: inline;
-				    position: relative;
-				}
+					}
 
-				.tooltip:hover:after{
-				    background: #333;
-				    background: rgba(0,0,0,.8);
-				    border-radius: 5px;
-				    top: 30px;
-				    color: #fff;
-				    left: -50px;
-				    content: attr(title);
-				    padding: 5px 5px;
-				    position: absolute;
-				    z-index: 98;
 				}
 
 			}
-		
+
 		}
 
 	}
