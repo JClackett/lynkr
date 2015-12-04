@@ -40,42 +40,37 @@
 	
 	<div class="bottom-section">
 
-
 		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
 	
 		<div class="section-header">
 
 
-				<% if @current_collection %>
+			<% if @current_collection %>
 
-						<h3><%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
+				<%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
 
-							<i class="fa fa-caret-down collection-extras">
+				<i class="fa fa-caret-down collection-extras">
 
 
-								<div class="collection-extras-popup hidden">
+					<div class="collection-extras-popup hidden">
 
-									<ul>
+						<ul>
 
-										<li><%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
-										<% puts @current_collection.title %>
-										<li><%= link_to "Remove Collection", @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  %></li>
-
-									</ul>
-
-								</div>
-
-							</i>
-
-						<div class="shared-icon">
+							<li><i class="fa fa-share"></i> <%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
 							
-						</div>
-						</h3>
-				<% else %>
+							<li><i class="fa fa-times"></i><%= link_to "Remove Collection", @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  %></li>
 
-					<h3><%= @bottom_bar_header %></h3>
+						</ul>
 
-				<% end %>
+					</div>
+
+				</i>
+
+			<% else %>
+
+				<span><%= @bottom_bar_header %></span>
+
+			<% end %>
 
 		</div>
 	

@@ -130,16 +130,13 @@
    Bottom Section
 -------------------------------------------------- */
 	.bottom-section {
+		@extend .group;
 		padding: 10px;
 		background-color: #F9F9F9;
-		position: relative;
 		
-
 		.breadcrumbs {
-			@extend .group;
-			position: absolute;
-			left:15px;
-			z-index:2;
+			float: left;
+			margin: 0;
 			
 			i {	
 				padding: 2px;
@@ -155,76 +152,87 @@
 		}
 
 		.section-header {
-			position: relative;
 			text-align: center;
-
-			h3 {
+			margin: 0;
+				
+			span {
 				margin: 0;
 				text-align: center;
 				color: $grey4;
 				line-height: 30px;
 				@include font-size(18);
+				cursor: default;
+			}
+
+			.best_in_place_title {
+				&:hover {
+					cursor: text;
+					border-bottom:1px dotted $greyA;
+				}
+			}
+
+			.collection-extras {
+				cursor: pointer;
+				color:$greyA;
 				
-				span {
-					
-					&:hover {
-						border-bottom:1px dotted $greyA;
-					}
+				&:hover {
+					color:$blue;
 				}
 
-				.collection-extras {
-					padding: 5px;
-					cursor: pointer;
-					color:$greyA;
-					
-					&:hover {
-						color:$blue;
-					}
+				.collection-extras-popup {
+					position: absolute;
+					top:15px;
+					left: 5px;
+					z-index: 8;
+					background-color: $white;
+					border:1px solid $greyB;
+					border-radius:3px;
+					width: 160px;
+					-webkit-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
+					-moz-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
+					box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);	
+										
+					ul {
+						padding: 0;
+						margin: 0;
 
-					.collection-extras-popup {
-						position: absolute;
-						top:25px;
-						left: 15px;
-						z-index: 8;
-						background-color: $white;
-						border:1px solid $greyB;
-						border-radius:3px;
-						width: 130px;
-						-webkit-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
-						-moz-box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);
-						box-shadow: -2px 2px 1px -1px rgba(0,0,0,0.2);	
-											
-						ul {
-							padding: 0;
-							margin: 0;
+						li {
+							list-style: none;
+							margin: 3px 0 ;
+							padding: 5px 0;
+							text-align: left;
+							
+							
+							&:hover {
+								background-color: $blue;	
+							}
 
-							li {
-								list-style: none;
-								margin: 3px 0 ;
-								padding: 5px 0;
-								text-align: left;
+							&:hover a {
+								color:$white;
+							}
+							
+							a {	
+								@include font-size(12);
+								color:$grey6;
+								padding: 10px 12px 10px 0px;
+								width: 100px;
 								
-								&:hover {
-									background-color: $blue;	
-								}
+							}
 
-								&:hover a {
-									color:$white;
-								}
-								
-								a {	
-									@include font-size(12);
-									color:$grey6;
-									padding: 10px 12px 10px 7.5px;
-									width: 100px;
-									
-								}
+							i {	
+								text-align: center;
+								color:$greyC;
+								padding: 5px 8px;
+							}
 
+							.fa-times {
+								@include font-size(18);
+								width: 33px;
 							}
 
 						}
 
-					}
+					}	
 
 				}
 
