@@ -1,7 +1,16 @@
+<% if @current_collection %>
+    <% puts @current_collection.title %>
+    <%= provide(:title, "#{@current_collection.title}" )%>
+<% else %>
+    <%= provide(:title, "Dashboard" ) %>
+<% end %>
+
 <div class="notice-wrapper">
     <p id="notice" class="collection-page-notice hidden"><%= notice %></p>
 </div>
 <!-- Links -->
+
+
 
 <div class="links-main-container">
 

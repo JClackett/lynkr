@@ -17,13 +17,18 @@ Rails.application.routes.draw do
   resources :collections
 
   devise_for :users
+  devise_scope :user do 
+      get 'register', to: "devise/registrations#new"
+  end
+
+
 
   authenticated :user do
     root :to => "collections#index"
   end
   unauthenticated :user do
     devise_scope :user do 
-      get "/" => "devise/sessions#new"
+      get 'login', to: "devise/sessions#new"
     end
   end
 

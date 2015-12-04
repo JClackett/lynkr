@@ -3,11 +3,11 @@
   <ul>
 
     <%- if controller_name != 'sessions' %>
-      <li><%= link_to "log in", new_session_path(resource_name) %></li>
+      <li><%= link_to "log in", login_path%></li>
     <% end -%>
 
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <li><%= link_to "sign up", new_registration_path(resource_name) %></li>
+      <li><%= link_to "sign up", register_path %></li>
     <% end -%>
 
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
