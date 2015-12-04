@@ -85,7 +85,7 @@ def has_share_access?(collection)
     return_value = false
 
     # can see collections made by somone else, inside a collection that the current user created
-      collection.ancestors.each do |ancestor_collection| 
+    collection.ancestors.each do |ancestor_collection| 
       return_value = self.collections.include?(ancestor_collection) 
       if return_value #if it's true 
         return true

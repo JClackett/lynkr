@@ -106,11 +106,12 @@ end
 
 def browse 
 
-    @link = current_user.links.new     
-    if params[:collection_id] #if we want to upload a file inside another collection 
-     current_collection = Collection.find(params[:collection_id]) 
-     @link.collection_id = current_collection.id 
-    end    
+
+  @link = current_user.links.new     
+  if params[:collection_id] #if we want to upload a file inside another collection 
+   current_collection = Collection.find(params[:collection_id]) 
+   @link.collection_id = current_collection.id 
+  end    
 
 
   @collection = current_user.collections.new
@@ -125,11 +126,13 @@ def browse
 
 
 
-
   #first find the current collections within own collections 
   @current_collection = current_user.collections.find_by_id(params[:collection_id])   
   @is_this_collection_being_shared = false if @current_collection #just an instance variable to help hiding buttons on View 
-    
+  
+
+
+
   #if not found in own collections, find it in being_shared_collections 
   if @current_collection.nil? 
     collection = Collection.find_by_id(params[:collection_id]) 
@@ -138,13 +141,24 @@ def browse
     @is_this_collection_being_shared = true if @current_collection #just an instance variable to help hiding buttons on View 
       
   end
-    
+
+  ############ for displaying shared users in a collection ##########
+  
+  if @current_collection.parent_id !=nil #check if current collection has parent
+    @ancestor_shared_collections = SharedCollection.where(collection_id: @current_collection.ancestors) #array of shared ancestors  
+    @ancestor_shared_collections_filtered = @ancestor_shared_collections.where.not(shared_user_id: nil) #remove any records where user isn't signed up
+  end
+
+  all_shared_collections_current = SharedCollection.where(collection_id: @current_collection.id) #array of shared collection records with current collection id
+  @shared_collections_current_filtered = all_shared_collections_current.where.not(shared_user_id: nil) #remove any records where user isn't signed up
+
+  ########
+
   if @current_collection
     #if under a sub collection, we shouldn't see shared collections 
     @being_shared_collections = []
     @bottom_bar_header = @current_collection.title
 
-      
     #show collections under this current collection 
     @collections = @current_collection.children.reverse
       
@@ -156,20 +170,11 @@ def browse
     redirect_to root_url 
   end
 
-
-  @collection_users = []
-  @shared_collections = @current_collection.shared_collections
-
-  @shared_collections.each do |shared|
-    # puts shared.shared_user.first_name
-    @collection_users.push(shared.user)
-  end
-
-  @current_collection_shared = @current_collection.user.first_name
-
 end
 
-def share     
+
+def share
+
     #first, we need to separate the emails with the comma 
     email_addresses = params[:email_addresses].split(",") 
       

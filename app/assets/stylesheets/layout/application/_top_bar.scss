@@ -241,34 +241,19 @@
 					width: 30px;
 					height: 30px;
 					margin-right: 8px;
+
 					
 					&:hover {
 					-webkit-transition:ease-in all 100ms;
 					-webkit-transform: scale(1.1,1.1); /* Safari */
 					transform: scale(1.1,1.1);
-				}
-				}
 
-				.tooltip{
-				    display: inline;
-				    position: relative;
-				}
+					}
 
-				.tooltip:hover:after{
-				    background: #333;
-				    background: rgba(0,0,0,.8);
-				    border-radius: 5px;
-				    top: 30px;
-				    color: #fff;
-				    left: -50px;
-				    content: attr(title);
-				    padding: 5px 5px;
-				    position: absolute;
-				    z-index: 98;
 				}
 
 			}
-		
+
 		}
 
 	}

@@ -23,13 +23,13 @@ class SharedCollection < ActiveRecord::Base
 # ------------------------------------------------------------------------------
 
   #this is for the user to whom the owner has shared collections to 
-   belongs_to :user
+	belongs_to :user
 
-   belongs_to :shared_user, :class_name => "User", :foreign_key => "shared_user_id"
+	belongs_to :shared_user, :class_name => "User", :foreign_key => "shared_user_id"
 
     
   #for the collection being shared 
-  belongs_to :collection
+ 	belongs_to :collection
 
 
 # ------------------------------------------------------------------------------

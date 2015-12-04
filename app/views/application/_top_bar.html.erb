@@ -69,8 +69,31 @@
 
 						<div class="shared-icon">
 							
+							<!-- creator -->
+							<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %> 
+							
+							<!-- shared with ancestor users -->
+							<!-- check if current_collection has ancestors -->
+							<% if @current_collection.parent_id !=nil %>
+								
+								<!-- if collection does have ancestors, show users who are shared with ancestors -->
+    							<% @ancestor_shared_collections_filtered.each do |shared_with| %>
+									<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
+								<% end %>
+
+							<% else %>
+							<!-- display nothing -->
+							<% end %>
+
+							<!-- shared with users -->
+							<% @shared_collections_current_filtered.each do |shared_with| %>
+								<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
+							<% end %>
+
 						</div>
+
 						</h3>
+
 				<% else %>
 
 					<h3><%= @bottom_bar_header %></h3>
