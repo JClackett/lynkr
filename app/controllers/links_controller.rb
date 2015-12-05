@@ -81,17 +81,25 @@ end
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy 
-  @link = Link.find(params[:id]) 
-  @parent_collection = @link.collection #grabbing the parent collection before deleting the record 
-  @link.destroy 
+    @link = Link.find(params[:id]) 
+    @parent_collection = @link.collection #grabbing the parent collection before deleting the record 
+    @link.destroy 
   
   #redirect to a relevant path depending on the parent collection 
-  if @parent_collection
-   redirect_to browse_path(@parent_collection) 
-  else
-   redirect_to root_url 
+    if @parent_collection
+     redirect_to browse_path(@parent_collection) 
+    else
+     redirect_to root_url 
+    end
   end
-end
+
+
+  def sort
+    params[:order].each do |key,value|
+      Link.find(value[:id]).update_attribute(:position,value[:position])
+    end
+    render :nothing => true
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -101,6 +109,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url, :description, :image_url, :user_id, :collection_id )
+      params.require(:link).permit(:url, :description, :image_url, :user_id, :collection_id, :order )
     end
 end

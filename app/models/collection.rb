@@ -58,6 +58,7 @@ before_save :set_default_title
 # ------------------------------------------------------------------------------
 
 acts_as_tree     # Nested collections
+acts_as_list	  # Sortable grids
 
 
 

@@ -31,21 +31,9 @@ body {
 .hidden { display: none; }
 
 
-.content-wrapper {
-	width: 100%;
-	padding: 0 30px;
-	
-	@include breakpoint(medium) {
-		padding: 0 50px;
-	}
-	@include breakpoint(large) {
-		width: 1200px;
-		margin: 0 auto;
-	}
-}  
 
 /*---------------------------------------------------
-Hacks
+Hack well
 ---------------------------------------------------*/
 .group:after {
 	display: table;

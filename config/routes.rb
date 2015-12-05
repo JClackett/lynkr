@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'favourite'
       get 'update_description'
     end
+    put :sort, on: :collection
   end
 
   get "browse/:collection_id" => "collections#browse", :as => "browse"
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
 
   get 'favourites' => 'links#favourites'
 
-  resources :collections
+  resources :collections do
+    put :sort, on: :collection
+  end
 
   devise_for :users
   devise_scope :user do 

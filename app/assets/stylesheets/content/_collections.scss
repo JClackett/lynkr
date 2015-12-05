@@ -7,16 +7,11 @@
 	@include border-radius(2px);
 	border:1px solid $greyD;
 	@include box-shadow(0px,0px,2px,0px, rgba(0,0,0,0.1));
-	width:48%;
-	margin: 1% 1% 0 1%;
 	height: 120px;
+	width: 100%;
+	margin: 1% 1% 0 1%;
 	
-	&:hover {
-		-webkit-transition:ease-in all 100ms;
-		-webkit-transform: scale(1.05,1.05); /* Safari */
-		transform: scale(1.05,1.05);
-	}
-
+	
 	@include breakpoint(small) {
 		width:31.3%;
 	}
@@ -29,6 +24,11 @@
 		width:18%;
 	}
 	
+	&:hover {
+		-webkit-transition:ease-in all 100ms;
+		-webkit-transform: scale(1.05,1.05); /* Safari */
+		transform: scale(1.05,1.05);
+	}
 	
 	.collection-title {
 		text-align: center;
@@ -64,15 +64,14 @@
 			margin: 5px;
 			padding: 0;
 			overflow-y:hidden;
+			text-align: center;
 
 			li {
 				margin: 0 0 5px 0;
-				list-style: none;
-				text-align: center;
+				float: none;
+				width: 100%;
 		
 				a {
-
-					width: 100%;
 					font-variant: small-caps;
 					color: $grey9;
 					@include font-size(14);
@@ -93,7 +92,6 @@
 				text-align:center;
 				border:none;
 				color:$grey7;
-				width: 100%;
 				font-weight: 500;
 				
 				&::-webkit-input-placeholder {

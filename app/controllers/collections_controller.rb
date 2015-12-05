@@ -12,13 +12,13 @@ class CollectionsController < ApplicationController
       @bottom_bar_header = "Dashboard"
 
       #show collections shared by others 
-      @being_shared_collections = current_user.shared_collections_by_others.reverse 
+      @being_shared_collections = current_user.shared_collections_by_others.order(:position) 
     
       #show only root collections 
-      @collections = current_user.collections.roots.reverse
+      @collections = current_user.collections.roots.order(:position)
 
       #show only root files 
-      @links = current_user.links.where("collection_id is NULL").reverse  
+      @links = current_user.links.where("collection_id is NULL").order(:position)  
 
 end
 
@@ -129,10 +129,10 @@ def browse
     @bottom_bar_header = @current_collection.title
 
     #show collections under this current collection 
-    @collections = @current_collection.children.reverse
+    @collections = @current_collection.children.order(:position)  
       
     #show only files under this current collection 
-    @links = @current_collection.links.reverse
+    @links = @current_collection.links.order(:position)  
     render :index
   else
     redirect_to root_url 
@@ -171,6 +171,15 @@ def share
       } 
     end
 end
+
+
+  def sort
+    params[:order].each do |key,value|
+      Collection.find(value[:id]).update_attribute(:position,value[:position])
+    end
+    render :nothing => true
+  end
+
 
 
   private

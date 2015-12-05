@@ -1,7 +1,8 @@
 .l-application {
       
-.main-content {
-	margin-left: 200px;
-	@extend .group;
-}
+	.main-content {
+		margin-left: 200px;
+		@extend .group;
+		margin-top: 100px;
+	}
 }

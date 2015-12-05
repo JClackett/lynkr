@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_list (0.7.2)
+      activerecord (>= 3.0)
     acts_as_tree (2.3.0)
       activerecord (>= 3.0.0)
     arel (6.0.3)
@@ -167,6 +169,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   acts_as_tree
   best_in_place (~> 3.0.1)
   byebug

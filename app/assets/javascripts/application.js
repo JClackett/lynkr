@@ -143,3 +143,84 @@ $(document).on('ready page:load', function () {
 /* --------------------------------------------------
    Sortable
 -------------------------------------------------- */
+
+// Links
+
+
+$(document).on('ready page:load', function () {
+
+    var  ready, set_positions;
+
+  set_positions = function (){
+  
+      $('.link-wrapper').each(function(i){
+        $(this).attr("data-pos",i+1);
+      });
+
+    };
+
+
+  $(".sortable-links").sortable({
+    scroll: false,
+    handle: ".link-grabber"
+  });
+
+  $('.sortable-links').sortable().bind('sortupdate', function(e, ui) {
+        // array to store new order
+        updated_order = []
+        // set the updated positions
+        set_positions();
+
+        // populate the updated_order array with the new task positions
+        $('.link-wrapper').each(function(i){
+            updated_order.push({ id: $(this).data("id"), position: i+1 });
+        });
+
+        // send the updated order via ajax
+        $.ajax({
+            type: "PUT",
+            url: '/links/sort',
+            data: { order: updated_order }
+        });
+    });
+});
+
+
+// Collections
+
+$(document).on('ready page:load', function () {
+
+    var  ready, set_positions;
+
+  set_positions = function (){
+  
+      $('.collections-wrapper').each(function(i){
+        $(this).attr("data-pos",i+1);
+      });
+
+    };
+
+  $(".sortable").sortable({
+    scroll: false,
+  });
+
+  $('.sortable').sortable().bind('sortupdate', function(e, ui) {
+        // array to store new order
+        updated_order = []
+        // set the updated positions
+        set_positions();
+
+        // populate the updated_order array with the new task positions
+        $('.collection-wrapper').each(function(i){
+            updated_order.push({ id: $(this).data("id"), position: i+1 });
+        });
+
+        // send the updated order via ajax
+        $.ajax({
+            type: "PUT",
+            url: '/collections/sort',
+            data: { order: updated_order }
+        });
+    });
+});
+

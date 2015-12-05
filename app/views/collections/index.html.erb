@@ -10,26 +10,30 @@
 <!-- Links -->
 
 
-<ul class="selector">
+<div class="sortable-links">
 
-	<% @links.each do |link| %>
+<% @links.each do |link| %>
 
-		<%= render '/links/link' , link: link %>
+	<%= render '/links/link' , link: link %>
 
-	<% end %>
+<% end %>
 
-</ul>
+</div>
+
+
 
 
 <!-- Own Collections -->
-<ul class="selector">
-	<%= render @collections %>
-</ul>
+<div class="sortable">
+<%= render @collections %>
 
 <!-- Listing Shared collections (the collections shared by others) -->
-<ul class="selector">
-	<%= render @being_shared_collections %>
-</ul>
+
+<%= render @being_shared_collections %>
+
+</div>
+
+
 
 
 <!-- Invitation form -->
