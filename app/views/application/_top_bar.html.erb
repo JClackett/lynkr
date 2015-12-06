@@ -84,43 +84,48 @@
 
 				</i>
 
+				<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages etc -->
 
-				<div class="shared-icon">
-					
-					<!-- creator -->
-					<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %> 
-
-					<!-- shared with ancestor users -->
-					<!-- check if current_collection has ancestors -->
-					<% if @current_collection.parent_id !=nil %>
+					<div class="shared-icon">
 						
-						<!-- if collection does have ancestors, show users who are shared with ancestors -->
-						<% @ancestor_shared_collections_filtered.each do |shared_with| %>
+						<!-- creator -->
+						<div class="creator">
+							<%= initials(@current_collection.user) %>
+							<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
+						</div>
+						<!-- shared with ancestor users -->
+						<!-- check if current_collection has ancestors -->
+						<% if @current_collection.parent_id !=nil %>
+							
+							<!-- if collection does have ancestors, show users who are shared with ancestors -->
+							<% @ancestor_shared_collections_filtered.each do |shared_with| %>
+									<div class="shared-user">
+										<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
+										<%= initials(shared_with.shared_user) %>
+									</div>
+							<% end %>
 
-							<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
+						<% else %>
+
+						<!-- display nothing -->
 
 						<% end %>
 
-					<% else %>
+						<!-- shared with users -->
+						<% @shared_collections_current_filtered.each do |shared_with| %>
+							<div class="shared-user">
+								<div class="user-intials">
+									<%= initials(shared_with.shared_user) %>
+								</div>
+								<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
+							</div>
+						<% end %>
 
-					<!-- display nothing -->
+					</div>
+				
+				<% end %>
 
-					<% end %>
-
-					<!-- shared with users -->
-					<% @shared_collections_current_filtered.each do |shared_with| %>
-
-						<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
-
-					<% end %>
-					
-
-					
-
-				</div>
-
-
-				<% else %>
+			<% else %>
 
 				<span><%= @bottom_bar_header %></span>
 
