@@ -1,44 +1,52 @@
 <% if @current_collection %>
-    <% puts @current_collection.title %>
-    <%= provide(:title, "#{@current_collection.title}" )%>
+	<%= provide(:title, "#{@current_collection.title}" )%>
 <% else %>
-    <%= provide(:title, "Dashboard" ) %>
+	<%= provide(:title, "Dashboard" ) %>
 <% end %>
 
 <div class="notice-wrapper">
-    <p id="notice" class="collection-page-notice hidden"><%= notice %></p>
+	<p id="notice" class="collection-page-notice hidden"><%= notice %></p>
 </div>
 <!-- Links -->
 
 
+<ul class="selector">
 
-<div class="links-main-container">
+	<% @links.each do |link| %>
 
-    <% @links.each do |link| %>
+		<%= render '/links/link' , link: link %>
 
-        <%= render '/links/link' , link: link %>
+	<% end %>
 
-    <% end %>
-
-</div>
+</ul>
 
 
 <!-- Own Collections -->
-<%= render @collections %>
+<ul class="selector">
+	<%= render @collections %>
+</ul>
 
 <!-- Listing Shared collections (the collections shared by others) -->
-<%= render @being_shared_collections %>
+<ul class="selector">
+	<%= render @being_shared_collections %>
+</ul>
 
 
 <!-- Invitation form -->
 
 <div id="invitation_form" title="Invite others to share" style="display:none"> 
-    <%= form_tag('/collection/share' ) do %> 
-            <label for="email_addresses">Enter recipient email addresses here</label><br /><br /> 
-            <%= text_field_tag('email_addresses', "", placeholder: "john.snow@gmail.com, stannis@hotmail.co.uk") %> 
-            <br /><br /> 
-            <%= text_area_tag( 'message',"",placeholder: "Optional message" )%> 
-            <%= hidden_field_tag "collection_id" %> 
-    <% end %>                 
+
+	<%= form_tag('/collection/share' ) do %> 
+
+		<label for="email_addresses">Enter recipient email addresses here</label><br /><br /> 
+
+		<%= text_field_tag('email_addresses', "", placeholder: "john.snow@gmail.com, stannis@hotmail.co.uk") %><br /><br />  
+
+		<%= text_area_tag( 'message',"",placeholder: "Optional message" )%> 
+
+		<%= hidden_field_tag "collection_id" %> 
+
+	<% end %>                 
+
 </div>
 

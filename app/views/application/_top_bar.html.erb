@@ -56,9 +56,27 @@
 
 						<ul>
 
-							<li><i class="fa fa-share"></i> <%= link_to "Share Collection" ,"#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection"%></li>
+							<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
+								
+								<li>
+									<i class="fa fa-share"></i>
+
+									<p>Share Collection</p>
+								</li>
+
+							<% end %>
 							
-							<li><i class="fa fa-times"></i><%= link_to "Remove Collection", @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  %></li>
+							<%= link_to @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+
+								<li>
+
+									<i class="fa fa-times"></i>
+
+									<p>Remove Collection</p>
+
+								</li>
+
+							<% end %>	
 
 						</ul>
 
@@ -69,6 +87,9 @@
 
 				<div class="shared-icon">
 					
+					<!-- creator -->
+					<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %> 
+
 					<!-- shared with ancestor users -->
 					<!-- check if current_collection has ancestors -->
 					<% if @current_collection.parent_id !=nil %>
@@ -93,8 +114,7 @@
 
 					<% end %>
 					
-					<!-- creator -->
-					<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %> 
+
 					
 
 				</div>
