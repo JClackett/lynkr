@@ -202,6 +202,8 @@ $(document).on('ready page:load', function () {
 
   $(".sortable").sortable({
     scroll: false,
+    handle: ".collection-grabber"
+
   });
 
   $('.sortable').sortable().bind('sortupdate', function(e, ui) {
