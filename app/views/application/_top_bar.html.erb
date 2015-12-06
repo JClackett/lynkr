@@ -84,10 +84,9 @@
 
 				</i>
 
-
-				<div class="shared-icon">
-
-					<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages etc -->
+				<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages etc -->
+			
+					<div class="shared-icon">
 					
 						<!-- creator -->
 						<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %> 
@@ -116,12 +115,9 @@
 
 						<% end %>
 
-					<% end %>
-					
+					</div>
 
-					
-
-				</div>
+				<% end %>
 
 
 				<% else %>
