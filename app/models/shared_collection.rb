@@ -36,6 +36,7 @@ class SharedCollection < ActiveRecord::Base
 # Validations
 # ------------------------------------------------------------------------------
 
+validates_uniqueness_of :shared_user_id, :scope => :collection_id
 
 
 # ------------------------------------------------------------------------------
