@@ -92,14 +92,13 @@ end
    end
 end
 
+
 def browse 
 
   #first find the current collections within own collections 
   @current_collection = current_user.collections.find_by_id(params[:collection_id])   
   @is_this_collection_being_shared = false if @current_collection #just an instance variable to help hiding buttons on View 
   
-
-
 
   #if not found in own collections, find it in being_shared_collections 
   if @current_collection.nil? 
@@ -124,7 +123,6 @@ def browse
 
 
   if @current_collection
-    #if under a sub collection, we shouldn't see shared collections 
     @being_shared_collections = []
     @bottom_bar_header = @current_collection.title
 

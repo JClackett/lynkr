@@ -88,15 +88,12 @@
 			.user-popup {
 				display:none;
 				position:absolute;
-				top:$top-bar-height;
 				margin: 0;
 				text-align: center;
 				right:45px;
 				top: 5px;
 				z-index: 2;
 				background-color: $white;
-				border-left:1px solid $greyE;
-				border-right:1px solid $greyE;
 
 				a {
 					text-decoration:none;
@@ -106,6 +103,8 @@
 					@include font-size(12);
 					text-transform: uppercase;
 					line-height: 25px;
+					border-left:1px solid $greyE;
+					border-right:1px solid $greyE;
 					color:$grey7;
 
 					&:hover {
@@ -129,10 +128,18 @@
 		@extend .group;
 		padding: 10px;
 		background-color: #F9F9F9;
+		position: relative;
+		
+		/* --------------------------------------------------
+		   BreadCrumbs
+		-------------------------------------------------- */
 		
 		.breadcrumbs {
-			float: left;
-			margin: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+			line-height: 50px;
+			margin-left: 10px;
 			
 			i {	
 				padding: 2px;
@@ -146,6 +153,10 @@
 				}
 			}
 		}
+
+		/* --------------------------------------------------
+		   Title 
+		-------------------------------------------------- */
 
 		.section-header {
 			text-align: center;
@@ -166,6 +177,10 @@
 					border-bottom:1px dotted $greyA;
 				}
 			}
+
+			/* --------------------------------------------------
+			   Collection Actions
+			-------------------------------------------------- */
 
 			.collection-extras {
 				cursor: pointer;
@@ -235,32 +250,73 @@
 
 			}
 
-			.shared-icon {
+		}
+
+		/* --------------------------------------------------
+		   Collections Users Icons
+		-------------------------------------------------- */
+
+		.shared-icons {
+			position: absolute;
+			cursor: default;
+			right:10px;
+			top:8px;
+			line-height: 50px;
+			img {
+				border-radius:50%;
+				margin-right: 5px;
+			}
+
+			.shared-user {
+				position: relative;
 				float: right;
-				margin: 0;
-				height: 30px;
-    			
-    				img {
-					border-radius:50%;
-					width: 30px;
-					height: 30px;
-					margin-right: 5px;
 					
-					&:hover {
-					-webkit-transition:ease-in all 100ms;
-					-webkit-transform: scale(1.1,1.1); /* Safari */
-					transform: scale(1.1,1.1);
-
-					}
-
+				&:hover img {
+				// -webkit-transition:ease-in all 100ms;
+				-webkit-transform: scale(1.1,1.1); /* Safari */
+				transform: scale(1.1,1.1);
+				opacity: 0.2;
+				@include box-shadow(0px,0px,0px,3px, $blue);
+				border:0.5px solid $blue;
 				}
 
-				img:nth-child(n+2) {
+				img {
 					width: 25px;
 					height: 25px;
 					margin-bottom: 2px;
 				}
 
+				p {	
+					text-align: center;
+					position: absolute;
+					top:5px;
+					left: 4px;
+					font-weight: 600;
+					color:$blue;
+					display: none;
+					@include font-size(13);
+					font-variant: small-caps;
+				}
+
+				&:hover p {
+					display:block;
+				}
+
+			}
+
+			.creator-user {
+
+    				img {
+					width: 30px;
+					height: 30px;
+					margin-bottom: 0;
+				}
+
+				p {	
+					top:3px;
+					left: 5px;
+					@include font-size(15);
+				}
 			}
 
 		}

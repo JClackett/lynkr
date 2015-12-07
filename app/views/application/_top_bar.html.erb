@@ -40,69 +40,63 @@
 	
 	<div class="bottom-section">
 
-		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
-	
-		<div class="section-header">
+		<%= render '/collections/breadcrumbs' , collection: @current_collection  if @current_collection %>
+
+			<% if @current_collection %> <!-- This is for the new collection/link , not in sub collection -->
+
+				<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages for sub link etc -->
+
+					<div class="section-header">
+
+						<%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
+
+						<i class="fa fa-caret-down collection-extras">
 
 
-			<% if @current_collection %>
+							<div class="collection-extras-popup hidden">
 
-				<%= best_in_place @current_collection, :title, :as => :input , :class => "best_in_place_title" %>
+								<ul>
 
-				<i class="fa fa-caret-down collection-extras">
+									<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
+										
+										<li>
+											<i class="fa fa-share"></i>
 
+											<p>Share Collection</p>
+										</li>
 
-					<div class="collection-extras-popup hidden">
+									<% end %>
+									
+									<%= link_to @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  do %>
 
-						<ul>
+										<li>
 
-							<%= link_to "#", :collection_id => @current_collection.id, :collection_title => @current_collection.title , class: "share-collection" do %>
-								
-								<li>
-									<i class="fa fa-share"></i>
+											<i class="fa fa-times"></i>
 
-									<p>Share Collection</p>
-								</li>
+											<p>Remove Collection</p>
 
-							<% end %>
-							
-							<%= link_to @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+										</li>
 
-								<li>
+									<% end %>	
 
-									<i class="fa fa-times"></i>
+								</ul>
 
-									<p>Remove Collection</p>
+							</div>
 
-								</li>
+						</i>
+					</div>	
 
-							<% end %>	
+					<div class="shared-icons">
 
-						</ul>
-
-					</div>
-
-				</i>
-
-				<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages etc -->
-
-					<div class="shared-icon">
-						
-						<!-- creator -->
-						<div class="creator">
-							<%= initials(@current_collection.user) %>
-							<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
-						</div>
 						<!-- shared with ancestor users -->
-						<!-- check if current_collection has ancestors -->
-						<% if @current_collection.parent_id !=nil %>
+						<% if @current_collection.parent_id !=nil %><!-- check if current_collection has ancestors -->
 							
 							<!-- if collection does have ancestors, show users who are shared with ancestors -->
 							<% @ancestor_shared_collections_filtered.each do |shared_with| %>
-									<div class="shared-user">
-										<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
-										<%= initials(shared_with.shared_user) %>
-									</div>
+								<div class="shared-user">
+									<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
+									<p><%= initials(shared_with.shared_user) %></p>
+								</div>
 							<% end %>
 
 						<% else %>
@@ -114,20 +108,36 @@
 						<!-- shared with users -->
 						<% @shared_collections_current_filtered.each do |shared_with| %>
 							<div class="shared-user">
-								<div class="user-intials">
-									<%= initials(shared_with.shared_user) %>
-								</div>
 								<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
+								<p><%= initials(shared_with.shared_user) %></p>
 							</div>
 						<% end %>
 
+						<!-- creator -->
+						<div class="shared-user creator-user">
+							<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
+							<p><%= initials(@current_collection.user) %></p>
+						</div>
+
 					</div>
-				
+
+				<% else %>
+
+					<div class="section-header">
+
+						<span><%= @bottom_bar_header %></span>
+
+					<div class="section-header">
+
 				<% end %>
 
 			<% else %>
 
-				<span><%= @bottom_bar_header %></span>
+				<div class="section-header">
+
+					<span><%= @bottom_bar_header %></span>
+
+				</div>
 
 			<% end %>
 

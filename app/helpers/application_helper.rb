@@ -16,7 +16,7 @@ module ApplicationHelper
 	end
 
 	def initials(user)
-		name = user.first_name[0,1] + "." + user.last_name[0,1]
+		name = user.first_name[0,1] + user.last_name[0,1]
 	end
 	
 end

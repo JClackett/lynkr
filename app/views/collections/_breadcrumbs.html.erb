@@ -1,6 +1,6 @@
-<div class="breadcrumbs">         
+<div class="breadcrumbs"> 
 
-	<% if @current_collection #checking if we are under any collection %> 
+	<% if @current_collection %>        
 		
 		<!-- checking if the collection has a parent -->
 		<% if @current_collection.ancestors == [] %> 
@@ -31,6 +31,7 @@
 
 	<% else #if we are not under any collection%>  
 
-	<% end %> 
+
+	<% end %>
 
 </div>
