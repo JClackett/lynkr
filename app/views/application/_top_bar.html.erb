@@ -4,7 +4,7 @@
 
 
 		<%= render '/collections/breadcrumbs' , collection: @current_collection  if @current_collection %>
-		
+
 
 <!-- 		<div class="search-wrapper">
 
@@ -101,23 +101,6 @@
 					</div>	
 
 					<div class="shared-icons">
-
-						<!-- shared with ancestor users -->
-						<% if @current_collection.parent_id !=nil %><!-- check if current_collection has ancestors -->
-							
-							<!-- if collection does have ancestors, show users who are shared with ancestors -->
-							<% @ancestor_shared_collections_filtered.each do |shared_with| %>
-								<div class="shared-user">
-									<%= gravatar_image_tag(shared_with.shared_user.email.gsub('spam', 'mdeering'), :alt => shared_with.shared_user.first_name) %>
-									<p><%= initials(shared_with.shared_user) %></p>
-								</div>
-							<% end %>
-
-						<% else %>
-
-						<!-- display nothing -->
-
-						<% end %>
 
 						<!-- shared with users -->
 						<% @shared_collections_current_filtered.each do |shared_with| %>

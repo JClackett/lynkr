@@ -12,7 +12,7 @@ class CollectionsController < ApplicationController
       @bottom_bar_header = "Home"
 
       #show collections shared by others 
-      @being_shared_collections = current_user.shared_collections_by_others.reverse 
+      @being_shared_collections = current_user.shared_collections_by_others.reverse
     
       #show only root collections 
       @collections = current_user.collections.roots.reverse
@@ -114,11 +114,6 @@ def browse
 
 
   ############ for displaying shared users in a collection ##########
-  
-  if @current_collection.parent_id !=nil #check if current collection has parent
-    @ancestor_shared_collections = SharedCollection.where(collection_id: @current_collection.ancestors) #array of shared ancestors  
-    @ancestor_shared_collections_filtered = @ancestor_shared_collections.where.not(shared_user_id: nil) #remove any records where user isn't signed up
-  end
 
   all_shared_collections_current = SharedCollection.where(collection_id: @current_collection.id) #array of shared collection records with current collection id
   @shared_collections_current_filtered = all_shared_collections_current.where.not(shared_user_id: nil) #remove any records where user isn't signed up
