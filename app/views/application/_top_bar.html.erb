@@ -2,7 +2,11 @@
 
 	<div class="top-section">
 
-		<div class="search-wrapper">
+
+		<%= render '/collections/breadcrumbs' , collection: @current_collection  if @current_collection %>
+		
+
+<!-- 		<div class="search-wrapper">
 
 				<i class="fa fa-search search-icon"></i>
 
@@ -14,7 +18,7 @@
 				</form>
 
 		</div>
-	
+ -->	
 		<div class="login-section right">
 
 
@@ -40,11 +44,21 @@
 	
 	<div class="bottom-section">
 
-		<%= render '/collections/breadcrumbs' , collection: @current_collection  if @current_collection %>
-
 			<% if @current_collection %> <!-- This is for the new collection/link , not in sub collection -->
 
 				<% if current_page?(:controller => "collections", :action => "browse") %> <!-- To Stop showing on New/edit pages for sub link etc -->
+
+					<div class="topbar-links">
+
+						<%= nav_link_to new_sub_link_path(@current_collection)  do %>
+			                      		<p>add link</p>
+			                 		<% end %>
+
+				                 	<%= nav_link_to new_sub_collection_path(@current_collection)  do %>
+				                      	<p>add collection</p>
+				                 	<% end %>
+
+			                 	</div>
 
 					<div class="section-header">
 
@@ -132,6 +146,18 @@
 				<% end %>
 
 			<% else %>
+
+				<div class="topbar-links">
+
+					<%= nav_link_to new_link_path  do %>
+		                      		<p>add link</p>
+		                 		<% end %>
+
+			                 	<%= nav_link_to new_collection_path  do %>
+			                      	<p>add collection</p>
+			                 	<% end %>
+
+		                 	</div>
 
 				<div class="section-header">
 

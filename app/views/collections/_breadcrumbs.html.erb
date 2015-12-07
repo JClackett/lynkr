@@ -3,7 +3,14 @@
 	<% if @current_collection %>        
 		
 		<!-- checking if the collection has a parent -->
-		<% if @current_collection.ancestors == [] %> 
+
+		<% if current_page?(:controller => "collections", :action => "new") || current_page?(:controller => "links", :action => "new") %>
+
+			<%= link_to :back do %> 
+				<i class="fa fa-arrow-left"></i>
+			<% end %> 
+			
+		<% elsif @current_collection.ancestors == [] %> 
 			
 			<!-- If no parent, link to root -->
 			<%= link_to root_path do %> 
@@ -11,7 +18,7 @@
 			<% end %> 
 
 		<!-- check if current_user has access to parent -->
-		<% elsif current_user.has_share_access?(@current_collection.ancestors.first) %>
+		<% elsif current_user.has_share_access?(@current_collection.ancestors.first)%>
 			
 			<!-- if user does have access, link to parent -->
 			<% collection =@current_collection.ancestors.first %> 

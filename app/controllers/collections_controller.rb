@@ -9,7 +9,7 @@ class CollectionsController < ApplicationController
 
   def index 
 
-      @bottom_bar_header = "Dashboard"
+      @bottom_bar_header = "Home"
 
       #show collections shared by others 
       @being_shared_collections = current_user.shared_collections_by_others.reverse 

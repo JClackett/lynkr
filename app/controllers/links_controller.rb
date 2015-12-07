@@ -18,8 +18,8 @@ class LinksController < ApplicationController
     @bottom_bar_header = "New Link"
     @link = current_user.links.new     
     if params[:collection_id] #if we want to upload a file inside another collection 
-     current_collection = Collection.find(params[:collection_id]) 
-     @link.collection_id = current_collection.id 
+     @current_collection = Collection.find(params[:collection_id]) 
+     @link.collection_id = @current_collection.id 
     end    
 end
 

@@ -11,36 +11,13 @@
 	                      	<li class="sidebar-links title-link"><p>favourites</p><i class="fa fa-star favourite-button"></i></li>
 	                 	<% end %>
 
-			<%#= nav_link_to links_path  do %>
-	                      	<!-- <li class="sidebar-links title-link"><p>all links</p></li> -->
-	                 	<%# end %>
-
-	                 	<%= nav_link_to collections_path  do %>
-	                      	<li class="sidebar-links title-link"><p>Dashboard</p></li>
+			<%= nav_link_to links_path  do %>
+	                      	<li class="sidebar-links title-link"><p>all links</p></li>
 	                 	<% end %>
 
-			<% if @current_collection %> 
-
-				<%= nav_link_to new_sub_link_path(@current_collection)  do %>
-	                      		<li class="sidebar-links"><p>add link</p><i class="fa fa-plus-circle new-collection-sidebar"></i></li>
-	                 		<% end %>
-
-		                 	<%= nav_link_to new_sub_collection_path(@current_collection)  do %>
-		                      	<li class="sidebar-links"><p>add collection</p><i class="fa fa-plus-circle new-collection-sidebar"></i></li>
-		                 	<% end %>
-
-			<% else %>
-
-				<%= nav_link_to new_link_path  do %>
-	                      		<li class="sidebar-links"><p>add link</p><i class="fa fa-plus-circle new-collection-sidebar"></i></li>
-	                 		<% end %>
-
-		                 	<%= nav_link_to new_collection_path  do %>
-		                      	<li class="sidebar-links"><p>add collection</p><i class="fa fa-plus-circle new-collection-sidebar"></i></li>
-		                 	<% end %>
-
-			<% end %>
-
+	                 	<%= nav_link_to collections_path  do %>
+	                      	<li class="sidebar-links title-link"><p>home</p></li>
+	                 	<% end %>
 
 		</ul>
 
