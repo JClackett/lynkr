@@ -130,8 +130,9 @@ def check_and_assign_shared_ids_to_shared_collections
     shared_collections_with_same_email = SharedCollection.where(shared_email: self.email)
   
     if shared_collections_with_same_email       
-      #loop and update the shared user id with this new user id  
-      shared_collections_with_same_email.each do |shared_collection| 
+        #loop and update the shared user id with this new user id  
+        shared_collections_with_same_email.each do |shared_collection| 
+        
         shared_collection.shared_user_id = self.id 
         shared_collection.save 
       end

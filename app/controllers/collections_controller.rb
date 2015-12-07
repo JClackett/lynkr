@@ -49,6 +49,10 @@ end
   # POST /collections
   # POST /collections.json
   def create 
+
+    ###### NEED TO ADD SHARED USER TO THIS IF THIS BELONGS TO COLLECTION OF WHICH A USER IS SHARED TO
+
+
    @collection = current_user.collections.new(collection_params) 
    if @collection.save 
       
@@ -143,16 +147,30 @@ def share
 
     #first, we need to separate the emails with the comma 
     email_addresses = params[:email_addresses].split(",") 
+
+
       
     email_addresses.each do |email_address| 
+
+    shared_user = User.find_by_email(email_address) 
+
+
       #save the details in the Sharecollection table 
       @shared_collection = current_user.shared_collections.new
       @shared_collection.collection_id = params[:collection_id] 
       @shared_collection.shared_email = email_address 
+
+            current_collection = Collection.where(id: params[:collection_id]).first
+            current_collection.descendants.each do |descendant|
+                @shared_collection_descendant = current_user.shared_collections.new
+                @shared_collection_descendant.collection_id = descendant.id
+                @shared_collection_descendant.shared_email = email_address 
+                @shared_collection_descendant.shared_user_id = shared_user.id if shared_user 
+                @shared_collection_descendant.save
+            end
     
       #getting the shared user id right the owner the email has already signed up with ShareBox 
       #if not, the field "shared_user_id" will be left nil for now. 
-      shared_user = User.find_by_email(email_address) 
       @shared_collection.shared_user_id = shared_user.id if shared_user 
     
       @shared_collection.message = params[:message] 
