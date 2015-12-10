@@ -15,15 +15,19 @@ class CollectionsController < ApplicationController
 	 
 	def index 
 
-		@bottom_bar_header = "Home"
+		@bottom_bar_header = "Dock"
 
 		#show collections shared by others but only the top level
 		@all_shared_collections = current_user.shared_collections_by_others
 		@being_shared_collections =[]
-		@all_shared_collections.each do |shared_collection|
-			if current_user.has_share_access?(shared_collection.parent)
-			else
-				@being_shared_collections.push(shared_collection)
+
+		if @all_shared_collections.nil?
+			@all_shared_collections.each do |shared_collection|
+				if current_user.has_share_access?(shared_collection.parent) 
+					# Means it cant be the top level collection
+				else
+					@being_shared_collections.push(shared_collection)
+				end
 			end
 		end
 
@@ -77,6 +81,7 @@ class CollectionsController < ApplicationController
 	def create 
 		@collection = current_user.collections.new(collection_params) 
 		if @collection.save 
+			flash[:success] = "collection created!"
 			redirect_to browse_path(@collection)  #then we redirect to the parent collection 
 		else
 			render :action => 'new'
@@ -111,6 +116,7 @@ class CollectionsController < ApplicationController
 		@collection.destroy 
 		#redirect to a relevant path depending on the parent collection 
 		if @parent_collection
+			flash[:success] = "collection removed!"
 			redirect_to browse_path(@parent_collection) 
 		else
 			redirect_to root_url       
@@ -196,17 +202,17 @@ class CollectionsController < ApplicationController
 			#if not, the field "shared_user_id" will be left nil for now. 
 
 
-			#now we need to send email to the Shared User 
-			#now send email to the recipients 
+			# now we need to send email to the Shared User, except if they already exist, and if they are the owners of the parent
 			if SharedCollection.exists?(:shared_user_id => shared_user.id, :collection_id => current_collection.id) || current_collection.user_id == shared_user.id
 
 			else
-			@shared_collection.save 
-			UserMailer.invitation_to_share(@shared_collection).deliver_now
+				@shared_collection.save 
+				UserMailer.invitation_to_share(@shared_collection).deliver_now
 			end
 
 
 		end
+
 
 		#since this action is mainly for ajax (javascript request), we'll respond with js file back (refer to share.js.erb) 
 		respond_to do |format| 
@@ -221,22 +227,28 @@ class CollectionsController < ApplicationController
 	 
 	def unfollow
 		@parent_collection = @collection.parent 
+		
+		## Remove shared collection association to the current collection
 		SharedCollection.where(collection_id: @collection.id, shared_user_id: current_user.id).first.destroy
 
- 		## Delete any collections the current user owned under the one he removed himself from.
- 		@collection.descendants.where(user_id: current_user.id).each do |descendant|
- 			descendant.destroy
+		## Remove any shared collections associations that are descendant of the one unfollowing from
+ 		@collection.descendants.each do |collection|
+ 			if SharedCollection.where(collection_id: collection.id, shared_user_id: current_user.id).first
+ 				SharedCollection.where(collection_id: collection.id, shared_user_id: current_user.id).first.destroy
+ 			end
  		end
 
- 		## Remove any shared collections that are descendant of the one unfollowing from
- 		####
+ 		## Delete any collections the current user owned under the one he removed himself from.
+ 		@collection.descendants.each do |descendant|	
+ 			descendant.destroy if descendant.user_id == current_user.id
+ 		end
 
 		if @parent_collection && current_user.has_share_access?(@parent_collection)
 			redirect_to browse_path(@parent_collection) 
+			flash[:success] = "unfollowed collection!"
 		else
 			redirect_to root_url       
 		end	
-
 	end
 
 

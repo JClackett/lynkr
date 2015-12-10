@@ -5,6 +5,12 @@
 
 		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
 
+		<div id="flash_messages">
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			 <% end %>
+		</div>
+
 
 <!-- 		<div class="search-wrapper">
 
@@ -100,7 +106,7 @@
 										<%= link_to unfollow_collection_path(@current_collection), method: :delete, data: { confirm: 'Are you sure?' } do %>
 											
 											<li>
-												<i class="fa fa-share"></i>
+												<i class="fa fa-sign-out"></i>
 
 												<p>Unfollow Collection</p>
 											</li>
