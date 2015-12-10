@@ -146,8 +146,14 @@ class CollectionsController < ApplicationController
 			@being_shared_collections = []
 			@bottom_bar_header = @current_collection.title
 
-			#show collections under this current collection 
-			@collections = @current_collection.children.reverse
+			#show collections under this current collection, but not load ones current user has been removed from
+			@collections = []
+			@current_collection.children.each do |collection|
+				if current_user.has_share_access?(collection)
+					@collections.push(collection)
+				else
+				end
+			end
 
 			#show only files under this current collection 
 			@links = @current_collection.links.reverse
@@ -216,15 +222,21 @@ class CollectionsController < ApplicationController
 	def unfollow
 		@parent_collection = @collection.parent 
 		SharedCollection.where(collection_id: @collection.id, shared_user_id: current_user.id).first.destroy
- 
-		if @parent_collection
+
+ 		## Delete any collections the current user owned under the one he removed himself from.
+ 		@collection.descendants.where(user_id: current_user.id).each do |descendant|
+ 			descendant.destroy
+ 		end
+
+ 		## Remove any shared collections that are descendant of the one unfollowing from
+ 		####
+
+		if @parent_collection && current_user.has_share_access?(@parent_collection)
 			redirect_to browse_path(@parent_collection) 
 		else
 			redirect_to root_url       
 		end	
 
-
-		##### Need to now hide the collections youve just unfollowed from when inside a collection!!!
 	end
 
 
