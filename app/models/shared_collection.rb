@@ -36,6 +36,8 @@ class SharedCollection < ActiveRecord::Base
 # Validations
 # ------------------------------------------------------------------------------
 
+validates :shared_user_id , uniqueness: {scope: :collection_id, :message => "User already shared to this collection"}
+
 
 
 # ------------------------------------------------------------------------------

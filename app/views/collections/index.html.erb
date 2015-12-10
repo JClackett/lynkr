@@ -4,32 +4,26 @@
 	<%= provide(:title, "Dashboard" ) %>
 <% end %>
 
-<div class="notice-wrapper">
-	<p id="notice" class="collection-page-notice hidden"><%= notice %></p>
-</div>
+
+
 <!-- Links -->
 
+<% @links.each do |link| %>
 
-<ul class="selector">
+	<%= render '/links/link' , link: link %>
 
-	<% @links.each do |link| %>
-
-		<%= render '/links/link' , link: link %>
-
-	<% end %>
-
-</ul>
+<% end %>
 
 
 <!-- Own Collections -->
-<ul class="selector">
-	<%= render @collections %>
-</ul>
+
+<%= render @collections %>
+
 
 <!-- Listing Shared collections (the collections shared by others) -->
-<ul class="selector">
-	<%= render @being_shared_collections %>
-</ul>
+
+<%= render @being_shared_collections %>
+
 
 
 <!-- Invitation form -->

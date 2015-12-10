@@ -22,17 +22,12 @@
 		<% end %>
 
 		<div class="field-row">
-			<%= f.text_field :url , placeholder: "Copy the url here" %>
+			<%= f.text_field :url , placeholder: "Copy the url here" , autofocus: true %>
 		</div>
 
 		<div class="field-row">
 			<%= f.text_field :description, placeholder: "Description goes here"  %>
 		</div>
-
-		<div class="field-row hidden">
-			<%= f.text_field :image_url, placeholder: "Description goes here"  %>
-		</div>
-
 
 		<%= f.hidden_field :collection_id %> 
 

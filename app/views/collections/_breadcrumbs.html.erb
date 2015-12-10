@@ -18,12 +18,10 @@
 			<% end %> 
 
 		<!-- check if current_user has access to parent -->
-		<% elsif current_user.has_share_access?(@current_collection.ancestors.first)%>
+		<% elsif current_user.has_share_access?(@current_collection.parent)%>
 			
 			<!-- if user does have access, link to parent -->
-			<% collection =@current_collection.ancestors.first %> 
-
-			<%= link_to browse_path(collection) do %>
+			<%= link_to browse_path(@current_collection.parent) do %>
 				<i class="fa fa-arrow-left"></i>
 			<% end %> 
 
@@ -36,7 +34,13 @@
 
 		<% end %>
 
+	<% elsif current_page?('/') || current_page?('/collections') %>
+
 	<% else #if we are not under any collection%>  
+
+			<%= link_to root_path do %>
+				<i class="fa fa-arrow-left"></i>
+			<% end %> 
 
 
 	<% end %>

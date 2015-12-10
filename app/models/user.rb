@@ -83,26 +83,11 @@ def has_share_access?(collection)
     return true if self.shared_collections_by_others.include?(collection) 
 
     return_value = false
-
-    # can see collections made by somone else, inside a collection that the current user created
-    collection.ancestors.each do |ancestor_collection| 
-      return_value = self.collections.include?(ancestor_collection) 
-      if return_value #if it's true 
-        return true
-      end
-    end
-
-    # allowing shared user access to all children of the original shared collection (of the grandad)
-      collection.ancestors.each do |ancestor_collection| 
-      return_value = self.shared_collections_by_others.include?(ancestor_collection) 
-      if return_value #if it's true 
-        return true
-      end
-    end
-
-
   
+
     #for checking sub collections under one of the being_shared_collections   
+    if collection.ancestors.nil?
+    else
     collection.ancestors.each do |ancestor_collection| 
     
       return_value = self.being_shared_collections.include?(ancestor_collection) 
@@ -110,9 +95,12 @@ def has_share_access?(collection)
         return true
       end
     end
+  end
+
   
     return false
 end
+
 
 
 # ------------------------------------------------------------------------------
@@ -132,7 +120,7 @@ def check_and_assign_shared_ids_to_shared_collections
     if shared_collections_with_same_email       
         #loop and update the shared user id with this new user id  
         shared_collections_with_same_email.each do |shared_collection| 
-        
+
         shared_collection.shared_user_id = self.id 
         shared_collection.save 
       end

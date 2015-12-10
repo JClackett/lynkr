@@ -10,11 +10,17 @@ Rails.application.routes.draw do
   get "browse/:collection_id" => "collections#browse", :as => "browse"
   get "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection"
   get "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link"
-  post "collection/share" => "collections#share"
 
   get 'favourites' => 'links#favourites'
 
-  resources :collections
+  resources :collections do
+    member do
+        delete 'unfollow'
+    end
+  end
+
+  post "collection/share" => "collections#share"
+
 
   devise_for :users
   devise_scope :user do 

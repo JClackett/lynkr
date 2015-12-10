@@ -3,7 +3,7 @@
 	<div class="top-section">
 
 
-		<%= render '/collections/breadcrumbs' , collection: @current_collection  if @current_collection %>
+		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
 
 
 <!-- 		<div class="search-wrapper">
@@ -80,18 +80,34 @@
 										</li>
 
 									<% end %>
+
+									<% if current_user.id == @current_collection.user_id %>
 									
-									<%= link_to @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+										<%= link_to @current_collection, method: :delete, data: { confirm: 'Are you sure?' }  do %>
 
-										<li>
+											<li>
 
-											<i class="fa fa-times"></i>
+												<i class="fa fa-times"></i>
 
-											<p>Remove Collection</p>
+												<p>Remove Collection</p>
 
-										</li>
+											</li>
 
-									<% end %>	
+										<% end %>
+
+									<% else %>	
+
+										<%= link_to unfollow_collection_path(@current_collection), method: :delete, data: { confirm: 'Are you sure?' } do %>
+											
+											<li>
+												<i class="fa fa-share"></i>
+
+												<p>Unfollow Collection</p>
+											</li>
+
+										<% end %>
+
+									<% end %>
 
 								</ul>
 
@@ -127,8 +143,8 @@
 					<div class="section-header">
 
 				<% end %>
-
-			<% else %>
+				
+			<% elsif current_page?('/') || current_page?('/collections') || current_page?('/links') %>
 
 				<div class="topbar-links">
 
@@ -141,6 +157,14 @@
 			                 	<% end %>
 
 		                 	</div>
+
+				<div class="section-header">
+
+					<span><%= @bottom_bar_header %></span>
+
+				</div>
+
+			<% else %>
 
 				<div class="section-header">
 
