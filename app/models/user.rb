@@ -48,7 +48,7 @@ has_many :links
 # Callbacks
 # ------------------------------------------------------------------------------
 
-after_create :check_and_assign_shared_ids_to_shared_collections
+    after_create :check_and_assign_shared_ids_to_shared_collections
 
 
 # ------------------------------------------------------------------------------
@@ -83,20 +83,6 @@ def has_share_access?(collection)
     return true if self.shared_collections_by_others.include?(collection) 
 
     return_value = false
-  
-
-    #for checking sub collections under one of the being_shared_collections   
-    if collection.ancestors.nil?
-    else
-    collection.ancestors.each do |ancestor_collection| 
-    
-      return_value = self.being_shared_collections.include?(ancestor_collection) 
-      if return_value #if it's true 
-        return true
-      end
-    end
-  end
-
   
     return false
 end

@@ -21,13 +21,11 @@ class CollectionsController < ApplicationController
 		@all_shared_collections = current_user.shared_collections_by_others
 		@being_shared_collections =[]
 
-		if @all_shared_collections.nil?
+		unless @all_shared_collections.nil?
 			@all_shared_collections.each do |shared_collection|
-				if current_user.has_share_access?(shared_collection.parent) 
-					# Means it cant be the top level collection
-				else
-					@being_shared_collections.push(shared_collection)
-				end
+				
+				@being_shared_collections.push(shared_collection) unless current_user.has_share_access?(shared_collection.parent) 
+
 			end
 		end
 
@@ -113,6 +111,19 @@ class CollectionsController < ApplicationController
 		@parent_collection = @collection.parent #grabbing the parent collection 
 		#this will destroy the collection along with all the contents inside 
 		#sub collections will also be deleted too as well as all files inside 
+
+		# Destroy links in current colleciton
+		@collection.links.each do |link|
+			link.destroy
+		end
+
+		# Destroy any links in current collections descendants
+		@collection.descendants.each do |collection|
+			collection.links.each do |link|
+				link.destroy
+			end
+		end
+
 		@collection.destroy 
 		#redirect to a relevant path depending on the parent collection 
 		if @parent_collection

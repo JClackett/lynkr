@@ -3,15 +3,15 @@
 -------------------------------------------------- */
    
 #flash_messages {
-	float: left;
-	line-height: 15px;
-	margin-left: 20px;
-	background-color: $lightgrey;
-	-webkit-border-radius: 25px;
-	        border-radius: 25px;
-	
+	width: calc(100% - 200px);
+	position: absolute;
+	line-height: 25px;
+	background-color: $green;
+	text-align: center;
+      z-index: 100;
+
 	.alert {
-		color:$blue;
+		color:$white;
 		padding: 5px 10px;
 		text-transform: capitalize;
 		@include font-size(16);

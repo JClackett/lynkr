@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :links , except: [:edit ] do
+  resources :links , except: [:edit, :show ] do
     member do
       get 'favourite'
       get 'update_description'
     end
   end
-
-  get "browse/:collection_id" => "collections#browse", :as => "browse"
-  get "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection"
-  get "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link"
-
   get 'favourites' => 'links#favourites'
+  
 
-  resources :collections do
+  resources :collections, except: [:edit, :show ] do
     member do
         delete 'unfollow'
     end
   end
+  get "browse/:collection_id" => "collections#browse", :as => "browse"
+  get "browse/:collection_id/new_collection" => "collections#new", :as => "new_sub_collection"
+  get "browse/:collection_id/new_link" => "links#new", :as => "new_sub_link"
 
   post "collection/share" => "collections#share"
 

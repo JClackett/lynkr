@@ -31,8 +31,10 @@ end
   if @link.save 
   
    if @link.collection #checking if we have a parent collection for this file 
+      flash[:success] = "link made!"
      redirect_to browse_path(@link.collection)  #then we redirect to the parent collection 
    else
+      flash[:success] = "link made!"
      redirect_to root_path
    end      
   else
@@ -87,9 +89,12 @@ end
   
   #redirect to a relevant path depending on the parent collection 
   if @parent_collection
+      flash[:success] = "link destroyed!"
+
    redirect_to browse_path(@parent_collection) 
   else
-   redirect_to root_url 
+    flash[:success] = "link destroyed!"
+    redirect_to :back
   end
 end
 

@@ -5,6 +5,13 @@
 	<%= render 'top_bar' %>
 
 	<div class="main-content">
+	
+		<div id="flash_messages">
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			 <% end %>
+		</div>
+
 		<%= yield %>
 	</div>
 
