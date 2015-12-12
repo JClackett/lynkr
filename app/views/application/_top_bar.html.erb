@@ -2,6 +2,7 @@
 
 	<div class="top-section">
 
+		<i class="fa fa-bars"></i>
 
 		<%= render '/collections/breadcrumbs' , collection: @current_collection %>
 
@@ -89,7 +90,7 @@
 
 												<i class="fa fa-times"></i>
 
-												<p>Remove Collection</p>
+												<p>Unfollow Collection</p>
 
 											</li>
 
@@ -126,11 +127,13 @@
 							</div>
 						<% end %>
 
-						<!-- creator -->
-						<div class="shared-user creator-user">
-							<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
-							<p><%= initials(@current_collection.user) %></p>
-						</div>
+						<% if current_user.id == @current_collection.user_id %>
+							<!-- creator -->
+							<div class="shared-user creator-user">
+								<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
+								<p><%= initials(@current_collection.user) %></p>
+							</div>
+						<% end %>
 
 					</div>
 

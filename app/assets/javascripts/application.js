@@ -149,5 +149,23 @@ $(document).on('ready page:load', function () {
 });
 
 /* --------------------------------------------------
-   Sortable
+   Sidebar
 -------------------------------------------------- */
+
+$(document).on('ready page:load', function () {
+    $(".sidebar-close").click(function() {
+         $('.sidebar').animate({left: "-200px"}, 200);
+        $(".top-bar").css({"width":"100%"});
+        $(".fa-bars").toggle();
+        $(".main-content").css({"margin-left":"0px"})
+    });
+});
+
+$(document).on('ready page:load', function () {
+    $(".fa-bars").click(function() {
+         $('.sidebar').animate({left: "0px"}, 200);
+        $(".top-bar").css({"width":"calc(100% - 200px)"});
+        $(".fa-bars").toggle();
+        $(".main-content").css({"margin-left":"200px"})
+    });
+});

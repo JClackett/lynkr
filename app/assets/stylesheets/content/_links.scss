@@ -62,9 +62,10 @@ $link-height: 40px;
 			padding: 0 5px;
 			margin:0 5px;
 			line-height: $link-height;
+			color:$yellow;
+			
 
 			&:hover {
-				color:$yellow;
 				-webkit-transition:ease-in all 100ms;
 				-webkit-transform: scale(1.3,1.3); /* Safari */
 				transform: scale(1.3,1.3);
@@ -72,22 +73,6 @@ $link-height: 40px;
 			}
 			
 		}
-	}
-
-	.link-favourite {
-		
-		i {
-			color:$greyA;
-		}
-	
-	}
-
-	.link-favourite-selected {
-
-		i {
-			color:$yellow;
-		}
-	
 	}
 
 	/* --------------------------------------------------
@@ -189,14 +174,13 @@ $link-height: 40px;
 		cursor: pointer;
 		
 		i {
-			color:$greyA;
+			color:$blue;
 			float: right;
 			padding: 0 5px;
 			margin: 0 5px;
 			line-height: $link-height;	
 
 			&:hover {
-				color:$blue;
 				-webkit-transition:ease-in all 100ms;
 				-webkit-transform: scale(1.3,1.3); /* Safari */
 				transform: scale(1.3,1.3);
@@ -215,14 +199,13 @@ $link-height: 40px;
 		float: right;
 
 		i {
-			color:$greyA;
+			color:$red;
 			float: right;
 			padding: 0 5px;
 			margin: 0 20px 0 5px;
 			line-height: $link-height;
 
 			&:hover {
-				color:$red;
 				-webkit-transition:ease-in all 100ms;
 				-webkit-transform: scale(1.3,1.3); /* Safari */
 				transform: scale(1.3,1.3);
