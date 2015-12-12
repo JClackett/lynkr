@@ -6,7 +6,7 @@ Sidebar
 .sidebar {
 	height:100vh;     // Need to sort this out
 	@extend .group;
-	background-color: $blue;
+	background-color: $dark-blue;
 	width: 200px;
 	position: fixed;
 	left:0;
@@ -17,15 +17,20 @@ Sidebar
 	   Logo
 	-------------------------------------------------- */
 	.logo {
+		cursor: default;
 		display: block;
 		text-align: left;
 		@include font-size(30);
 		line-height: 30px;
 		font-weight: 500;
-		margin-left: 20px;
 		letter-spacing: 5px;
 		color: #FFF;
 		font-variant: small-caps;
+		height: 87px;
+		padding: 25px;
+		margin: 0;
+		background-color: $blue;
+		@include no-select(none);
 	}
 
 	/* --------------------------------------------------
@@ -41,21 +46,33 @@ Sidebar
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
+
+			.selected li {
+				background-color: $darker-blue;
+			}
+			
 			
 			li {
 				display: block;
 				position: relative;
+				text-overflow: ellipsis;
+				
 				
 				&:hover {
-					background-color: $dark-blue;
+					background-color: $darker-blue;
 				}
 				
+
 
 				p {
 					text-rendering: optimizeLegibility;
 					color: #FFF;
 					padding: 0px 20px;
 					line-height: 30px;
+					width: 200px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
 				.new-collection-sidebar, .favourite-button {
@@ -83,18 +100,11 @@ Sidebar
 
 			}
 
-			.sidebar-links {
-				p {
-					font-weight: 400;
-					@include font-size(10);
-					text-transform: uppercase;
-				}
-			}
 
 			.title-link {
 				p {
 					font-weight: 600;
-					@include font-size(12);
+					@include font-size(16);
 					font-variant: small-caps;
 					margin-top: 10px;
 				}
@@ -106,9 +116,10 @@ Sidebar
 
 			.sidebar-collection-links {
 				p {	
+					margin-top: 2px;
 					color:$greyE;
 					font-weight: 500;
-					@include font-size(13);
+					@include font-size(12);
 				}
 			}
 		}

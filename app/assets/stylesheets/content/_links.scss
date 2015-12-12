@@ -187,13 +187,13 @@ $link-height: 40px;
 	.show-url-button {	
 		float: right;
 		cursor: pointer;
-
+		
 		i {
 			color:$greyA;
 			float: right;
 			padding: 0 5px;
 			margin: 0 5px;
-			line-height: $link-height;
+			line-height: $link-height;	
 
 			&:hover {
 				color:$blue;
@@ -240,11 +240,12 @@ $link-height: 40px;
 		float: left;
 		width: 100%;
 		overflow: hidden;
-		cursor:default;
+		cursor: text;
 		display: none;
 		background-color: rgba(0,0,0,0.02);
 		
 		p {	
+			user-select: text !important;
 			padding: 0 20px;
 			color:$grey7;
 			line-height: 30px;
@@ -253,7 +254,7 @@ $link-height: 40px;
 	}
 
 	/* --------------------------------------------------
-	   
+	   In View form
 	-------------------------------------------------- */
 
 	.link-submit-button {
