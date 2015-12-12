@@ -127,7 +127,7 @@
 							</div>
 						<% end %>
 
-						<% if current_user.id == @current_collection.user_id %>
+						<% unless @current_collection.user_id == nil %>
 							<!-- creator -->
 							<div class="shared-user creator-user">
 								<%= gravatar_image_tag(@current_collection.user.email.gsub('spam', 'mdeering'), :alt => @current_collection.user.first_name) %> 
