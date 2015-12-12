@@ -6,26 +6,56 @@ Sidebar
 .sidebar {
 	height:100vh;     // Need to sort this out
 	@extend .group;
-	background-color: $blue;
+	background-color: $dark-blue;
 	width: 200px;
 	position: fixed;
 	left:0;
 	top: 0;
+	display:none;
 	z-index: 1;
+	
+	@include breakpoint(medium) {
+		display:block;
+	}
+	
 	
 	/* --------------------------------------------------
 	   Logo
 	-------------------------------------------------- */
 	.logo {
+		cursor: default;
 		display: block;
 		text-align: left;
 		@include font-size(30);
-		line-height: 30px;
+		line-height: 44px;
+		height: 50px;
 		font-weight: 500;
-		margin-left: 20px;
-		letter-spacing: 5px;
+		letter-spacing: 4px;
 		color: #FFF;
 		font-variant: small-caps;
+		padding: 0 20px;
+		margin: 0;
+		background-color: $blue;
+		@include no-select(none);
+	}
+	
+	/* --------------------------------------------------
+	   Sidebar Close
+	-------------------------------------------------- */
+	    
+	.sidebar-close {
+	 	position: absolute;
+	 	cursor:pointer;
+	 	top: 16px;
+	 	right: 16px;
+	 	color:$greyE;
+	 	
+	 	&:hover {
+	 		color:$white;
+			-webkit-transition:ease-in all 100ms;
+			-webkit-transform: scale(1.3,1.3); /* Safari */
+			transform: scale(1.3,1.3);
+	 	}
 	}
 
 	/* --------------------------------------------------
@@ -41,21 +71,33 @@ Sidebar
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
+
+			.selected li {
+				background-color: $darker-blue;
+			}
+			
 			
 			li {
 				display: block;
 				position: relative;
+				text-overflow: ellipsis;
+				
 				
 				&:hover {
-					background-color: $dark-blue;
+					background-color: $darker-blue;
 				}
 				
+
 
 				p {
 					text-rendering: optimizeLegibility;
 					color: #FFF;
 					padding: 0px 20px;
 					line-height: 30px;
+					width: 200px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
 				.new-collection-sidebar, .favourite-button {
@@ -83,20 +125,13 @@ Sidebar
 
 			}
 
-			.sidebar-links {
-				p {
-					font-weight: 400;
-					@include font-size(10);
-					text-transform: uppercase;
-				}
-			}
 
 			.title-link {
 				p {
 					font-weight: 600;
-					@include font-size(12);
+					@include font-size(16);
 					font-variant: small-caps;
-					margin-top: 10px;
+					margin-top: 5px;
 				}
 			}
 		}
@@ -106,9 +141,10 @@ Sidebar
 
 			.sidebar-collection-links {
 				p {	
+					margin-top: 2px;
 					color:$greyE;
 					font-weight: 500;
-					@include font-size(13);
+					@include font-size(12);
 				}
 			}
 		}

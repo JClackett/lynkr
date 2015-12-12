@@ -34,12 +34,16 @@
 		text-align: center;
 		border-bottom: 1px solid $greyE;
 		background-color: $white;
+		overflow-y:hidden;
+		white-space: nowrap;
 		
 		a {
 			@extend .group;
 		}
 		
 		h5 {
+
+			width: 100%;
 			color:$grey7;
 			font-weight: 600;
 			margin: 0;
@@ -63,21 +67,20 @@
 			height: 75px;
 			margin: 5px;
 			padding: 0;
-			overflow-y:hidden;
 
 			li {
 				margin: 0 0 5px 0;
 				list-style: none;
 				text-align: center;
+				overflow: hidden;
+				
 		
 				a {
-
-					width: 100%;
 					font-variant: small-caps;
 					color: $grey9;
 					@include font-size(14);
 					white-space: nowrap;
-					
+
 					&:hover {
 						text-decoration: underline;
 					}

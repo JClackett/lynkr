@@ -3,9 +3,13 @@
    Topbar
 -------------------------------------------------- */
 .top-bar {
-	width: calc(100% - 200px);
+	width: 100%;
 	@include box-shadow(0px,0px,2px,1px,rgba(0,0,0,0.2));
 	background-color: #FFF;
+	
+	@include breakpoint(medium) {
+		width: calc(100% - 200px);
+	}
 
 	/* --------------------------------------------------
 	   Top Section
@@ -13,7 +17,28 @@
 	.top-section {
 		@extend .group;
 		border-bottom: 1px solid $greyD;
-		padding: 5px;
+		
+		/* --------------------------------------------------
+		   Menu
+		-------------------------------------------------- */
+		 .fa-bars {
+		 	float: left;
+			@include font-size(20); 
+			padding: 15px;	
+			color:$grey6;
+			cursor: pointer;	
+			display: block;
+			border-right: 1px solid $greyD;
+			-webkit-transition:ease-in all 100ms;
+			
+			&:hover {
+				color: $blue;
+			}
+
+			@include breakpoint(medium) {
+				display:none
+			}
+		 }
 		
 		/* --------------------------------------------------
 		   BreadCrumbs
@@ -21,11 +46,10 @@
 		
 		.breadcrumbs {
 			float: left;
-			margin-left: 10px;
+			padding: 15px;
 			
 			i {	
-				padding: 1px;
-				color:$grey9;
+				color:$grey6;
 				@include font-size(20);
 				
 				&:hover {
@@ -97,10 +121,9 @@
 				img {
 					cursor:pointer;
 					display:block;
-					height: 25px;
-					width: 25px;
-					padding:0;
-					margin: 0 10px;
+					height: 30px;
+					width: 30px;
+					margin:10px;
 					border-radius:50%;
 					border:1px solid $greyA;
 					
@@ -131,7 +154,7 @@
 					font-weight: 500;
 					@include font-size(12);
 					text-transform: uppercase;
-					line-height: 25px;
+					line-height: 40px;
 					border-left:1px solid $greyE;
 					border-right:1px solid $greyE;
 					color:$grey7;
@@ -195,7 +218,6 @@
 			text-align: center;
 			margin: 0;
 		
-				
 			span {
 				margin: 0;
 				text-align: center;
@@ -203,9 +225,24 @@
 				line-height: 30px;
 				@include font-size(18);
 				cursor: default;
+				
+				
+				input { 
+
+					width: 200px;
+					border:1px solid $greyD;
+					border-radius:4px;
+				
+				}
+
+				::selection {
+					color: $grey4; 
+					background-color: $light-blue;
+				} 
 			}
 
 			.best_in_place_title {
+
 				&:hover {
 					cursor: text;
 					border-bottom:1px dotted $greyA;
@@ -296,6 +333,7 @@
 			right:10px;
 			top:8px;
 			line-height: 50px;
+			
 			img {
 				border-radius:50%;
 				margin-right: 5px;
@@ -304,14 +342,15 @@
 			.shared-user {
 				position: relative;
 				float: right;
+    				@include no-select(none);
 					
 				&:hover img {
-				// -webkit-transition:ease-in all 100ms;
-				-webkit-transform: scale(1.1,1.1); /* Safari */
-				transform: scale(1.1,1.1);
-				opacity: 0.2;
-				@include box-shadow(0px,0px,0px,3px, $blue);
-				border:0.5px solid $blue;
+					// -webkit-transition:ease-in all 100ms;
+					-webkit-transform: scale(1.1,1.1); /* Safari */
+					transform: scale(1.1,1.1);
+					opacity: 0.2;
+					@include box-shadow(0px,0px,0px,3px, $blue);
+					border:0.5px solid $blue;
 				}
 
 				img {

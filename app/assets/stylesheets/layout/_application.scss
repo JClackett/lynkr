@@ -1,8 +1,12 @@
 .l-application {
       
 .main-content {
-	margin-left: 200px;
+	margin-left: 0px;
 	margin-top: 85px;
 	@extend .group;
+	
+	@include breakpoint(medium) {
+		margin-left: 200px;
+	}
 }
 }

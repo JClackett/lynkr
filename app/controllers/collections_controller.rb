@@ -23,7 +23,7 @@ class CollectionsController < ApplicationController
 
 		unless @all_shared_collections.nil?
 			@all_shared_collections.each do |shared_collection|
-				
+
 				@being_shared_collections.push(shared_collection) unless current_user.has_share_access?(shared_collection.parent) 
 
 			end
@@ -114,17 +114,22 @@ class CollectionsController < ApplicationController
 
 		# Destroy links in current colleciton
 		@collection.links.each do |link|
-			link.destroy
+			link.user_id = nil
+			link.save
 		end
 
 		# Destroy any links in current collections descendants
 		@collection.descendants.each do |collection|
 			collection.links.each do |link|
-				link.destroy
+				link.user_id = nil
+				link.save
 			end
+			collection.user_id = nil
+			collection.save
 		end
 
-		@collection.destroy 
+		@collection.user_id = nil
+		@collection.save
 		#redirect to a relevant path depending on the parent collection 
 		if @parent_collection
 			flash[:success] = "collection removed!"
@@ -249,9 +254,10 @@ class CollectionsController < ApplicationController
  			end
  		end
 
- 		## Delete any collections the current user owned under the one he removed himself from.
+ 		# unfollow any collections the current user owned under the one he removed himself from.
  		@collection.descendants.each do |descendant|	
- 			descendant.destroy if descendant.user_id == current_user.id
+ 			descendant.user_id = nil if descendant.user_id == current_user.id
+ 			descendant.save
  		end
 
 		if @parent_collection && current_user.has_share_access?(@parent_collection)
