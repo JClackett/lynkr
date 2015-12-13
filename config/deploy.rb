@@ -4,6 +4,8 @@ lock '3.4.0'
 set :application, 'lynkr'
 set :repo_url, 'git@github.com:MacClayzon/lynkr.git'
 
+
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
