@@ -18,6 +18,12 @@ gem 'simple_form'
 
 gem 'jquery-ui-rails'
 
+group :development do 
+	gem 'capistrano', '~> 3.4.0'
+	gem 'capistrano-rbenv', '~> 2.0.3'
+	gem 'capistrano-rails', '~> 1.1.3'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
