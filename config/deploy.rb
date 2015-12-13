@@ -6,6 +6,7 @@ set :repo_url, 'git@github.com:MacClayzon/lynkr.git'
 
 set :rbenv_path, '/home/deploy/.rbenv'
 
+set :passenger_restart_with_touch, true
 
 
 # Default branch is :master
