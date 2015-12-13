@@ -35,5 +35,5 @@ production:
   database: lynkr_production
   pool: 5
   username: root
-  password: 
+  password: root
   # socket: /tmp/mysql.sock
