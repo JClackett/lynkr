@@ -219,9 +219,7 @@ class CollectionsController < ApplicationController
 
 
 			# now we need to send email to the Shared User, except if they already exist, and if they are the owners of the parent
-			if SharedCollection.exists?(:shared_user_id => shared_user.id, :collection_id => current_collection.id) || current_collection.user_id == shared_user.id
-
-			else
+			unless SharedCollection.exists?(:shared_user_id => shared_user.id, :collection_id => current_collection.id) || current_collection.user_id == shared_user.id
 				@shared_collection.save 
 				UserMailer.invitation_to_share(@shared_collection).deliver_now
 			end
