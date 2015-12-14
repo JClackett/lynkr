@@ -201,7 +201,7 @@
 				color:$grey8;
 				@include font-size(16);
 				font-variant: small-caps;
-				
+								
 				&:hover {
 					color:$blue;
 				}
@@ -295,6 +295,7 @@
 							}
 							
 							p {	
+								font-family: "Helvetica Neue", "Helvetica", sans-serif;
 								float: left;
 								@include font-size(11);
 								color:$grey6;
