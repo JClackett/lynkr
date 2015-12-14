@@ -23,7 +23,7 @@ group :development do
 	gem 'capistrano-rbenv', '~> 2.0.3'
 	gem 'capistrano-rails', '~> 1.1.3'
 	gem 'capistrano-passenger' 
-	# gem 'capistrano-rvm', github: "capistrano/rvm"
+	gem 'capistrano-rvm', github: "capistrano/rvm"
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
