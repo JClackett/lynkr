@@ -42,42 +42,6 @@ Form Layout Template
 		
 		}
 
-		.checkbox-field {
-			padding: 0;
-			margin: 10px 0;
-			text-align: center;
-		}
-
-		input[type=checkbox] {
-			display:none;
-			margin: 0;
-			padding: 0;
-		}
-
-		.checkbox_label {
-			display: inline-block;
-			border-radius:3px;
-			line-height: 20px;
-			padding: 5px 10px;
-			margin: 2px 1px;
-			border-style: none;
-			@include font-size(12);
-			cursor: pointer;
-			color:$white;
-			background-color: $blue;
-		}
-
-		.checkbox_label:hover {
-			background-color: $dark-blue;
-		}
-
-		.check_box:checked + .checkbox_label {
-		  	color:$white;
-			background-color: $dark-blue;
-		}
-
-
-
 		.form-actions {
 			@extend .group;
 			text-align: center;
@@ -105,7 +69,7 @@ Form Layout Template
 				
 
 				&:hover {
-					background-color: $dark-green;
+					background-color: darken($green, 5%);
 				}
 			}
 		}

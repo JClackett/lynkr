@@ -1,0 +1,55 @@
+<%= render 'layouts/header' %>
+
+<body class="l-landing">
+
+	<header class="top-bar">
+
+		<%= link_to 'lynkr', root_url, class: 'logo' %>
+
+		<nav class="main-nav">
+
+			<ul>
+				<% unless user_signed_in? %>
+					<li><%= link_to "login", login_path, class: "login-button" %></li>
+					<li><%= link_to "register", register_path, class: "register-button" %></li>
+				<% end %>
+			</ul>
+
+		</nav>
+
+	</header>
+
+	<%= yield %>
+
+	<div class="signup-banner">
+
+		<div class="content-wrapper">
+
+			<%= link_to "sign up now", register_path, class: "" %>
+
+			<p>Start sharing your links today</p>
+
+		</div>
+
+	</div>
+
+	<footer class="landing-footer">
+
+		<div class="row">
+
+			<ul class="footer-element footer-logo">
+				<li><a class="logo">lynkr</a></li>
+			</ul>
+
+			<ul class="footer-element footer-social">
+				<li><%= link_to "About", about_url %></li>
+				<li><a href="http://www.facebook.com/lynkr" target="_blank">Facebook</a></li>
+				<li><a href="http://www.twitter.com/lynkr" target="_blank">Twitter</a></li>
+			</ul>
+
+		</div>
+
+	</footer>
+
+</body>
+</html>

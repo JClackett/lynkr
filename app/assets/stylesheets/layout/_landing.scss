@@ -1,0 +1,72 @@
+.l-landing {
+	background-color: $white;
+	.top-bar {
+		width: 100%;
+		padding: 30px;
+		height: 80px;
+		background-color: rgba(0,0,0,0);
+		
+		.logo {
+			float: left;
+			@include font-size(30);
+			line-height: 20px;
+			color:$blue;
+			font-variant: small-caps;
+			letter-spacing: 4px;
+		}
+
+		.main-nav {
+			float: right;
+			
+			ul {
+				@extend .group;
+				line-height: 20px;
+
+				li {
+					float: right;
+					margin-left: 30px;	
+										
+					a {	
+						padding: 12px 16px;
+						text-transform: uppercase;
+						@include font-size(14);
+						color:$blue;
+						font-weight: 500;
+						text-rendering:optimizeLegibility;
+						
+						&:hover {
+							color:darken($blue,5%);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.hero {
+		padding: 40px 0;
+		text-align: center;
+		
+		h3 {	
+			@include font-size(24);
+			color:$grey8;
+		}
+
+		p {
+			color:$greyA;
+			@include font-size(16);
+		}
+	}
+
+	.how-to-use {
+		
+	}
+
+	.signup-banner {
+		text-align: center;
+	}
+
+	.landing-footer{
+		text-align: center;
+	}
+}

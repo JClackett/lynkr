@@ -34,7 +34,7 @@ Devise sign in / Register
 			min-height: 300px;
 		}
 
-		.devise-upsell {
+		.devise-banner {
 			background: #4D9DE0;
 
 			@include breakpoint(medium) {
@@ -168,7 +168,7 @@ Devise sign in / Register
 				
 
 				&:hover {
-					background-color: $dark-green;
+					background-color: darken($green, 5%);
 				}
 			}
 		}
