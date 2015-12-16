@@ -9,12 +9,12 @@ Sidebar
 	background-color: $dark-blue;
 	width: 200px;
 	position: fixed;
-	left:0;
+	left:-200px;
 	top: 0;
 	z-index: 1;
 	
 	@include breakpoint(medium) {
-		display:block;
+		left: 0;
 	}
 	
 	

@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:update, :favourite, :update_description]
   before_action :authenticate_user!
-  before_action :sidebar_collections, only: [:index, :new, :favourites ]
+  before_action :sidebar_collections, only: [:index, :new, :favourites, :create ]
 
 
 
@@ -31,13 +31,13 @@ end
   if @link.save 
   
    if @link.collection #checking if we have a parent collection for this file 
-      flash[:success] = "link made!"
      redirect_to browse_path(@link.collection)  #then we redirect to the parent collection 
    else
-      flash[:success] = "link made!"
      redirect_to root_path
    end      
+      flash[:success] = "link made!"
   else
+    @bottom_bar_header = "Oops! Something went wrong!"
    render :action => 'new'
   end
 end

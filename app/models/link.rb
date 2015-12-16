@@ -30,14 +30,14 @@ has_many :favourites
 # Validations
 # ------------------------------------------------------------------------------
 
-validates_format_of :url, with: URI::regexp(%w(http https))
-validates_presence_of :url
+validates_presence_of :url, :description, :message => "can't be empty"
+validates_format_of :url, with: URI::regexp(%w(http https)), :message => "must start with http:// or https://"
 
 # ------------------------------------------------------------------------------
 # Callbacks
 # ------------------------------------------------------------------------------
 
-before_save :downcase_inputs
+before_save :sanitize_inputs
 
 
 # ------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ before_save :downcase_inputs
 protected
 # ------------------------------------------------------------------------------
 
-def downcase_inputs
+def sanitize_inputs
 	self.url.downcase!
 	self.description.downcase!
 end

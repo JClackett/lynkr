@@ -109,5 +109,24 @@ Form Layout Template
 				}
 			}
 		}
+
+		.error-form {
+
+				ul {
+					@extend .group;
+					margin-bottom: 10px;
+					li {	
+						float: right;
+						padding: 5px;
+						margin: 3px;
+						@include font-size(15);
+						@include border-radius(3px);
+						color: #A94442;;
+						background-color: #f2dede;
+						border: 1px solid #ebccd1;
+					}
+				}
+		}
+
 	}
 }
