@@ -25,9 +25,9 @@
 
 		<div class="content-wrapper">
 
-			<%= link_to "sign up now", register_path, class: "" %>
-
 			<p>Start sharing your links today</p>
+
+			<%= link_to "sign up now", register_path, class: "" %>
 
 		</div>
 
@@ -35,19 +35,11 @@
 
 	<footer class="landing-footer">
 
-		<div class="row">
-
-			<ul class="footer-element footer-logo">
-				<li><a class="logo">lynkr</a></li>
-			</ul>
-
-			<ul class="footer-element footer-social">
-				<li><%= link_to "About", about_url %></li>
-				<li><a href="http://www.facebook.com/lynkr" target="_blank">Facebook</a></li>
-				<li><a href="http://www.twitter.com/lynkr" target="_blank">Twitter</a></li>
-			</ul>
-
-		</div>
+		<ul class="footer-element">
+			<li><%= link_to "About", about_url %></li>
+			<li><a href="http://www.facebook.com/lynkr" target="_blank">Facebook</a></li>
+			<li><a href="http://www.twitter.com/lynkr" target="_blank">Twitter</a></li>
+		</ul>
 
 	</footer>
 

@@ -1,5 +1,6 @@
 .l-landing {
 	background-color: $white;
+	
 	.top-bar {
 		width: 100%;
 		padding: 30px;
@@ -59,14 +60,69 @@
 	}
 
 	.how-to-use {
+		@extend .group;
+		padding: 40px 0;
+
+		.column {
+			float: left;
+			text-align: center;
+			width: 33%;
+			@include font-size(60);
+		}
 		
 	}
 
 	.signup-banner {
+		padding: 40px 0;
 		text-align: center;
+
+		p {
+			color:$grey8;
+			margin-bottom: 20px;
+		}
+		
+		a {
+			color:$white;
+			background-color: $blue;
+			padding:10px 20px;
+			@include font-size(18);
+			@include border-radius(4px);
+			font-variant: small-caps;
+			
+			&:hover {
+				background-color: darken($blue, 5%);
+			}
+		}
 	}
 
 	.landing-footer{
+		padding: 40px 0;
 		text-align: center;
+		margin-left:auto;
+		margin-right: auto;
+		width: 300px;
+		
+		ul {
+			@extend .group;
+			
+			li {	
+				width: 33%;
+				float: left;
+				padding:0 20px;
+				
+				a {
+					color:$grey6;
+					
+					&:hover {
+						color:$grey4;
+					}
+					
+				}
+			}
+		}
+	}
+
+	.about-body {
+		padding:50px;
 	}
 }
