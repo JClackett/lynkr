@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'lynkr'
-set :repo_url, 'git@github.com:MacClayzon/lynkr.git'
+set :repo_url, 'https://github.com/MacClayzon/lynkr.git'
 
 set :rbenv_path, '/home/deploy/.rbenv'
 
