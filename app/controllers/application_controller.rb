@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def sidebar_collections
-    @sidebar_collections = current_user.collections.roots
+    @sidebar_collections=  Collection.joins(:pins).where( pins: { user_id: current_user } )
   end
 
 

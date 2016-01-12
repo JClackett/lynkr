@@ -34,6 +34,7 @@ has_many :being_shared_collections, :class_name => "SharedCollection", :foreign_
 has_many :shared_collections_by_others, :through => :being_shared_collections, :source => :collection
 
 has_many :favourites
+has_many :pins
 has_many :links
 
 

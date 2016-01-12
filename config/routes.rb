@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
   resources :collections, except: [:edit, :show ] do
     member do
-        delete 'unfollow'
+      get 'pin'
+      delete 'unfollow'
     end
   end
 
@@ -53,6 +54,6 @@ Rails.application.routes.draw do
     # Static Pages
   # ----------------------------------------------------------
   get 'home' => 'static_pages#home', as: :home
-  get 'about' => 'static_pages#about', as: :about
+  get 'about' => 'static_pages#contact', as: :contact
 
 end

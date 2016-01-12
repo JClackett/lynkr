@@ -52,7 +52,7 @@ $link-height: 40px;
 	   Favourite Section
 	-------------------------------------------------- */
 
-	.link-favourite, .link-favourite-selected {
+	.link-favourite {
 		@extend .group;
 		float: left;
 		cursor: pointer;

@@ -6,6 +6,7 @@
 	background-color: $lightgrey;
 	@include border-radius(2px);
 	border:1px solid $greyD;
+	position: relative;
 	@include box-shadow(0px,0px,2px,0px, rgba(0,0,0,0.1));
 	width:48%;
 	margin: 1% 1% 0 1%;
@@ -13,9 +14,14 @@
 	
 	&:hover {
 		-webkit-transition:ease-in all 100ms;
-		-webkit-transform: scale(1.05,1.05); /* Safari */
-		transform: scale(1.05,1.05);
+		-webkit-transform: scale(1.02,1.02); /* Safari */
+		transform: scale(1.02,1.02);
 	}
+
+	&:hover .collection-pin {
+		display:block;
+	}
+
 
 	@include breakpoint(small) {
 		width:31.3%;
@@ -27,6 +33,34 @@
 	
 	@include breakpoint(medium-large) {
 		width:18%;
+	}
+
+
+	.collection-pin {
+		display:none;
+		
+		i {
+			position: absolute;
+			padding: 6px 10px;
+			font-size:16px;
+			color:$greyB;
+			cursor:pointer;
+			-webkit-transition:ease-in all 100ms;
+						
+			&:hover {
+				color:darken($greyB, 20%);
+			}
+		}
+	}
+
+	.pin-selected {
+		display:block;
+		i {
+			color:$blue;		
+			&:hover {
+				color:lighten($blue, 10%);
+			}
+		}
 	}
 	
 	

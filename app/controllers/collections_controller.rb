@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
 	# CALLBACKS 
 	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	 
-	before_action :set_collection, only: [:show, :edit, :update, :destroy, :unfollow]
+	before_action :set_collection, only: [:show, :edit, :update, :destroy, :unfollow, :pin]
 	before_action :authenticate_user!
 	before_action :sidebar_collections, only: [:index, :show, :new, :edit, :browse]
 
@@ -137,6 +137,22 @@ class CollectionsController < ApplicationController
 		else
 			redirect_to root_url       
 		end
+	end
+
+	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+	# GET : pin
+	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	def pin
+
+		if Pin.where(user_id: current_user.id, collection_id: @collection.id).present?
+			@pin = Pin.where(user_id: current_user.id, collection_id: @collection.id)
+			@pin.first.delete
+		else
+			@pin = @collection.pins.new(user: current_user)
+			@pin.save
+		end 
+
 	end
 
 	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------

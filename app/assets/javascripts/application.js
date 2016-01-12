@@ -91,6 +91,15 @@ $(document).on('ready page:load', function () {
     });
 });
 
+/* --------------------------------------------------
+   Updating Sidebar on pin
+-------------------------------------------------- */
+
+// $(document).on('ready page:load', function () {
+//   $('.collection-pin-link').bind("ajax:success", function () {
+//       $(".sidebar-collection-links-wrapper").load(" .sidebar-collection-links-wrapper");
+//     });
+// });
 
 /* --------------------------------------------------
    Share collection popup

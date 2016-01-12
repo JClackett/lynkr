@@ -1,0 +1,19 @@
+<!-- This one is the pinned Buttons -->
+
+<%= link_to pin_collection_path(collection), id: dom_id(collection, :pin), class: "collection-pin-link", remote: true  do %>
+
+		<% if Pin.where(user_id: current_user.id, collection_id: collection.id).present? %>
+
+			<div class="collection-pin pin-selected">
+				<i class="fa fa-thumb-tack"></i>
+			</div>
+
+		<% else %>
+
+			<div class="collection-pin">
+				<i class="fa fa-thumb-tack"></i>
+			</div>
+
+		<% end %>
+
+<%end%>
