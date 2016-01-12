@@ -95,7 +95,7 @@
 		}
 	}
 
-	.landing-footer{
+	.landing-footer {
 		padding: 40px 0;
 		text-align: center;
 		margin-left:auto;
@@ -106,7 +106,7 @@
 			@extend .group;
 			
 			li {	
-				width: 33%;
+				width: 50%;
 				float: left;
 				padding:0 20px;
 				
@@ -122,11 +122,4 @@
 		}
 	}
 
-	.about-body {
-		padding:50px;
-		
-		p {
-			color:$grey6;
-		}
-	}
 }

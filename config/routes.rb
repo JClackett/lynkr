@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   # ----------------------------------------------------------
-    # Where users go upon openin site
+    # Where users go upon opening site
   # ----------------------------------------------------------
 
   authenticated :user do
@@ -54,6 +54,5 @@ Rails.application.routes.draw do
     # Static Pages
   # ----------------------------------------------------------
   get 'home' => 'static_pages#home', as: :home
-  get 'about' => 'static_pages#contact', as: :contact
 
 end
