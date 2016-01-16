@@ -127,6 +127,7 @@ $(document).on('ready page:load', function () {
                     buttons: { 
                         //First button 
                         "Share": function() { 
+                          
                             //get the url to post the form data to 
                             var post_url = $("#invitation_form form").attr("action"); 
                               
