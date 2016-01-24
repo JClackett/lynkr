@@ -126,47 +126,4 @@
 		}
 	}
 
-	/* --------------------------------------------------
-	   New Collection Form
-	-------------------------------------------------- */
-			.new-collection-form {
-				text-align:center;
-				border:none;
-				color:$grey7;
-				width: 100%;
-				font-weight: 500;
-				
-				&::-webkit-input-placeholder {
-					color:$greyB;
-					font-variant: small-caps;
-					font-weight: 500;
-				}
-			
-			}
-
-			.form-submit-button {
-
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				background-color: $green;
-				background-clip: padding-box;
-				border:none;
-				padding: 10px;
-				@include font-size(40);
-				width: 100%;
-				color:$white;
-				font-weight: 600;
-				font-variant: small-caps;
-				-webkit-transition:ease-in all 100ms;
-				transition:ease-in all 100ms;
-				
-
-				
-				
-
-				&:hover {
-					background-color: $dark-green;
-				}
-			}
 }
