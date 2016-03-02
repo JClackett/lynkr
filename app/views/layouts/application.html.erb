@@ -15,6 +15,16 @@
 		<%= yield %>
 	</div>
 
+
+
+<script>
+    peekin = {api_key: "0beed13adbba75d3d990"};
+    // If you'd like to identify the user, uncomment the following line:
+    peekin.identity = <%= current_user.first_name %>;
+</script>
+<script src="//api.peekin.io/peekin.js" async></script>
+
+
 </body>
 
 </html>
