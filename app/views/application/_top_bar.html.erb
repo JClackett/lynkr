@@ -29,7 +29,10 @@
 		           		<!-- Need to make Users Controller -->
 		           	</div>
 
-		           	<%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) %>
+		           	<%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => current_user.first_name) if current_user %>
+
+		           	<%= image_tag("guest.png", :alt => "Guest") unless current_user %>
+
 		           </div>
 
 		           <div class="user-popup">

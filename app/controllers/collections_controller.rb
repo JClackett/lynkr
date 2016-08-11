@@ -5,7 +5,6 @@ class CollectionsController < ApplicationController
 	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	 
 	before_action :set_collection, only: [:show, :edit, :update, :destroy, :unfollow, :pin]
-	before_action :authenticate_user!
 	before_action :sidebar_collections, only: [:index, :show, :new, :edit, :browse]
 
 
@@ -14,8 +13,10 @@ class CollectionsController < ApplicationController
 	# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 	 
 	def index 
-
 		@bottom_bar_header = "Dock"
+		
+		if current_user
+
 
 		#show collections shared by others but only the top level
 		@all_shared_collections = current_user.shared_collections_by_others
@@ -34,6 +35,7 @@ class CollectionsController < ApplicationController
 
 		#show only root files 
 		@links = current_user.links.where("collection_id is NULL").reverse  
+		end
 
 	end
 

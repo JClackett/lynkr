@@ -43,12 +43,12 @@ Rails.application.routes.draw do
     # Where users go upon opening site
   # ----------------------------------------------------------
 
-  authenticated :user do
-    get '/', to: "collections#index"
-  end
-  unauthenticated :user do
-    root to: 'static_pages#home' 
-  end
+  # authenticated :user do
+    root "collections#index"
+  # end
+  # unauthenticated :user do
+  #   root to: 'static_pages#home' 
+  # end
 
   # ----------------------------------------------------------
     # Static Pages

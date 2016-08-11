@@ -26,7 +26,7 @@ class Collection < ActiveRecord::Base
 belongs_to :user
 has_many :shared_collections, :dependent => :destroy
 has_many :links , :dependent => :destroy
-has_many :pins
+has_many :pins , :dependent => :destroy
 
 # ------------------------------------------------------------------------------
 # Validations
