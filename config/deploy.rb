@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.4
-lock '3.4.1'
+lock '3.6.1'
 
 set :application, 'lynkr'
 set :repo_url, 'https://github.com/JClackett/lynkr.git'
