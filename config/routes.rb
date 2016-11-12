@@ -50,9 +50,9 @@ Rails.application.routes.draw do
     root to: 'static_pages#home' 
   end
 
-  # ----------------------------------------------------------
-    # Static Pages
-  # ----------------------------------------------------------
-  get 'home' => 'static_pages#home', as: :home
+  # # ----------------------------------------------------------
+  #   # Static Pages
+  # # ----------------------------------------------------------
+  # get 'home' => 'static_pages#home', as: :home
 
 end
